@@ -13,3 +13,12 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])
     ->middleware('auth')
     ->name('home');
+
+
+    use App\Http\Controllers\PacienteController; 
+
+    Route::get('/paciente', [PacienteController::class, 'index'])->middleware('auth');
+
+    use App\Http\Controllers\PacientesController; 
+    
+    Route::get('/pacientes', [PacientesController::class, 'index'])->middleware('auth');

@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    {{ __('Bienvenido a tu panel de control NURSE VALERIA!') }}
+                    {{ __('Bienvenido a tu panel de control NURSE VALERIA!!!!!') }}
                     
                 </div>
             </div>

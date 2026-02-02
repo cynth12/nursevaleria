@@ -321,25 +321,25 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
+            'text' => 'Pacientes',
+            'url' => 'pacientes',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'concentimiento informado'],
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
+            'text' => 'Paciente',
+            'url' => 'paciente',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'consentimiento',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'multilevel',
+            'text' => 'Tratamiento',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [
