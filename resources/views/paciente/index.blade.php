@@ -6,75 +6,70 @@
 
 
 
-<div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Tus datos y consultas</h3>
+ <h1>Create new patient</h1>
 
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm float-right">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                  </ul>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Cron job running</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
 
-    @endsection
-             
+
+
+
+
+<form method="POST" action="">
+    
+    <div class="form-group">
+        <label for="numero">Patient name</label>
+        <select name="name" id="name" class="form-control" required>
+         
+                <option value="">Name</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="fecha">📅 Date of birth</label>
+        <input type="text" name="fecha" id="fecha" class="form-control" placeholder="dd/mm/yyyy" required>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="number" step="0.01" name="phone" id="premio" class="form-control" placeholder="" required>
+    </div>
+    <div class="form-group">
+        <label for="phone">Email</label>
+        <input type="number" step="0.01" name="phone" id="premio" class="form-control" placeholder="" required>
+    </div>
+
+    <h4 class="mt-4">Alergies</h4>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                
+                <th>Medicine</th>
+                <th>Food</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+<tr>
+    
+    <td>
+        <select name="" class="form-control">
+            <option value="" class="form-control">select medicine</option>
+            <option value=""></option>
+        </select>
+    </td>
+    <td>
+        <select name="" class="form-control" required>
+            <option value="" disabled selected>Select food</option>
+            
+                <option value=""></option>
+           
+        </select>
+    </td>
+</tr>
+
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-success mt-3">✅ Save patient</button>
+</form>
+
+@endsection
