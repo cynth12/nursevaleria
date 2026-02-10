@@ -15,9 +15,9 @@ Route::get('/home', [HomeController::class, 'index'])
     ->name('home');
 
 
-    use App\Http\Controllers\PacienteController; 
+    use App\Http\Controllers\PatientController; 
 
-    Route::get('/paciente', [PacienteController::class, 'index'])->middleware('auth');
+    Route::get('/patient', [PatientController::class, 'index'])->middleware('auth');
 
     use App\Http\Controllers\PacientesController; 
     
