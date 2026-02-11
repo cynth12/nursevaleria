@@ -45,8 +45,7 @@ return new class extends Migration
             // Notas del administrador
             $table->text('notes')->nullable();
             // Fecha de registro automática 
-            $table->date('registration_date')->default(DB::raw('CURRENT_DATE'));
-
+            $table->timestamp('registration_date')->useCurrent(); 
             $table->timestamps();
 
         });

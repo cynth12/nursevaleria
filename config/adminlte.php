@@ -330,7 +330,7 @@ return [
         ['header' => 'concentimiento informado'],
         [
             'text' => 'Crear paciente',
-            'url' => 'patient',
+            'url' => 'patient/create',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

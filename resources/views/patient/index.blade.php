@@ -6,7 +6,7 @@
 
     <h1>🩺 Create New Patient</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('patient.store') }}">
         @csrf
         <div class="row">
 
