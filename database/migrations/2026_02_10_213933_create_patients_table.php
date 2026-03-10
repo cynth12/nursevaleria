@@ -54,6 +54,10 @@ return new class extends Migration {
             $table->integer('oxygen_saturation')->nullable(); // Saturación de oxígeno (%)
             $table->decimal('temperature', 4, 1)->nullable(); // Temperatura corporal (ej. 36.5)
             $table->string('blood_pressure', 20)->nullable(); // Tensión arterial (ej. 120/80)
+            
+            // Auditoría
+            $table->string('registered_by', 100)->nullable();
+            $table->string('updated_by', 100)->nullable();
 
             // Fecha de registro automática
             $table->timestamp('registration_date')->useCurrent();
