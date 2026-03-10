@@ -39,6 +39,21 @@
         <h4 class="mt-4">Examen físico</h4>
         <p>{{ $patient->physical_exam }}</p>
 
+        <!-- Consentimiento informado -->
+    <h4 class="mt-4">Consentimiento Informado</h4>
+    <p><strong>Accepted:</strong> {{ $patient->consent_accepted ? 'Yes' : 'No' }}</p>
+    <p><strong>Signature:</strong> {{ $patient->digital_signature }}</p>
+    <p><strong>Authorized Procedure:</strong> {{ $patient->authorized_procedure }}</p>
+
+    <!-- Signos vitales -->
+    <h4 class="mt-4">Signos Vitales</h4>
+    <div class="row">
+        <div class="col-md-3"><strong>Heart Rate:</strong> {{ $patient->heart_rate }}</div>
+        <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $patient->oxygen_saturation }}%</div>
+        <div class="col-md-3"><strong>Temperature:</strong> {{ $patient->temperature }} °C</div>
+        <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $patient->blood_pressure }}</div>
+    </div>
+
         <h4 class="mt-4">Notas</h4>
         <p>{{ $patient->notes }}</p>
 

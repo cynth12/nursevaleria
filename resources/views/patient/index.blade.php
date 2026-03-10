@@ -141,6 +141,50 @@
                         placeholder="Notes from physical exam"></textarea>
                 </div>
 
+            <!-- Consentimiento informado -->
+        <div class="col-md-12">
+            <h4 class="mt-4">Consentimiento Informado</h4>
+            <div class="form-group">
+                <label for="consent_accepted">Acepta tratamiento</label>
+                <select name="consent_accepted" id="consent_accepted" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="digital_signature">Firma Digital</label>
+                <input type="text" name="digital_signature" id="digital_signature" class="form-control" placeholder="Firma digital codificada">
+            </div>
+            <div class="form-group">
+                <label for="authorized_procedure">Procedimiento Autorizado</label>
+                <input type="text" name="authorized_procedure" id="authorized_procedure" class="form-control" placeholder="Ej. Multivitamin IV Drip">
+            </div>
+        </div>
+
+        <!-- Signos vitales -->
+        <div class="col-md-12">
+            <h4 class="mt-4">Signos Vitales</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="heart_rate">Frecuencia Cardíaca (FC)</label>
+                    <input type="number" name="heart_rate" id="heart_rate" class="form-control" placeholder="Ej. 78">
+                </div>
+                <div class="col-md-3">
+                    <label for="oxygen_saturation">Saturación O₂ (%)</label>
+                    <input type="number" name="oxygen_saturation" id="oxygen_saturation" class="form-control" placeholder="Ej. 97">
+                </div>
+                <div class="col-md-3">
+                    <label for="temperature">Temperatura (°C)</label>
+                    <input type="number" step="0.1" name="temperature" id="temperature" class="form-control" placeholder="Ej. 36.7">
+                </div>
+                <div class="col-md-3">
+                    <label for="blood_pressure">Tensión Arterial</label>
+                    <input type="text" name="blood_pressure" id="blood_pressure" class="form-control" placeholder="Ej. 120/80">
+                </div>
+            </div>
+        </div>
+
                 <!-- Notas del administrador -->
                 <h4 class="mt-4">Notas</h4>
                 <div class="form-group">

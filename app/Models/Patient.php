@@ -27,6 +27,21 @@ class Patient extends Model
         'supplements',
         'physical_exam',
         'notes',
+        // Consentimiento
+        'consent_accepted',
+        'digital_signature',
+        'consent_date',
+        'authorized_procedure',
+
+        // Signos vitales
+        'heart_rate',
+        'oxygen_saturation',
+        'temperature',
+        'blood_pressure',
+
+        // Auditoría
+        'registered_by',
+        'updated_by',
         'registration_date',
     ];
 }
