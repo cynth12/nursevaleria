@@ -42,12 +42,20 @@ return new class extends Migration
             // Examen físico
             $table->text('physical_exam')->nullable();
 
+            // Consentimiento informado
+            $table->boolean('consent_accepted')->default(false);
+            $table->text('digital_signature')->nullable();
+            $table->timestamp('consent_date')->nullable();
+            $table->string('authorized_procedure', 150)->nullable();
+
             // Notas del administrador
-            $table->text('notes')->nullable();
+            $table->text('notes')->nullable(); 
+            // Registro clínico adicional
+            $table->json('vital_signs')->nullable();$table->string('registered_by', 100)->nullable();
+            $table->string('updated_by', 100)->nullable();
             // Fecha de registro automática 
             $table->timestamp('registration_date')->useCurrent(); 
             $table->timestamps();
-
         });
     }
 
