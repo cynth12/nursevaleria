@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -45,16 +44,19 @@ return new class extends Migration
             // Consentimiento informado
             $table->boolean('consent_accepted')->default(false);
             $table->text('digital_signature')->nullable();
-            $table->timestamp('consent_date')->nullable();
             $table->string('authorized_procedure', 150)->nullable();
 
             // Notas del administrador
-            $table->text('notes')->nullable(); 
+            $table->text('notes')->nullable();
             // Registro clínico adicional
-            $table->json('vital_signs')->nullable();$table->string('registered_by', 100)->nullable();
-            $table->string('updated_by', 100)->nullable();
-            // Fecha de registro automática 
-            $table->timestamp('registration_date')->useCurrent(); 
+            // Signos vitales
+            $table->integer('heart_rate')->nullable(); // Frecuencia cardíaca (FC)
+            $table->integer('oxygen_saturation')->nullable(); // Saturación de oxígeno (%)
+            $table->decimal('temperature', 4, 1)->nullable(); // Temperatura corporal (ej. 36.5)
+            $table->string('blood_pressure', 20)->nullable(); // Tensión arterial (ej. 120/80)
+
+            // Fecha de registro automática
+            $table->timestamp('registration_date')->useCurrent();
             $table->timestamps();
         });
     }
