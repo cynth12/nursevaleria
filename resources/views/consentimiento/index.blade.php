@@ -4,36 +4,34 @@
 @section('title', 'Pacientes')
 
 @section('content')
+<h1>Listado de Consentimientos</h1>
 
-
-
-
-<h1>Consentimiento Informado</h1>
-<p>Listado de pacientes y su estado de consentimiento.</p>
-
-<table class="table table-striped">
+<table class="table">
     <thead>
         <tr>
             <th>Paciente</th>
-            <th>Consentimiento</th>
             <th>Procedimiento</th>
             <th>Fecha</th>
+            <th>Estado</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($consentimientos as $consentimiento)
+        @forelse($consentimientos as $consentimiento)
         <tr>
-            <td>{{ $patient->name }}</td>
-            <td>{{ $patient->consent_accepted ? '✅ Sí' : '❌ No' }}</td>
-            <td>{{ $patient->authorized_procedure ?? '—' }}</td>
-            <td>{{ $patient->consent_date ?? '—' }}</td>
+            <td>{{ $consentimiento->patient->name }}</td>
+            <td>{{ $consentimiento->authorized_procedure ?? '-' }}</td>
+            <td>{{ $consentimiento->consent_date ?? '-' }}</td>
+            <td>{{ $consentimiento->consent_accepted ? '✅ Sí' : '❌ No' }}</td>
             <td>
-                <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-info btn-sm">Ver ficha</a>
+                <a href="{{ route('consentimiento.show', $consentimiento->id) }}" class="btn btn-info btn-sm">Ver</a>
             </td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td colspan="5">No hay consentimientos registrados.</td>
+        </tr>
+        @endforelse
     </tbody>
 </table>
-
 @endsection

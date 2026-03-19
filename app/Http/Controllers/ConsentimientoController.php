@@ -3,26 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Consentimiento;   
+use App\Models\Consentimiento;
 use App\Models\Patient;
 
 class ConsentimientoController extends Controller
 {
-    // Listado de consentimientos
+    // Listado de todos los consentimientos
     public function index()
     {
         $consentimientos = Consentimiento::with('patient')->get();
         return view('consentimiento.index', compact('consentimientos'));
     }
 
-    // Mostrar un consentimiento específico
+    // Mostrar el consentimiento firmado de un paciente
     public function show($id)
     {
         $consentimiento = Consentimiento::with('patient')->findOrFail($id);
         return view('consentimiento.show', compact('consentimiento'));
     }
 
-    // Registrar consentimiento para un paciente
+    // Formulario para firmar consentimiento
+    public function create($patientId)
+    {
+        $patient = Patient::findOrFail($patientId);
+        return view('consentimiento.create', compact('patient'));
+    }
+
+    // Guardar consentimiento firmado
     public function store(Request $request, $patientId)
     {
         $validated = $request->validate([
@@ -30,6 +37,8 @@ class ConsentimientoController extends Controller
             'digital_signature' => 'nullable|string',
             'consent_date' => 'nullable|date',
             'authorized_procedure' => 'nullable|string|max:150',
+            'nurse_name' => 'nullable|string|max:150',
+            'nurse_id' => 'nullable|string|max:50',
         ]);
 
         $validated['patient_id'] = $patientId;
@@ -37,6 +46,6 @@ class ConsentimientoController extends Controller
         Consentimiento::create($validated);
 
         return redirect()->route('consentimiento.index')
-            ->with('success', 'Consentimiento registrado correctamente ✅');
+            ->with('success', 'Consentimiento firmado y guardado correctamente ✅');
     }
 }

@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($patients as $patient)
+            @foreach ($patients as $patient)
                 <tr>
                     <td>{{ $patient->id }}</td>
                     <td>{{ $patient->name }}</td>
@@ -28,6 +28,16 @@
                     <td>{{ $patient->email }}</td>
                     <td>
                         <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-primary btn-sm">Ver</a>
+                        <a href="{{ route('consentimiento.create', $patient->id) }}" class="btn btn-warning btn-sm">
+                            Firmar Consentimiento
+                        </a>
+
+                        @if ($patient->consentimientos && $patient->consentimientos->count() > 0)
+                            <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
+                                class="btn btn-info btn-sm">
+                                Ver Consentimiento
+                            </a>
+                        @endif
                         <form action="{{ route('patient.destroy', $patient->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

@@ -40,14 +40,7 @@ Route::get('/patient/{id}', [PatientController::class, 'show'])
 
    
 
-// Listado de consentimientos
-Route::get('/consentimientos', [ConsentimientoController::class, 'index'])
-    ->name('consentimiento.index');
-
-// Ver un consentimiento específico
-Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])
-    ->name('consentimiento.show');
-
-// Registrar consentimiento para un paciente
-Route::post('/consentimientos/{patientId}', [ConsentimientoController::class, 'store'])
-    ->name('consentimiento.store');
+Route::get('/consentimientos', [ConsentimientoController::class, 'index'])->name('consentimiento.index');
+Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])->name('consentimiento.show');
+Route::get('/consentimientos/create/{patientId}', [ConsentimientoController::class, 'create'])->name('consentimiento.create');
+Route::post('/consentimientos/{patientId}', [ConsentimientoController::class, 'store'])->name('consentimiento.store');

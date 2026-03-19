@@ -15,9 +15,10 @@ class Consentimiento extends Model
         'digital_signature',
         'consent_date',
         'authorized_procedure',
+        'nurse_name',
+        'nurse_id',
     ];
 
-    // Relación con paciente
     public function patient()
     {
         return $this->belongsTo(Patient::class);

@@ -334,7 +334,7 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'consentimiento',
+            'text' => 'Consentimientos',
             'url' => 'consentimientos',
             'icon' => 'fas fa-fw fa-lock',
         ],
