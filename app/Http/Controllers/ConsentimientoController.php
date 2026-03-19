@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Consentimiento;   
+use App\Models\Patient;
 
 class ConsentimientoController extends Controller
 {

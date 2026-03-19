@@ -327,7 +327,7 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'concentimiento informado'],
+        ['header' => ''],
         [
             'text' => 'Crear paciente',
             'url' => 'patient/create',
@@ -335,7 +335,7 @@ return [
         ],
         [
             'text' => 'consentimiento',
-            'url' => 'admin/settings',
+            'url' => 'consentimientos',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [

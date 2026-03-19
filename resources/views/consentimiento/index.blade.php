@@ -22,7 +22,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($patients as $patient)
+        @foreach($consentimientos as $consentimiento)
         <tr>
             <td>{{ $patient->name }}</td>
             <td>{{ $patient->consent_accepted ? '✅ Sí' : '❌ No' }}</td>
