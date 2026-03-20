@@ -45,7 +45,14 @@ class ConsentimientoController extends Controller
 
         Consentimiento::create($validated);
 
-        return redirect()->route('consentimiento.index')
-            ->with('success', 'Consentimiento firmado y guardado correctamente ✅');
+        return redirect()->route('consentimiento.index')->with('success', 'Consentimiento firmado y guardado correctamente ✅');
+    }
+
+    public function destroy($id)
+    {
+        $consentimiento = Consentimiento::findOrFail($id);
+        $consentimiento->delete();
+
+        return redirect()->route('consentimiento.index')->with('success', 'Consentimiento eliminado correctamente ✅');
     }
 }

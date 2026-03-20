@@ -35,12 +35,30 @@
 </ol>
     
 
-<p><strong>Authorized procedure:</strong> {{ $patient->authorized_procedure }}</p>
-<p><strong>Consent accepted:</strong> {{ $patient->consent_accepted ? 'Yes' : 'No' }}</p>
-<p><strong>Digital signature:</strong> {{ $patient->digital_signature }}</p>
+<div class="form-group">
+        <label>Authorized procedure:</label>
+        <input type="text" name="authorized_procedure" class="form-control" required>
+    </div>
 
- <form>
-<button type="submit" class="btn btn-success">Firmar y Guardar</button>
+    <div class="form-group">
+        <label>Consent accepted:</label>
+        <select name="consent_accepted" class="form-control" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Digital signature:</label>
+        <input type="text" name="digital_signature" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label>Date of consent:</label>
+        <input type="date" name="consent_date" class="form-control" value="{{ now()->toDateString() }}" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Firmar y Guardar</button>
     </form>
 
 @endsection

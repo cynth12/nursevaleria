@@ -1,27 +1,40 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('title', 'Consentimiento Firmado')
+
+@section('content_header')
+    <h1>Consentimiento Informado</h1>
+@endsection
 
 @section('content')
-<h1>Informed Consent</h1>
+    <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
+    <p>
+        I <strong>{{ $consentimiento->patient->name }}</strong>,  in full use of my mental faculties and the exircise of legal capacity,
+        DECLARE the following:
+    </p>
 
-<p>
-I, <strong>{{ $consentimiento->patient->name }}</strong>, in full use of my faculties and legal capacity,
-DECLARE the following:
-</p>
+    <ol>
+         <li>I express my Free will to receive the administration of INTRAVENOUS and/or INTRAMUSCULAR medications and solutions.</li><br>
+        <li>The nurse <strong>{{ $consentimiento->nurse_name }}</strong>  with professional ID  <strong>{{ $consentimiento->nurse_id }}</strong>
+       has provided the complete information regarding my current condition which was given in an ample, 
+            precise, and suffcient way in CLEAR and SIMPLE lenguage, informing about opnions, possible risks, and complications.</li><br>
 
-<ol>
-    <li>I freely express my will to receive the administration of medications and solutions intravenously and/or intramuscularly.</li>
-    <li>The nurse <strong>{{ $consentimiento->nurse_name }}</strong> with professional ID {{ $consentimiento->nurse_id }}
-        has provided me with complete, clear, and sufficient information about my current condition,
-        risks, and possible complications.</li>
-    <li>All hygiene and protection measures have been taken to avoid contagion.</li>
-    <li>I understand that, in case additional medical attention is required, it is my responsibility to follow recommendations,
-        releasing the staff from any consequences derived.</li>
-    <li>I acknowledge the procedures to be performed, the benefits and possible complications,
-        and I grant authorization releasing the medical team and clinic from all responsibility.</li>
+    <p>The nurse is complying with all the hygiene and protection measures to avoid the spreading of the COVID-19 virus.
+
+    The patient/client is aware and understands that in case additional medical attention 
+    is required (either from a doctor or from a medical institution), it is the responsibility and decision of the patient/client to follow recommendations, releasing
+    the nurse of any consequences derived from following said indications.
+
+    Acknowledging the procedures to be performed by the medical team and that they have been explained to me, 
+    I grant authorization and release the medical team and the location from all liability 
+    once the benefits have been explained to me. I understand the possible complications, reactions, and results, assuming the consequences of this decision.</p>
 </ol>
 
-<p><strong>Authorized procedure:</strong> {{ $consentimiento->authorized_procedure }}</p>
-<p><strong>Consent accepted:</strong> {{ $consentimiento->consent_accepted ? 'Yes' : 'No' }}</p>
-<p><strong>Digital signature:</strong> {{ $consentimiento->digital_signature }}</p>
-<p><strong>Date:</strong> {{ $consentimiento->consent_date }}</p>
+    <p><strong>Procedimiento autorizado:</strong> {{ $consentimiento->authorized_procedure }}</p>
+    <p><strong>Firma digital:</strong> {{ $consentimiento->digital_signature }}</p>
+    <p><strong>Fecha del consentimiento:</strong> {{ $consentimiento->consent_date }}</p>
+    <p><strong>Fecha de registro del paciente:</strong> {{ $consentimiento->patient->registration_date }}</p>
 @endsection
+
+
+

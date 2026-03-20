@@ -40,7 +40,10 @@ Route::get('/patient/{id}', [PatientController::class, 'show'])
 
    
 
+
+
 Route::get('/consentimientos', [ConsentimientoController::class, 'index'])->name('consentimiento.index');
-Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])->name('consentimiento.show');
 Route::get('/consentimientos/create/{patientId}', [ConsentimientoController::class, 'create'])->name('consentimiento.create');
 Route::post('/consentimientos/{patientId}', [ConsentimientoController::class, 'store'])->name('consentimiento.store');
+Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])->name('consentimiento.show');
+Route::delete('/consentimientos/{id}', [ConsentimientoController::class, 'destroy'])->name('consentimiento.destroy');
