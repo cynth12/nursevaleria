@@ -16,31 +16,18 @@ Route::get('/home', [HomeController::class, 'index'])
     ->middleware('auth')
     ->name('home');
 
-// Formulario y creación de paciente
-Route::get('/patient/create', [PatientController::class, 'create'])
-    ->middleware('auth')
-    ->name('patient.create');
-
-Route::post('/patient', [PatientController::class, 'store'])
-    ->middleware('auth')
-    ->name('patient.store');
-Route::delete('/patient/{id}', [PatientController::class, 'destroy']) 
-->middleware('auth') 
-->name('patient.destroy');
 
 // Listado de pacientes
-Route::get('/pacientes', [PacientesController::class, 'index'])
-    ->middleware('auth')
-    ->name('pacientes.index');
-
-// Ver detalle de un paciente
-Route::get('/patient/{id}', [PatientController::class, 'show'])
-    ->middleware('auth')
-    ->name('patient.show');
-
-   
+Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
 
 
+
+Route::get('/patient/create', [PatientController::class, 'create'])->name('patient.create');
+Route::post('/patient', [PatientController::class, 'store'])->name('patient.store');
+Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patient.show');
+Route::get('/patient/{id}/edit', [PatientController::class, 'edit'])->name('patient.edit');
+Route::put('/patient/{id}', [PatientController::class, 'update'])->name('patient.update');
+Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('patient.destroy');
 
 Route::get('/consentimientos', [ConsentimientoController::class, 'index'])->name('consentimiento.index');
 Route::get('/consentimientos/create/{patientId}', [ConsentimientoController::class, 'create'])->name('consentimiento.create');

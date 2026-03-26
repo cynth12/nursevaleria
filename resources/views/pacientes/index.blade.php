@@ -38,6 +38,8 @@
                                 Ver Consentimiento
                             </a>
                         @endif
+                        <!-- Editar -->
+                        <a href="{{ route('patient.edit', $patient->id) }}" class="btn btn-success btn-sm">Editar</a>
                         <form action="{{ route('patient.destroy', $patient->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

@@ -321,25 +321,27 @@ return [
             'can' => 'manage-blog',
         ],
         [
+            'text' => 'Crear paciente',
+            'url' => 'patient/create',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        
+        ['header' => ''],
+        [
             'text' => 'Pacientes',
             'url' => 'pacientes',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
         ],
-        ['header' => ''],
-        [
-            'text' => 'Crear paciente',
-            'url' => 'patient/create',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+        
         [
             'text' => 'Consentimientos',
             'url' => 'consentimientos',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'Tratamiento',
+            'text' => 'Grupos',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [

@@ -144,18 +144,18 @@
 
                 <!-- Consentimiento informado -->
                 <div class="col-md-12">
-                    <h4 class="mt-4">Consentimiento Informado</h4>
+                    <h4 class="mt-4">Informed Consent</h4>
                     <div class="form-group">
-                        <label for="consent_accepted">Acepta tratamiento</label>
+                        <label for="consent_accepted">Accept treatment</label>
                         <select name="consent_accepted" id="consent_accepted" class="form-control">
                             <option value="" disabled selected>Select</option>
-                            <option value="1">Sí</option>
+                            <option value="1">Yes</option>
                             <option value="0">No</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="authorized_procedure">Procedimiento Autorizado</label>
+                        <label for="authorized_procedure">Authorized Procedure</label>
                         <input type="text" name="authorized_procedure" id="authorized_procedure" class="form-control"
                             placeholder="Ej. Multivitamin IV Drip">
                     </div>
@@ -163,25 +163,25 @@
 
                 <!-- Signos vitales -->
                 <div class="col-md-12">
-                    <h4 class="mt-4">Signos Vitales</h4>
+                    <h4 class="mt-4">Vital Signs</h4>
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="heart_rate">Frecuencia Cardíaca (FC)</label>
+                            <label for="heart_rate">heart rate (FC)</label>
                             <input type="number" name="heart_rate" id="heart_rate" class="form-control"
                                 placeholder="Ej. 78">
                         </div>
                         <div class="col-md-3">
-                            <label for="oxygen_saturation">Saturación O₂ (%)</label>
+                            <label for="oxygen_saturation">Saturation O₂ (%)</label>
                             <input type="number" name="oxygen_saturation" id="oxygen_saturation" class="form-control"
                                 placeholder="Ej. 97">
                         </div>
                         <div class="col-md-3">
-                            <label for="temperature">Temperatura (°C)</label>
+                            <label for="temperature">Temperature (°C)</label>
                             <input type="number" step="0.1" name="temperature" id="temperature"
                                 class="form-control" placeholder="Ej. 36.7">
                         </div>
                         <div class="col-md-3">
-                            <label for="blood_pressure">Tensión Arterial</label>
+                            <label for="blood_pressure">Blood pressure</label>
                             <input type="text" name="blood_pressure" id="blood_pressure" class="form-control"
                                 placeholder="Ej. 120/80">
                         </div>
@@ -189,7 +189,7 @@
                 </div>
 
                 <!-- Notas del administrador -->
-                <h4 class="mt-4">Notas</h4>
+                <h4 class="mt-4">Notes</h4>
                 <div class="form-group">
                     <textarea name="notes" id="notes" class="form-control" rows="4"
                         placeholder="Observaciones del administrador"></textarea>
@@ -197,12 +197,12 @@
             </div>
 
             <div class="form-group">
-                        <label>Firma del paciente:</label><br>
+                        <label>Singature patient:</label><br>
                         <canvas id="patient-signature-pad" width="400" height="200"
-                            style="border:1px solid #000;"></canvas>
+                            style="border:1px solid #000;"></canvas><br>
                         <input type="hidden" name="patient_signature" id="patient_signature"><br>
                         <button type="button" id="clear-patient-signature"
-                            class="btn btn-warning btn-sm">Borrar</button>
+                            class="btn btn-warning btn-sm">Delete</button>
                     </div>
         </div>
 

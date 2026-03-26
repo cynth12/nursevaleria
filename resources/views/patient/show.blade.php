@@ -40,7 +40,7 @@
         <p>{{ $patient->physical_exam }}</p>
 
         <!-- Consentimiento informado -->
-    <h4 class="mt-4">Consentimiento Informado</h4>
+    <h4 class="mt-4">Informed Consent</h4>
     <p><strong>Accepted:</strong> {{ $patient->consent_accepted ? 'Yes' : 'No' }}</p>
     <p><strong>Signature:</strong> {{ $patient->digital_signature }}</p>
     <p><strong>Authorized Procedure:</strong> {{ $patient->authorized_procedure }}</p>
@@ -54,10 +54,10 @@
         <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $patient->blood_pressure }}</div>
     </div>
 
-        <h4 class="mt-4">Notas</h4>
+        <h4 class="mt-4">Notes</h4>
         <p>{{ $patient->notes }}</p>
 
-        <h4 class="mt-4">Fecha de registro</h4>
+        <h4 class="mt-4">registration date</h4>
         <p>{{ $patient->registration_date }}</p>
     </div>
 </div>
