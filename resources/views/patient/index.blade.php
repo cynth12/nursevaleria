@@ -53,6 +53,13 @@
                     <label for="emergency_phone">Phone</label>
                     <input type="text" name="emergency_phone" id="emergency_phone" class="form-control" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="address">🏠 Address</label>
+                    <input type="text" name="address" id="address" class="form-control"
+                        placeholder="Adress">
+                </div>
+
             </div>
 
             <!-- Historial médico -->
@@ -95,6 +102,7 @@
                     <label for="allergy_medicine">Medicine</label>
                     <select name="allergy_medicine" id="allergy_medicine" class="form-control">
                         <option value="" disabled selected>Select medicine</option>
+                        <option value="No">NO</option>
                         <option value="penicillin">Penicillin</option>
                         <option value="aspirin">Aspirin</option>
                         <option value="ibuprofen">Ibuprofen</option>
@@ -197,13 +205,12 @@
             </div>
 
             <div class="form-group">
-                        <label>Singature patient:</label><br>
-                        <canvas id="patient-signature-pad" width="400" height="200"
-                            style="border:1px solid #000;"></canvas><br>
-                        <input type="hidden" name="patient_signature" id="patient_signature"><br>
-                        <button type="button" id="clear-patient-signature"
-                            class="btn btn-warning btn-sm">Delete</button>
-                    </div>
+                <label>Singature patient:</label><br>
+                <canvas id="patient-signature-pad" width="400" height="200"
+                    style="border:1px solid #000;"></canvas><br>
+                <input type="hidden" name="patient_signature" id="patient_signature"><br>
+                <button type="button" id="clear-patient-signature" class="btn btn-warning btn-sm">Delete</button>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-success mt-3">✅ Save Patient</button>
@@ -217,12 +224,12 @@
     var patientCanvas = document.getElementById('patient-signature-pad');
     if (patientCanvas) {
         var patientSignaturePad = new SignaturePad(patientCanvas);
-        document.querySelector('form').addEventListener('submit', function () {
+        document.querySelector('form').addEventListener('submit', function() {
             if (!patientSignaturePad.isEmpty()) {
                 document.getElementById('patient_signature').value = patientSignaturePad.toDataURL();
             }
         });
-        document.getElementById('clear-patient-signature').addEventListener('click', function () {
+        document.getElementById('clear-patient-signature').addEventListener('click', function() {
             patientSignaturePad.clear();
         });
     }
@@ -231,12 +238,12 @@
     var consentCanvas = document.getElementById('consent-signature-pad');
     if (consentCanvas) {
         var consentSignaturePad = new SignaturePad(consentCanvas);
-        document.querySelector('form').addEventListener('submit', function () {
+        document.querySelector('form').addEventListener('submit', function() {
             if (!consentSignaturePad.isEmpty()) {
                 document.getElementById('consent_signature').value = consentSignaturePad.toDataURL();
             }
         });
-        document.getElementById('clear-consent-signature').addEventListener('click', function () {
+        document.getElementById('clear-consent-signature').addEventListener('click', function() {
             consentSignaturePad.clear();
         });
     }

@@ -14,6 +14,8 @@
         <p><strong>Fecha de nacimiento:</strong> {{ $patient->date_of_birth }}</p>
         <p><strong>Teléfono:</strong> {{ $patient->phone }}</p>
         <p><strong>Email:</strong> {{ $patient->email }}</p>
+        <h4 class="mt-4">Dirección</h4><p>{{ $patient->address }}</p>
+
 
         <h4 class="mt-4">Contacto de Emergencia</h4>
         <p><strong>Nombre:</strong> {{ $patient->emergency_name }}</p>

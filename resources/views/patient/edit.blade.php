@@ -44,6 +44,10 @@
                 <label>Teléfono:</label>
                 <input type="text" name="emergency_phone" class="form-control" value="{{ $patient->emergency_phone }}">
             </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <input type="address" name="address" class="form-control" value="{{ $patient->address }}">
+            </div>
 
             <h4 class="mt-4">Historial Médico</h4>
             <div class="form-group">

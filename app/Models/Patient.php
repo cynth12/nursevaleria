@@ -14,6 +14,7 @@ class Patient extends Model
         'date_of_birth',
         'phone',
         'email',
+        'address',
         'emergency_name',
         'emergency_relationship',
         'emergency_phone',
