@@ -15,6 +15,7 @@
                 <th>Date of Birth</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Date</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -26,16 +27,17 @@
                     <td>{{ $patient->date_of_birth }}</td>
                     <td>{{ $patient->phone }}</td>
                     <td>{{ $patient->email }}</td>
+                    <td>{{ $patient->registration_date }}</td> 
                     <td>
                         <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-primary btn-sm">Ver</a>
                         <a href="{{ route('consentimiento.create', $patient->id) }}" class="btn btn-warning btn-sm">
-                            Firmar Consentimiento
+                            Firmar
                         </a>
 
                         @if ($patient->consentimientos && $patient->consentimientos->count() > 0)
                             <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
                                 class="btn btn-info btn-sm">
-                                Ver Consentimiento
+                                Ver
                             </a>
                         @endif
                         <!-- Editar -->

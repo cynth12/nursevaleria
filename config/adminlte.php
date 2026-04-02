@@ -345,11 +345,11 @@ return [
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Crear grupo',
                     'url' => '#',
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Ver grupo',
                     'url' => '#',
                     'submenu' => [
                         [
