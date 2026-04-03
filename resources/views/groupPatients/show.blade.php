@@ -15,6 +15,12 @@
         <p><strong>Dirección:</strong> {{ $patient->address }}</p>
 
         <hr>
+
+        <h4>Contacto de emergencia</h4>
+        <p><strong>Nombre:</strong> {{ $patient->emergency_contact_name }}</p>
+        <p><strong>Teléfono:</strong> {{ $patient->emergency_contact_phone }}</p>
+
+        <hr>
         <h4>Historial médico</h4>
         <p><strong>¿Embarazada?:</strong> {{ $patient->pregnant ? 'Sí' : 'No' }}</p>
         <p><strong>Intolerancia a vitaminas:</strong> {{ $patient->vitamins_intolerance ? 'Sí' : 'No' }}</p>
@@ -25,9 +31,11 @@
         <p><strong>Medicamentos:</strong> {{ $patient->allergy_medicine }}</p>
         <p><strong>Alimentos:</strong> {{ $patient->allergy_food }}</p>
         <p><strong>Reacción:</strong> {{ $patient->reaction }}</p>
-
         <hr>
-        
+        <h4>Medicamentos y suplementos</h4>
+        <p><strong>Medicamentos:</strong> {{ $patient->medications }}</p>
+        <p><strong>Suplementos:</strong> {{ $patient->supplements }}</p>
+
         <hr>
         <h4>Signos vitales</h4>
         <p><strong>Frecuencia cardíaca:</strong> {{ $patient->heart_rate }}</p>
@@ -40,34 +48,40 @@
         <p>{{ $patient->notes }}</p>
         <hr>
 
-         <h4>Consentimiento</h4>
-         <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
-    <p>
-        I <strong>{{ $patient->name }}</strong>,  in full use of my mental faculties and the exircise of legal capacity,
-        DECLARE the following:
-    </p>
+        <h4>Consentimiento</h4>
+        <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
+        <p>
+            I <strong>{{ $patient->name }}</strong>, in full use of my mental faculties and the exircise of legal capacity,
+            DECLARE the following:
+        </p>
 
-    <ol>
-         <li>I express my Free will to receive the administration of INTRAVENOUS and/or INTRAMUSCULAR medications and solutions.</li><br>
-        <li>The nurse <strong>{{ $patient->nurse_name}}</strong>  with professional ID  <strong>{{  $patient->nurse_id }}</strong>
-       has provided the complete information regarding my current condition which was given in an ample, 
-            precise, and suffcient way in CLEAR and SIMPLE lenguage, informing about opnions, possible risks, and complications.</li><br>
+        <ol>
+            <li>I express my Free will to receive the administration of INTRAVENOUS and/or INTRAMUSCULAR medications and
+                solutions.</li><br>
+            <li>The nurse <strong>{{ $patient->nurse_name }}</strong> with professional ID
+                <strong>{{ $patient->nurse_id }}</strong>
+                has provided the complete information regarding my current condition which was given in an ample,
+                precise, and suffcient way in CLEAR and SIMPLE lenguage, informing about opnions, possible risks, and
+                complications.</li><br>
 
-    <p>The nurse is complying with all the hygiene and protection measures to avoid the spreading of the COVID-19 virus.
+            <p>The nurse is complying with all the hygiene and protection measures to avoid the spreading of the COVID-19
+                virus.
 
-    The patient/client is aware and understands that in case additional medical attention 
-    is required (either from a doctor or from a medical institution), it is the responsibility and decision of the patient/client to follow recommendations, releasing
-    the nurse of any consequences derived from following said indications.
+                The patient/client is aware and understands that in case additional medical attention
+                is required (either from a doctor or from a medical institution), it is the responsibility and decision of
+                the patient/client to follow recommendations, releasing
+                the nurse of any consequences derived from following said indications.
 
-    Acknowledging the procedures to be performed by the medical team and that they have been explained to me, 
-    I grant authorization and release the medical team and the location from all liability 
-    once the benefits have been explained to me. I understand the possible complications, reactions, and results, assuming the consequences of this decision.</p>
-</ol>
+                Acknowledging the procedures to be performed by the medical team and that they have been explained to me,
+                I grant authorization and release the medical team and the location from all liability
+                once the benefits have been explained to me. I understand the possible complications, reactions, and
+                results, assuming the consequences of this decision.</p>
+        </ol>
 
-    <p><strong>Procedimiento autorizado:</strong> {{ $patient->authorized_procedure}}</p>
-    <p><strong>Firma digital:</strong> {{ $patient->digital_signature }}</p>
-    <p><strong>Fecha del consentimiento:</strong> {{ $patient->created_at }}</p>
-   
+        <p><strong>Procedimiento autorizado:</strong> {{ $patient->authorized_procedure }}</p>
+        <p><strong>Firma digital:</strong> {{ $patient->digital_signature }}</p>
+        <p><strong>Fecha del consentimiento:</strong> {{ $patient->created_at }}</p>
+
 
         <a href="{{ route('groupPatients.edit', $patient->id) }}" class="btn btn-success">Editar</a>
         <form action="{{ route('groupPatients.destroy', $patient->id) }}" method="POST" style="display:inline;">

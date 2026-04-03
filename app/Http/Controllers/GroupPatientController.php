@@ -51,6 +51,14 @@ class GroupPatientController extends Controller
             'authorized_procedure' => 'nullable|string|max:150',
             'nurse_name' => 'nullable|string|max:150',
             'nurse_id' => 'nullable|string|max:50',
+
+            // Medicamentos y suplementos
+            'medications' => 'nullable|string',
+            'supplements' => 'nullable|string',
+
+            // Contacto de emergencia
+            'emergency_contact_name' => 'nullable|string|max:150',
+            'emergency_contact_phone' => 'nullable|string|max:20',
         ]);
 
         // Normalizar booleanos
@@ -61,7 +69,7 @@ class GroupPatientController extends Controller
 
         // Fecha de registro automática
         $data['created_at'] = Carbon::now('America/Cancun');
-        $data['consent_date'] = Carbon::now('America/Cancun'); 
+        $data['consent_date'] = Carbon::now('America/Cancun');
 
         GroupPatient::create($data);
 
@@ -73,7 +81,7 @@ class GroupPatientController extends Controller
     {
         $patient = GroupPatient::findOrFail($id);
 
-        return view('groupPatients.show', compact('patient',));
+        return view('groupPatients.show', compact('patient'));
     }
 
     // Formulario de edición
@@ -111,8 +119,15 @@ class GroupPatientController extends Controller
             'temperature' => 'nullable|numeric',
             'blood_pressure' => 'nullable|string|max:20',
             'notes' => 'nullable|string',
-            'nurse_name'=> 'nullable|string|max:150',
+            'nurse_name' => 'nullable|string|max:150',
             'nurse_id' => 'nullable|string|max:50',
+            // Medicamentos y suplementos
+            'medications' => 'nullable|string',
+            'supplements' => 'nullable|string',
+
+            // Contacto de emergencia
+            'emergency_contact_name' => 'nullable|string|max:150',
+            'emergency_contact_phone' => 'nullable|string|max:20',
         ]);
 
         $patient->update($data);

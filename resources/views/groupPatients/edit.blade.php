@@ -40,6 +40,18 @@
                 <input type="text" name="address" class="form-control" value="{{ old('address', $patient->address) }}">
             </div>
 
+            <div class="form-group">
+                <label for="emergency_contact_name">Contacto de emergencia (nombre)</label>
+                <input type="text" name="emergency_contact_name" class="form-control"
+                    value="{{ old('emergency_contact_name', $patient->emergency_contact_name ?? '') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="emergency_contact_phone">Contacto de emergencia (teléfono)</label>
+                <input type="text" name="emergency_contact_phone" class="form-control"
+                    value="{{ old('emergency_contact_phone', $patient->emergency_contact_phone ?? '') }}">
+            </div>
+
             <hr>
             <h4>Historial médico</h4>
             <div class="form-check">
@@ -77,9 +89,22 @@
             </div>
 
             <hr>
-            <h4>Consentimiento</h4>
-            
-            
+            <div class="form-group">
+                <label for="medications">Medicamentos</label>
+                <input type="text" name="medications" class="form-control"
+                    value="{{ old('medications', $patient->medications ?? '') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="supplements">Suplementos</label>
+                <input type="text" name="supplements" class="form-control"
+                    value="{{ old('supplements', $patient->supplements ?? '') }}">
+            </div>
+
+
+
+
+
 
             <hr>
             <h4>Signos vitales</h4>
@@ -111,55 +136,55 @@
             </div>
 
             <h4>Consentimiento</h4>
-         <h1>NURSE VALERIA IV THERAPY</h1><br>
+            <h1>NURSE VALERIA IV THERAPY</h1><br>
 
-           
 
-                
-                <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
-                <p>
-                    I <strong>{{ $patient->name }}</strong>,, in full use of my mental faculties and the exircise of legal
-                    capacity,
-                    DECLARE the following:
-                </p>
 
-                <ol>
-                    <li>I express my Free will to receive the administration of INTRAVENOUS and/or INTRAMUSCULAR medications
-                        and
-                        solutions.</li><br>
 
-                    <li>The nurse <input type="text" name="nurse_name" required>
-                        with professional ID <input type="text" name="nurse_id" required>
-                        has provided the complete information regarding my current condition which was given in an ample,
-                        precise, and suffcient way in CLEAR and SIMPLE lenguage, informing about opnions, possible risks,
-                        and
-                        complications.</li><br>
+            <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
+            <p>
+                I <strong>{{ $patient->name }}</strong>,, in full use of my mental faculties and the exircise of legal
+                capacity,
+                DECLARE the following:
+            </p>
 
-                    <p>The nurse is complying with all the hygiene and protection measures to avoid the spreading of the
-                        COVID-19
-                        virus.
+            <ol>
+                <li>I express my Free will to receive the administration of INTRAVENOUS and/or INTRAMUSCULAR medications
+                    and
+                    solutions.</li><br>
 
-                        The patient/client is aware and understands that in case additional medical attention
-                        is required (either from a doctor or from a medical institution), it is the responsibility and
-                        decision of
-                        the patient/client to follow recommendations, releasing
-                        the nurse of any consequences derived from following said indications.
+                <li>The nurse <input type="text" name="nurse_name" required>
+                    with professional ID <input type="text" name="nurse_id" required>
+                    has provided the complete information regarding my current condition which was given in an ample,
+                    precise, and suffcient way in CLEAR and SIMPLE lenguage, informing about opnions, possible risks,
+                    and
+                    complications.</li><br>
 
-                        Acknowledging the procedures to be performed by the medical team and that they have been explained
-                        to me,
-                        I grant authorization and release the medical team and the location from all liability
-                        once the benefits have been explained to me. I understand the possible complications, reactions, and
-                        results, assuming the consequences of this decision.</p>
-                </ol>
+                <p>The nurse is complying with all the hygiene and protection measures to avoid the spreading of the
+                    COVID-19
+                    virus.
 
-                
-        
-        <div class="form-check">
+                    The patient/client is aware and understands that in case additional medical attention
+                    is required (either from a doctor or from a medical institution), it is the responsibility and
+                    decision of
+                    the patient/client to follow recommendations, releasing
+                    the nurse of any consequences derived from following said indications.
+
+                    Acknowledging the procedures to be performed by the medical team and that they have been explained
+                    to me,
+                    I grant authorization and release the medical team and the location from all liability
+                    once the benefits have been explained to me. I understand the possible complications, reactions, and
+                    results, assuming the consequences of this decision.</p>
+            </ol>
+
+
+
+            <div class="form-check">
                 <input type="checkbox" name="consent_accepted" value="1" class="form-check-input"
                     {{ $patient->consent_accepted ? 'checked' : '' }}>
                 <label class="form-check-label">Consentimiento aceptado</label>
             </div>
-        <div class="form-group">
+            <div class="form-group">
                 <label for="digital_signature">Firma digital</label>
                 <input type="text" name="digital_signature" class="form-control"
                     value="{{ old('digital_signature', $patient->digital_signature) }}">
@@ -169,42 +194,42 @@
                 <input type="text" name="authorized_procedure" class="form-control"
                     value="{{ old('authorized_procedure', $patient->authorized_procedure) }}">
             </div>
-        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
-        <script>
-            // Firma del paciente
-            var patientCanvas = document.getElementById('patient-signature-pad');
-            if (patientCanvas) {
-                var patientSignaturePad = new SignaturePad(patientCanvas);
-                document.querySelector('form').addEventListener('submit', function() {
-                    if (!patientSignaturePad.isEmpty()) {
-                        document.getElementById('patient_signature').value = patientSignaturePad.toDataURL();
-                    }
-                });
-                document.getElementById('clear-patient-signature').addEventListener('click', function() {
-                    patientSignaturePad.clear();
-                });
-            }
+            <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+            <script>
+                // Firma del paciente
+                var patientCanvas = document.getElementById('patient-signature-pad');
+                if (patientCanvas) {
+                    var patientSignaturePad = new SignaturePad(patientCanvas);
+                    document.querySelector('form').addEventListener('submit', function() {
+                        if (!patientSignaturePad.isEmpty()) {
+                            document.getElementById('patient_signature').value = patientSignaturePad.toDataURL();
+                        }
+                    });
+                    document.getElementById('clear-patient-signature').addEventListener('click', function() {
+                        patientSignaturePad.clear();
+                    });
+                }
 
-            // Firma del consentimiento
-            var consentCanvas = document.getElementById('consent-signature-pad');
-            if (consentCanvas) {
-                var consentSignaturePad = new SignaturePad(consentCanvas);
-                document.querySelector('form').addEventListener('submit', function() {
-                    if (!consentSignaturePad.isEmpty()) {
-                        document.getElementById('consent_signature').value = consentSignaturePad.toDataURL();
-                    }
-                });
-                document.getElementById('clear-consent-signature').addEventListener('click', function() {
-                    consentSignaturePad.clear();
-                });
-            }
-        </script>
-
-            
-            
+                // Firma del consentimiento
+                var consentCanvas = document.getElementById('consent-signature-pad');
+                if (consentCanvas) {
+                    var consentSignaturePad = new SignaturePad(consentCanvas);
+                    document.querySelector('form').addEventListener('submit', function() {
+                        if (!consentSignaturePad.isEmpty()) {
+                            document.getElementById('consent_signature').value = consentSignaturePad.toDataURL();
+                        }
+                    });
+                    document.getElementById('clear-consent-signature').addEventListener('click', function() {
+                        consentSignaturePad.clear();
+                    });
+                }
+            </script>
 
 
-        <button type="submit" class="btn btn-primary mt-3">Actualizar paciente</button>
-    </form>
-</div>
+
+
+
+            <button type="submit" class="btn btn-primary mt-3">Actualizar paciente</button>
+        </form>
+    </div>
 @endsection
