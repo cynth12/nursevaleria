@@ -3,7 +3,7 @@
 @section('title', 'Detalle del Paciente')
 
 @section('content_header')
-    <h1>Detalle del Paciente</h1>
+    
 @endsection
 
 @section('content')
@@ -42,6 +42,7 @@
         <!-- Aquí puedes seguir replicando todos los demás campos igual que en create patient -->
 
         <button type="submit" class="btn btn-success mt-2">Guardar paciente</button>
+
     </form>
 
     <hr>

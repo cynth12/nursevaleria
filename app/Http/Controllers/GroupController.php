@@ -12,13 +12,13 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Group::all();
-        return view('groups.index', compact('groups'));
+        return view('grupos.index', compact('groups'));
     }
 
     // Formulario para crear grupo
     public function create()
     {
-        return view('groups.create');
+        return view('grupos.create');
     }
 
     // Guardar grupo
@@ -33,8 +33,7 @@ class GroupController extends Controller
 
         Group::create($data);
 
-        return redirect()->route('groups.index')
-                         ->with('success', 'Grupo creado correctamente ✅');
+        return redirect()->route('grupos.index')->with('success', 'Grupo creado correctamente ✅');
     }
 
     // Mostrar un grupo y sus pacientes
@@ -43,8 +42,27 @@ class GroupController extends Controller
         $group = Group::findOrFail($id);
 
         // Relación con pacientes de grupo
-        $patients = $group->patients; 
+        $patients = $group->patients;
 
-        return view('groups.show', compact('group', 'patients'));
+        // Opcional: mapear consentimiento de cada paciente
+        foreach ($patients as $patient) {
+            $patient->consentimiento = (object) [
+                'accepted' => $patient->consent_accepted,
+                'signature' => $patient->digital_signature,
+                'procedure' => $patient->authorized_procedure,
+                'nurse_name' => $patient->nurse_name ?? null,
+                'nurse_id' => $patient->nurse_id ?? null,
+            ];
+        }
+
+        return view('grupos.show', compact('group', 'patients'));
+    }
+
+    public function destroy($id)
+    {
+        $group = Group::findOrFail($id);
+        $group->delete();
+
+        return redirect()->route('grupos.index')->with('success', 'Grupo eliminado correctamente ✅');
     }
 }

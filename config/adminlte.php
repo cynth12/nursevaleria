@@ -314,6 +314,9 @@ return [
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
+            'method' => 'GET',
+            'input_name' => 'q',
+            'url' => '/buscar',
         ],
         [
             'text' => 'blog',
@@ -346,51 +349,29 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear grupo',
-                    'url' => '#',
+                    'url' => 'grupos/create',
                 ],
                 [
                     'text' => 'Ver grupo',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'url' => 'grupos',
+                    
                 ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
+               
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Configuracion'],
         [
-            'text' => 'important',
+            'text' => 'Correo masivo',
             'icon_color' => 'red',
             'url' => '#',
         ],
         [
-            'text' => 'warning',
+            'text' => 'Estadisticas',
             'icon_color' => 'yellow',
             'url' => '#',
         ],
         [
-            'text' => 'information',
+            'text' => 'informacion general',
             'icon_color' => 'cyan',
             'url' => '#',
         ],

@@ -1,14 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Pacientes')
+@section('title', 'Crear Grupo')
 
-@extends('layouts.app')
+@section('content_header')
+    <h1>Crear grupo</h1>
+@endsection
 
 @section('content')
 <div class="container">
-    <h2>Crear Grupo</h2>
+    
 
-    <form action="{{ route('groups.store') }}" method="POST">
+    <form action="{{ route('grupos.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="place">Lugar del grupo</label>
