@@ -185,10 +185,12 @@
                 <label class="form-check-label">Consentimiento aceptado</label>
             </div>
             <div class="form-group">
-                <label for="digital_signature">Firma digital</label>
-                <input type="text" name="digital_signature" class="form-control"
-                    value="{{ old('digital_signature', $patient->digital_signature) }}">
-            </div>
+            <label>Digital signature:</label><br>
+            <canvas id="consent-signature-pad" width="400" height="200" style="border:1px solid #000;"></canvas>
+            <input type="hidden" name="digital_signature" id="consent_signature"><br>
+            <button type="button" id="clear-consent-signature" class="btn btn-warning btn-sm">Borrar</button>
+        </div>
+            
             <div class="form-group">
                 <label for="authorized_procedure">Procedimiento autorizado</label>
                 <input type="text" name="authorized_procedure" class="form-control"
