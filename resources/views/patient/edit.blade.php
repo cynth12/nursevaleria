@@ -49,7 +49,7 @@
                 <input type="address" name="address" class="form-control" value="{{ $patient->address }}">
             </div>
 
-            <h4 class="mt-4">Historial Médico</h4>
+            <h4 class="mt-4 text-nurseblue">Historial Médico</h4>
             <div class="form-group">
                 <label>¿Embarazada?:</label>
                 <select name="pregnant" class="form-control">

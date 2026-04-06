@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>🩺 Create New Patient</h1>
+    <h1 class="text-nurseblue font-bold text-2xl">🩺 Create New Patient</h1>
 
     <form method="POST" action="{{ route('patient.store') }}">
         @csrf
@@ -12,7 +12,7 @@
 
             <!-- Datos personales -->
             <div class="col-md-6">
-                <h4 class="mt-4">Datos Personales</h4>
+                <h4 class="text-nurseblue font-semibold text-lg mt-4">Datos Personales</h4>
                 <div class="form-group">
                     <label for="name">Patient Name</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
