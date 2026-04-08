@@ -10,7 +10,13 @@ use App\Http\Controllers\SearchController;
 Route::get('/', function () {
     return redirect('/login');
 });
-
+// Desactiva el registro redirigiendo a login
+Route::get('/register', function () {
+    return redirect('/login');
+});
+Route::post('/register', function () {
+    return redirect('/login');
+});
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])
