@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\ConsentimientoController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ImportedPatientsController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -55,4 +56,14 @@ Route::delete('/groupPatients/{id}', [App\Http\Controllers\GroupPatientControlle
 
 // Ruta de busqueda
 Route::get('/buscar', [SearchController::class, 'index'])->name('buscar');
+
+// Ruta de importacion
+Route::get('/imported_patients', [ImportedPatientsController::class, 'index'])
+    ->name('imported_patients.index');
+
+Route::post('/imported_patients/import', [ImportedPatientsController::class, 'import'])
+    ->name('imported_patients.import');
+
+Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::class, 'destroyAll'])
+    ->name('imported_patients.destroyAll');
 

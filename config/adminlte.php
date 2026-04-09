@@ -337,6 +337,13 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
+         [
+            'text' => 'Pacientes importados',
+            'url' => 'imported_patients',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 4,
+            'label_color' => 'success',
+        ],
         
         [
             'text' => 'Consentimientos',

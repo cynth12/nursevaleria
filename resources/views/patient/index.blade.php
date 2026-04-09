@@ -12,7 +12,7 @@
 
             <!-- Datos personales -->
             <div class="col-md-6">
-                <h4 class="text-nurseblue font-semibold text-lg mt-4">Datos Personales</h4>
+                <h4 class="text-nurseblue font-semibold text-lg mt-4">Personal dates</h4>
                 <div class="form-group">
                     <label for="name">Patient Name</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
