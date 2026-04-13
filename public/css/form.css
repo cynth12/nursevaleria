@@ -104,6 +104,38 @@ p {
     color: #333c50;              /* texto navy */
 }
 
+/* Imagen responsiva */
+.form-header-image {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;   /* ocupa todo el ancho disponible */
+    height: auto;      /* mantiene proporción */
+    border-radius: 8px;
+}
+
+/* Contenedor del formulario */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #efede2;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(51, 60, 80, 0.3);
+}
+
+/* Inputs y selects */
+.form-control {
+    width: 100%;       /* siempre ocupa todo el ancho */
+    font-size: 16px;   /* tamaño cómodo en móvil */
+    padding: 12px;
+}
+
+/* Botón */
+.btn-primary {
+    width: 100%;       /* botón ancho en móvil */
+    padding: 14px;
+    font-size: 18px;
+}
 
 
 
