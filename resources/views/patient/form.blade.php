@@ -14,8 +14,7 @@
 
 
 <div class="container">
-    <img src="{{ asset('img/nursevaleria.png') }}" width="120" style="margin-bottom: 10px;">
-    <h2>Formulario del Paciente</h2>
+    <img src="{{ asset('img/formulario.png') }}" class="form-header-image"><br>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -23,7 +22,8 @@
 
     <form action="{{ route('patient.form.store') }}" method="POST">
         @csrf
-
+        <h1></h1><br>
+        <h2 class="form-title">BASIC EVALUATION FOR IV THERAPY</h2><br>
         <!-- Datos personales -->
         <h4>Datos personales</h4>
         <div class="form-group">
@@ -76,9 +76,9 @@
         <!-- Solicitud de IV -->
         <h4>Solicitud de IV</h4>
         <div class="form-group">
-            <select name="iv_type" class="form-control">
+            <select name="iv_type" class="form-control custom-select">
                 <option value="">Seleccione...</option>
-                <option value="Custom">Custom</option>
+                <option class="form-control optio">Custom</option>
                 <option value="Wellness Duo">Wellness Duo</option>
                 <option value="Energy Boost">Energy Boost</option>
                 <option value="Beauty Glow">Beauty Glow</option>

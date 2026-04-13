@@ -1,0 +1,109 @@
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #efede2; /* off-white */
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(51, 60, 80, 0.3); /* navy shadow */
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-header-image {
+    display: block;
+    margin: 0 auto 30px; /* centrada y separada del título */
+    max-width: 700px;
+    border-radius: 8px;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    color: #333c50; /* navy blue */
+    margin-bottom: 30px;
+}
+
+h4 {
+    color: #b49779; /* tan brown */
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+label {
+    font-size: 14px;
+    color: #333c50; /* navy blue */
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+    accent-color: #333c50; /* navy blue */
+    margin-right: 6px;
+}
+
+
+.form-control option {
+    background-color: #fff;      /* fondo de cada opción */
+    color: #333c50;              /* texto navy */
+}
+
+.form-control {
+    color: #333c50;       
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: #333c50; /* navy blue */
+    box-shadow: 0 0 5px rgba(51, 60, 80, 0.4);
+}
+
+.btn-primary {
+    background-color: #333c50; /* navy blue */
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #b49779; /* tan brown */
+    color: #fff;
+}
+
+/* Consentimiento */
+p {
+    color: #333c50; /* navy blue */
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.custom-select {
+    appearance: none;            /* quita estilo nativo */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #efede2;   /* fondo off-white */
+    color: #333c50;              /* texto navy */
+    border: 1px solid #b49779;   /* borde marrón */
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+
+    /* flecha personalizada */
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23333c50' height='24' viewBox='0 0 24 24' width='24'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+}
+
+.custom-select option {
+    background-color: #fff;      /* fondo de cada opción */
+    color: #333c50;              /* texto navy */
+}
+
+
+
+
