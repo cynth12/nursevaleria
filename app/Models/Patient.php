@@ -28,6 +28,9 @@ class Patient extends Model
         'supplements',
         'physical_exam',
         'notes',
+        'iv_type',      // 👈 nuevo campo
+        'symptoms',  
+        'reason',
         // Consentimiento
         'consent_accepted',
         'digital_signature',

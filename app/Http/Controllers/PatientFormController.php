@@ -18,17 +18,30 @@ class PatientFormController extends Controller
     {
         // Validación básica
         $request->validate([
-            'name' => 'required|string|max:255',
-            'dob' => 'nullable|date',
+            'name' => 'required|string|max:150',
+            'date_of_birth' => 'required|date',
             'phone' => 'nullable|string|max:20',
-            'email' => 'nullable|email',
-            // agrega validaciones para los demás campos del cuestionario
+            'email' => 'nullable|email|max:150',
+            'emergency_name' => 'nullable|string|max:150',
+            'emergency_relationship' => 'nullable|string|max:100',
+            'emergency_phone' => 'nullable|string|max:20',
+            'pregnant' => 'nullable|boolean',
+            'vitamins_intolerance' => 'nullable|boolean',
+            'minerals_intolerance' => 'nullable|boolean',
+            'allergy_medicine' => 'nullable|string|max:150',
+            'allergy_food' => 'nullable|string|max:150',
+            'reaction' => 'nullable|string|max:255',
+            'medications' => 'nullable|string',
+            'supplements' => 'nullable|string',
+            'consent_accepted' => 'nullable|boolean',
+            'digital_signature' => 'nullable|string',
+            'authorized_procedure' => 'nullable|string|max:150',
         ]);
 
         // Guardar en la base de datos
         PatientForm::create($request->all());
 
-        return redirect()->route('patient.public')
+        return redirect()->route('patient.form')
             ->with('success', 'Formulario enviado correctamente.');
     }
 }

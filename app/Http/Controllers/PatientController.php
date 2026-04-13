@@ -52,6 +52,9 @@ class PatientController extends Controller
             'blood_pressure' => 'nullable|string|max:20',
 
             'notes' => 'nullable|string',
+            // 👇 nuevos campos
+            'iv_type' => 'nullable|string|max:255',
+            'symptoms' => 'nullable|string',
         ]);
 
         // Normalizar valores de dropdown "Yes/No" a booleanos
@@ -59,6 +62,9 @@ class PatientController extends Controller
         $data['vitamins_intolerance'] = $request->vitamins_intolerance === 'Yes' ? 1 : 0;
         $data['minerals_intolerance'] = $request->minerals_intolerance === 'Yes' ? 1 : 0;
         $data['consent_accepted'] = $request->consent_accepted === 'Yes' ? 1 : 0;
+        $data['symptoms'] = $request->has('symptoms')
+            ? implode(',', $request->symptoms)
+            : null;
 
         // Guardar fecha/hora de registro en zona horaria de Cancún
         $data['registration_date'] = Carbon::now('America/Cancun');
@@ -114,6 +120,9 @@ class PatientController extends Controller
             'blood_pressure' => 'nullable|string|max:20',
             'notes' => 'nullable|string',
             'registration_date' => 'nullable|date',
+            'iv_type' => 'nullable|string|max:255',
+            'symptoms' => 'nullable|string',
+            'reason' => 'nullable|string',
         ]);
 
         $patient->update($data);
