@@ -8,13 +8,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.form-header-image {
-    display: block;
-    margin: 0 auto 30px; /* centrada y separada del título */
-    max-width: 700px;
-    border-radius: 8px;
-}
-
 .form-title {
     text-align: center;
     font-size: 26px;
@@ -105,13 +98,19 @@ p {
 }
 
 /* Imagen responsiva */
+
 .form-header-image {
     display: block;
     margin: 0 auto 20px;
-    max-width: 100%;   /* ocupa todo el ancho disponible */
-    height: auto;      /* mantiene proporción */
+    width: 100%;        /* ocupa todo el ancho disponible */
+    max-width: 900px;   /* límite en escritorio */
+    height: auto;       /* mantiene proporción */
     border-radius: 8px;
 }
+
+
+
+
 
 /* Contenedor del formulario */
 .container {
@@ -136,6 +135,4 @@ p {
     padding: 14px;
     font-size: 18px;
 }
-
-
 
