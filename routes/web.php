@@ -7,6 +7,7 @@ use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\ConsentimientoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ImportedPatientsController;
+use App\Http\Controllers\PatientFormController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -66,4 +67,9 @@ Route::post('/imported_patients/import', [ImportedPatientsController::class, 'im
 
 Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::class, 'destroyAll'])
     ->name('imported_patients.destroyAll');
+
+Route::get('/patient-form', [PatientFormController::class, 'create'])->name('patient.form');
+Route::post('/patient-form', [PatientFormController::class, 'store'])->name('patient.form.store');
+
+
 
