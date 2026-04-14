@@ -15,37 +15,42 @@ class Patient extends Model
         'phone',
         'email',
         'address',
+
         'emergency_name',
         'emergency_relationship',
         'emergency_phone',
+
         'pregnant',
         'vitamins_intolerance',
         'minerals_intolerance',
+
         'allergy_medicine',
         'allergy_food',
         'reaction',
+
         'medications',
         'supplements',
-        'physical_exam',
-        'notes',
-        'iv_type',      // 👈 nuevo campo
-        'symptoms',  
-        'reason',
-        // Consentimiento
+        'physical_exam', // aunque no lo uses, lo dejamos para que no dé error
+
         'consent_accepted',
         'digital_signature',
-        'consent_date',
         'authorized_procedure',
 
-        // Signos vitales
         'heart_rate',
         'oxygen_saturation',
         'temperature',
         'blood_pressure',
 
-        // Auditoría
+        'notes',
+        'iv_type',
+        'symptoms',
+        'reason',
+
+        'referral_source', // 👈 nuevo campo
+        'referral_other',  // 👈 nuevo campo
+
+        'registration_date',
         'registered_by',
         'updated_by',
-        'registration_date',
     ];
 }

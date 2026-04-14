@@ -330,7 +330,7 @@ return [
         ],
         [
             'text' => 'Form patient',
-            'url' => 'patient-form',
+            'url' => 'patient/form',
             'icon' => 'fas fa-fw fa-user',
         ],
         
@@ -347,7 +347,6 @@ return [
             'text' => 'Pacientes importados',
             'url' => 'imported_patients',
             'icon' => 'far fa-fw fa-file',
-            'label' => 4,
             'label_color' => 'success',
         ],
         

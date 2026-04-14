@@ -49,6 +49,35 @@
                 <input type="address" name="address" class="form-control" value="{{ $patient->address }}">
             </div>
 
+             <!-- Motivo y síntomas -->
+        <h4>REASON FOR VISIT:</h4>
+        <div class="form-group">
+            <label>Reason</label>
+            <input type="text" name="reason" class="form-control">
+        </div>
+
+            <!-- Solicitud de IV -->
+        <h4>WHICH INTRAVENOUS ROUTE WOULD YOU LIKE?</h4>
+        <p>Nurse Valeria does an evaluation and in her professional opinion, you may not receive
+            the IV that you have initially requested. </p>
+        <div class="form-group">
+            <select name="iv_type" class="form-control custom-select">
+                <option value="">Select...</option>
+                <option class="form-control optio">Custom IV</option>
+                <option value="Wellness Duo">IV Wellness Duo</option>
+                <option value="Energy Boost"> IV Energy Boost</option>
+                <option value="Beauty Glow">IV Beauty Glow</option>
+                <option value="Hangover"> IV Hangover</option>
+                <option value="Immune Boost">IV Immune Boost</option>
+                <option value="Immune Boost">IV Immune master Boost</option>
+                <option value="Immune Boost">IV Superdetox</option>
+                <option value="Immune Boost">IV Sportpower</option>
+                <option value="Immune Boost">IV Post op</option>
+                <option value="Immune Boost">IV NAD</option>
+            </select>
+        </div>
+
+
             <h4 class="mt-4 text-nurseblue">Historial Médico</h4>
             <div class="form-group">
                 <label>¿Embarazada?:</label>
@@ -139,6 +168,8 @@
             <p>{{ $patient->registration_date }}</p>
         </div>
     </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Agregar paciente a un grupo</button>
 
     <button type="submit" class="btn btn-primary mt-3">Guardar cambios</button>
     <a href="{{ route('pacientes.index') }}" class="btn btn-secondary mt-3">⬅️ Volver al listado</a>

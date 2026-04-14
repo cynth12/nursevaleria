@@ -7,7 +7,7 @@ use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\ConsentimientoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ImportedPatientsController;
-use App\Http\Controllers\PatientFormController;
+
 
 Route::get('/', function () {
     return redirect('/login');
@@ -24,13 +24,24 @@ Route::get('/home', [HomeController::class, 'index'])
 Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
 
 
-
-Route::get('/patient/create', [PatientController::class, 'create'])->name('patient.create');
+// 👉 Vista interna de tu sistema (patient.index)
+Route::get('/patient/create', [PatientController::class, 'createIndex'])->name('patient.create');
 Route::post('/patient', [PatientController::class, 'store'])->name('patient.store');
+
+// 👉 Vista pública que ve el paciente (patient.form)
+Route::get('/patient/form', [PatientController::class, 'createForm'])->name('patient.form');
+Route::post('/patient/form', [PatientController::class, 'store'])->name('patient.form.store');
+
+// Mostrar detalle de un paciente
 Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patient.show');
+
+// Editar paciente
 Route::get('/patient/{id}/edit', [PatientController::class, 'edit'])->name('patient.edit');
 Route::put('/patient/{id}', [PatientController::class, 'update'])->name('patient.update');
+
+// Eliminar paciente
 Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('patient.destroy');
+
 
 Route::get('/consentimientos', [ConsentimientoController::class, 'index'])->name('consentimiento.index');
 Route::get('/consentimientos/create/{patientId}', [ConsentimientoController::class, 'create'])->name('consentimiento.create');
@@ -68,8 +79,7 @@ Route::post('/imported_patients/import', [ImportedPatientsController::class, 'im
 Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::class, 'destroyAll'])
     ->name('imported_patients.destroyAll');
 
-Route::get('/patient-form', [PatientFormController::class, 'create'])->name('patient.form');
-Route::post('/patient-form', [PatientFormController::class, 'store'])->name('patient.form.store');
+
 
 
 

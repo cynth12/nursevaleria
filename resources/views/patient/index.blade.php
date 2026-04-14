@@ -1,103 +1,141 @@
 @extends('adminlte::page')
 
-@section('title', 'Pacientes')
+@section('title', 'Crear Paciente')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
 
 @section('content')
+    <div class="patient-index container">
+        <img src="{{ asset('img/formulario.png') }}" class="form-header-image"><br>
 
-    <h1 class="text-nurseblue font-bold text-2xl">🩺 Create New Patient</h1>
-
-    <form method="POST" action="{{ route('patient.store') }}">
-        @csrf
-        <div class="row">
+        <form action="{{ route('patient.store') }}" method="POST">
+            @csrf
+            <h2 class="form-title">BASIC EVALUATION FOR IV THERAPY</h2><br>
 
             <!-- Datos personales -->
-            <div class="col-md-6">
-                <h4 class="text-nurseblue font-semibold text-lg mt-4">Personal date</h4>
-                <div class="form-group">
-                    <label for="name">Patient Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
-                </div>
+            <h4>PERSONAL DATE</h4>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Date of birth:</label>
+                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Phone (WhatsApp)</label>
+                <input type="text" name="phone" id="phone" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" id="email" class="form-control">
+            </div>
 
-                <div class="form-group">
-                    <label for="date_of_birth">📅 Date of Birth</label>
-                    <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" required>
-                </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" name="address" id="address" class="form-control">
+            </div>
 
-                <div class="form-group">
-                    <label for="phone">📞 Phone</label>
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone number"
-                        required>
-                </div>
+            <div class="form-group">
+                <label>HOW DID YOU HEAR ABOUT US?</label>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" name="symptoms[]" value="instagram"> Instagram</label><br>
+                <label><input type="checkbox" name="symptoms[]" value="facebook"> Facebook</label><br>
+                <label>Other</label>
+                <input type="text" name="other" class="form-control">
+            </div>
 
-                <div class="form-group">
-                    <label for="email">✉️ Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="example@mail.com"
-                        required>
-                </div>
-
+            <!-- Motivo y síntomas -->
+            <h4>REASON FOR VISIT:</h4>
+            <div class="form-group">
+                <label>Reason</label>
+                <input type="text" name="reason" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Symptoms</label><br>
+                <label><input type="checkbox" name="symptoms[]" value="Dolor abdominal"> ABDOMINAL PAINS</label><br>
+                <label><input type="checkbox" name="symptoms[]" value="Fiebre"> FEVER</label><br>
+                <label><input type="checkbox" name="symptoms[]" value="Vómito"> VOMITING</label><br>
+                <label><input type="checkbox" name="symptoms[]" value="Diarrea"> DIARRHEA</label><br>
+                <label><input type="checkbox" name="symptoms[]" value="Ninguno"> NONE OF THE ABOVE</label>
             </div>
 
             <!-- Contacto de emergencia -->
-            <div class="col-md-6">
-                <h4 class="mt-4">Emergency Contact</h4>
-                <div class="form-group">
-                    <label for="emergency_name">Name</label>
-                    <input type="text" name="emergency_name" id="emergency_name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="emergency_relationship">Relationship</label>
-                    <input type="text" name="emergency_relationship" id="emergency_relationship" class="form-control"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="emergency_phone">Phone</label>
-                    <input type="text" name="emergency_phone" id="emergency_phone" class="form-control" required>
-                </div>
+            <h4>EMERGENCY CONTACT:</h4>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="emergency_name" id="emergency_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Relationship</label>
+                <input type="text" name="emergency_relationship" id="emergency_relationship" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" name="emergency_phone" id="emergency_phone" class="form-control">
+            </div>
 
-                <div class="form-group">
-                    <label for="address">🏠 Address</label>
-                    <input type="text" name="address" id="address" class="form-control"
-                        placeholder="Adress">
-                </div>
-
+            <!-- IV Type -->
+            <h4>WHICH INTRAVENOUS ROUTE WOULD YOU LIKE?</h4>
+            <p>Nurse Valeria does an evaluation and in her professional opinion, you may not receive
+                the IV that you have initially requested.</p>
+            <div class="form-group">
+                <select name="iv_type" class="form-control custom-select">
+                    <option value="">Select...</option>
+                    <option value="Custom IV">Custom IV</option>
+                    <option value="Wellness Duo">IV Wellness Duo</option>
+                    <option value="Energy Boost">IV Energy Boost</option>
+                    <option value="Beauty Glow">IV Beauty Glow</option>
+                    <option value="Hangover">IV Hangover</option>
+                    <option value="Immune Boost">IV Immune Boost</option>
+                    <option value="Immune master Boost">IV Immune master Boost</option>
+                    <option value="Superdetox">IV Superdetox</option>
+                    <option value="Sportpower">IV Sportpower</option>
+                    <option value="Post op">IV Post op</option>
+                    <option value="NAD">IV NAD</option>
+                </select>
             </div>
 
             <!-- Historial médico -->
-            <div class="col-md-6">
-                <h4 class="mt-4">Medical / Surgical History</h4>
-                <div class="form-group">
-                    <label for="prenant">¿Are you, or could you be, prenant?</label>
-                    <select name="prenant" id="prenant" class="form-control">
-                        <option value="" disabled selected>Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+            <h4>MEDICAL / SURGICAL HISTORY:</h4>
+            <div class="form-group">
+                <label>ARE YOU, OR COULD YOU BE PREGNANT?</label>
+                <select name="prenant" id="prenant" class="form-control">
+                    <option value="">Seleccione...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="vitamins">¿Have you ever had and intolerance to vitamins?</label>
-                    <select name="vitamins" id="vitamins" class="form-control">
-                        <option value="" disabled selected>Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+            <div class="form-group">
+                <label for="vitamins">¿Have you ever had and intolerance to vitamins?</label>
+                <select name="vitamins" id="vitamins" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="minerals">¿Have you ever had and intolerance to minerals?</label>
-                    <select name="minerals" id="minerals" class="form-control">
-                        <option value="" disabled selected>Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="minerals">¿Have you ever had and intolerance to minerals?</label>
+                <select name="minerals" id="minerals" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
 
-                    </select>
-                </div>
+                </select>
             </div>
 
 
-            <!-- Alergias -->
-            <div class="col-md-6">
-                <h4 class="mt-4">Allergies</h4>
+            <div class="form-group">
+                <h4>MANY FOOD OR DRUG ALLERGIES?</h4>
+                <div class="form-group">
+                    <label>Food</label>
+                    <textarea name="allergy_food" class="form-control"></textarea>
+                </div>
                 <div class="form-group">
                     <label for="allergy_medicine">Medicine</label>
                     <select name="allergy_medicine" id="allergy_medicine" class="form-control">
@@ -111,111 +149,90 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="allergy_food">Food</label>
-                    <input type="text" name="allergy_food" id="allergy_food" class="form-control"
-                        placeholder="Food allergies">
-                </div>
-                <div class="form-group">
-                    <label for="reaction">Reaction</label>
-                    <input type="text" name="reaction" id="reaction" class="form-control"
-                        placeholder="Describe reaction">
+                    <label>REACTION TO SAID ALLERGY:</label>
+                    <textarea name="reaction" id="reaction" class="form-control"></textarea>
                 </div>
             </div>
-
-            <!-- Medicamentos -->
-            <div class="col-md-6">
-                <h4 class="mt-4">Medications</h4>
-                <div class="form-group">
-                    <label for="medications">List medications</label>
-                    <textarea name="medications" id="medications" class="form-control" rows="3"
-                        placeholder="Name, dose, frequency"></textarea>
-                </div>
+            <div class="form-group">
+                <h4>DO YOU TAKE ANY MEDICATIONS OR SUPLEMENTS? IF SO WRITE NAME, DOSE AND FREQUENCY.</h4>
+                <label>Medications</label>
+                <textarea name="medications" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Supplements</label>
+                <textarea name="supplements" class="form-control"></textarea>
+            </div>
+            <!-- Vital Signs -->
+            <h4>Vital Signs</h4>
+            <div class="form-group">
+                <label for="heart_rate">Heart rate (FC)</label>
+                <input type="number" name="heart_rate" id="heart_rate" class="form-control" placeholder="Ej. 78">
+            </div>
+            <div class="form-group">
+                <label for="oxygen_saturation">Saturation O₂ (%)</label>
+                <input type="number" name="oxygen_saturation" id="oxygen_saturation" class="form-control"
+                    placeholder="Ej. 97">
+            </div>
+            <div class="form-group">
+                <label for="temperature">Temperature (°C)</label>
+                <input type="number" step="0.1" name="temperature" id="temperature" class="form-control"
+                    placeholder="Ej. 36.7">
+            </div>
+            <div class="form-group">
+                <label for="blood_pressure">Blood pressure</label>
+                <input type="text" name="blood_pressure" id="blood_pressure" class="form-control"
+                    placeholder="Ej. 120/80">
             </div>
 
-            <!-- Suplementos -->
-            <div class="col-md-6">
-                <h4 class="mt-4">Supplements</h4>
-                <div class="form-group">
-                    <label for="supplements">List supplements</label>
-                    <textarea name="supplements" id="supplements" class="form-control" rows="3"
-                        placeholder="Type, dose, frequency"></textarea>
-                </div>
+            <!-- Notas -->
+            <h4>Note</h4>
+            <div class="form-group">
+                <textarea name="notes" id="notes" class="form-control" rows="4" placeholder="Text"></textarea>
             </div>
 
-            <!-- Examen físico -->
-            <div class="col-md-12">
-                <h4 class="mt-4">Abbreviated Physical Exam</h4>
-                <div class="form-group">
-                    <textarea name="physical_exam" id="physical_exam" class="form-control" rows="4"
-                        placeholder="Notes from physical exam"></textarea>
-                </div>
-
-                <!-- Consentimiento informado -->
-                <div class="col-md-12">
-                    <h4 class="mt-4">Informed Consent</h4>
-                    <div class="form-group">
-                        <label for="consent_accepted">Accept treatment</label>
-                        <select name="consent_accepted" id="consent_accepted" class="form-control">
-                            <option value="" disabled selected>Select</option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="authorized_procedure">Authorized Procedure</label>
-                        <input type="text" name="authorized_procedure" id="authorized_procedure" class="form-control"
-                            placeholder="Ej. Multivitamin IV Drip">
-                    </div>
-                </div>
-
-                <!-- Signos vitales -->
-                <div class="col-md-12">
-                    <h4 class="mt-4">Vital Signs</h4>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="heart_rate">heart rate (FC)</label>
-                            <input type="number" name="heart_rate" id="heart_rate" class="form-control"
-                                placeholder="Ej. 78">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="oxygen_saturation">Saturation O₂ (%)</label>
-                            <input type="number" name="oxygen_saturation" id="oxygen_saturation" class="form-control"
-                                placeholder="Ej. 97">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="temperature">Temperature (°C)</label>
-                            <input type="number" step="0.1" name="temperature" id="temperature"
-                                class="form-control" placeholder="Ej. 36.7">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="blood_pressure">Blood pressure</label>
-                            <input type="text" name="blood_pressure" id="blood_pressure" class="form-control"
-                                placeholder="Ej. 120/80">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Notas del administrador -->
-                <h4 class="mt-4">Notes</h4>
-                <div class="form-group">
-                    <textarea name="notes" id="notes" class="form-control" rows="4"
-                        placeholder="Observaciones del administrador"></textarea>
-                </div>
+            <!-- Consentimiento -->
+            <h4>CONSENT FORM:</h4>
+            <div class="form-group">
+                <p>ACKNOWLEDGING THE PROCEDURES TO BE PERFORMED BY THE MEDICAL TEAM AND THAT THEY HAVE BEEN EXPLAINED TO ME,
+                    I GRANT AUTHORIZATION AND RELEASE THE MEDICAL TEAM AND THE LOCATION FROM ANY AND ALL LIABILITY ONCE THE
+                    BENEFITS HAVE BEEN
+                    EXPLAINED TO ME. I UNDERSTAND THE POSSIBLE COMPLICATIONS, REACTIONS, AND RESULTS, ASSUMING CONSEQUENCES
+                    OF THIS DECISION. </p>
+                <label for="consent_accepted">Accept treatment</label>
+                <select name="consent_accepted" id="consent_accepted" class="form-control">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
             </div>
 
             <div class="form-group">
-                <label>Singature patient:</label><br>
-                <canvas id="patient-signature-pad" width="400" height="200"
-                    style="border:1px solid #000;"></canvas><br>
-                <input type="hidden" name="patient_signature" id="patient_signature"><br>
-                <button type="button" id="clear-patient-signature" class="btn btn-warning btn-sm">Delete</button>
+                <label for="authorized_procedure">Authorized Procedure</label>
+                <select name="authorized_procedure" id="authorized_procedure" class="form-control custom-select">
+                    <option value="">Select...</option>
+                    <option class="form-control optio">Custom IV</option>
+                    <option value="Wellness Duo">IV Wellness Duo</option>
+                    <option value="Energy Boost"> IV Energy Boost</option>
+                    <option value="Beauty Glow">IV Beauty Glow</option>
+                    <option value="Hangover"> IV Hangover</option>
+                    <option value="Immune Boost">IV Immune Boost</option>
+                    <option value="Immune Boost">IV Immune master Boost</option>
+                    <option value="Immune Boost">IV Superdetox</option>
+                    <option value="Immune Boost">IV Sportpower</option>
+                    <option value="Immune Boost">IV Post op</option>
+                    <option value="Immune Boost">IV NAD</option>
+                </select>
             </div>
-        </div>
 
-        <button type="submit" class="btn btn-success mt-3">✅ Save Patient</button>
-    </form>
+            <!-- Firma -->
+            <h4>Signature patient:</h4>
+            <canvas id="patient-signature-pad" width="400" height="200"
+                style="border:1px solid #000;"></canvas><br>
+            <input type="hidden" name="digital_signature" id="patient_signature"><br>
 
+            <button type="submit" class="btn btn-primary">SAVE</button>
+        </form>
+    </div>
 @endsection
 
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>

@@ -16,10 +16,6 @@
 <div class="container">
     <img src="{{ asset('img/formulario.png') }}" class="form-header-image"><br>
 
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
     <form action="{{ route('patient.store') }}" method="POST">
         @csrf
         <h1></h1><br>
@@ -48,6 +44,15 @@
             <input type="address" name="address" id="address" class="form-control">
         </div>
 
+        <div class="form-group">
+            <label>HOW DID YOU HEAR ABOUT US?</label>
+        </div>
+        <div class="form-group">
+            <label><input type="checkbox" name="symptoms[]" value="instagram"> Instagram</label><br>
+            <label><input type="checkbox" name="symptoms[]" value="facebook"> Facebook</label><br>
+            <label>Other</label>
+            <input type="text" name="other" class="form-control">
+        </div>
         <!-- Motivo y síntomas -->
         <h4>REASON FOR VISIT:</h4>
         <div class="form-group">
@@ -166,6 +171,9 @@
 <!-- Consentimiento -->
 <h4>CONSENT FORM:</h4>
 <div class="form-group">
+    <p>ACKNOWLEDGING THE PROCEDURES TO BE PERFORMED BY THE MEDICAL TEAM AND THAT THEY HAVE BEEN EXPLAINED TO ME, 
+    I GRANT AUTHORIZATION AND RELEASE THE MEDICAL TEAM AND THE LOCATION FROM ANY AND ALL LIABILITY ONCE THE BENEFITS HAVE BEEN 
+    EXPLAINED TO ME. I UNDERSTAND THE POSSIBLE COMPLICATIONS, REACTIONS, AND RESULTS, ASSUMING CONSEQUENCES OF THIS DECISION. </p>
     <label for="consent_accepted">Accept treatment</label>
     <select name="consent_accepted" id="consent_accepted" class="form-control">
         <option value="" disabled selected>Select</option>
@@ -176,11 +184,23 @@
 
 <div class="form-group">
     <label for="authorized_procedure">Authorized Procedure</label>
-    <input type="text" name="authorized_procedure" id="authorized_procedure" class="form-control"
-        placeholder="Ej. Multivitamin IV Drip">
+    <select name="authorized_procedure" id="authorized_procedure" class="form-control custom-select">
+                <option value="">Select...</option>
+                <option class="form-control optio">Custom IV</option>
+                <option value="Wellness Duo">IV Wellness Duo</option>
+                <option value="Energy Boost"> IV Energy Boost</option>
+                <option value="Beauty Glow">IV Beauty Glow</option>
+                <option value="Hangover"> IV Hangover</option>
+                <option value="Immune Boost">IV Immune Boost</option>
+                <option value="Immune Boost">IV Immune master Boost</option>
+                <option value="Immune Boost">IV Superdetox</option>
+                <option value="Immune Boost">IV Sportpower</option>
+                <option value="Immune Boost">IV Post op</option>
+                <option value="Immune Boost">IV NAD</option>
+            </select>
 </div>
 
-<h4>Vital Signs</h4>
+ <!--<h4>Vital Signs</h4>
                     <div class="form-group">
                             <label for="heart_rate">heart rate (FC)</label>
                             <input type="number" name="heart_rate" id="heart_rate" class="form-control"
@@ -200,25 +220,26 @@
                             <label for="blood_pressure">Blood pressure</label>
                             <input type="text" name="blood_pressure" id="blood_pressure" class="form-control"
                                 placeholder="Ej. 120/80">
-                        </div>
+                        </div>-->
                     
                
 
                 <!-- Notas del administrador -->
-                <h4>Note</h4>
+                <!-- <h4>Note</h4>
                 <div class="form-group">
                     <textarea name="notes" id="notes" class="form-control" rows="4"
                         placeholder="Text"></textarea>
-                </div>
+                </div>-->
 
 <div class="form-group">
-                <h4>Singature patient:</h4><br>
+                <!--<h4>Singature patient:</h4><br>
                 <canvas id="patient-signature-pad" width="400" height="200"
                     style="border:1px solid #000;"></canvas><br>
-                <input type="hidden" name="patient_signature" id="patient_signature"><br>
+                <input type="hidden" name="patient_signature" id="patient_signature"><br>-->
                 <button type="submit" class="btn btn-primary">SAVE</button>
                 
-            </div>
+            </div> 
+            
  </div>
 
             
@@ -228,7 +249,7 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 <script>
     // Firma del paciente
     var patientCanvas = document.getElementById('patient-signature-pad');
@@ -257,5 +278,5 @@
             consentSignaturePad.clear();
         });
     }
-</script>
+</script>-->
 

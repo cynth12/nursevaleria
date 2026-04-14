@@ -10,69 +10,74 @@ use Carbon\Carbon;
 class PatientController extends Controller
 {
     // Mostrar formulario de creación
-    public function create()
+    public function createForm()
     {
-        return view('patient.index'); // tu formulario está en patient/index.blade.php
+        return view('patient.form'); // formulario que ve el paciente
+    }
+
+    public function createIndex()
+    {
+        return view('patient.index'); // formulario interno de tu sistema
     }
 
     // Guardar paciente
 
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:150',
-            'date_of_birth' => 'required|date',
-            'phone' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:150|unique:patients,email',
-            'address' => 'nullable|string|max:255',
+{
+    $data = $request->validate([
+        'name' => 'required|string|max:150',
+        'date_of_birth' => 'required|date',
+        'phone' => 'nullable|string|max:20',
+        'email' => 'nullable|email|max:150|unique:patients,email',
+        'address' => 'nullable|string|max:255',
 
-            'emergency_name' => 'nullable|string|max:150',
-            'emergency_relationship' => 'nullable|string|max:100',
-            'emergency_phone' => 'nullable|string|max:20',
+        'emergency_name' => 'nullable|string|max:150',
+        'emergency_relationship' => 'nullable|string|max:100',
+        'emergency_phone' => 'nullable|string|max:20',
 
-            'pregnant' => 'nullable|boolean',
-            'vitamins_intolerance' => 'nullable|boolean',
-            'minerals_intolerance' => 'nullable|boolean',
+        // 👇 aquí los pongo como string porque tu formulario manda "Yes"/"No"
+        'pregnant' => 'nullable|string',
+        'vitamins_intolerance' => 'nullable|string',
+        'minerals_intolerance' => 'nullable|string',
 
-            'allergy_medicine' => 'nullable|string|max:255',
-            'allergy_food' => 'nullable|string|max:255',
-            'reaction' => 'nullable|string|max:255',
+        'allergy_medicine' => 'nullable|string|max:255',
+        'allergy_food' => 'nullable|string|max:255',
+        'reaction' => 'nullable|string|max:255',
 
-            'medications' => 'nullable|string',
-            'supplements' => 'nullable|string',
-            'physical_exam' => 'nullable|string',
+        'medications' => 'nullable|string',
+        'supplements' => 'nullable|string',
+        'physical_exam' => 'nullable|string',
 
-            'consent_accepted' => 'nullable|boolean',
-            'digital_signature' => 'nullable|string',
-            'authorized_procedure' => 'nullable|string|max:255',
+        'consent_accepted' => 'nullable|string',
+        'digital_signature' => 'nullable|string',
+        'authorized_procedure' => 'nullable|string|max:255',
 
-            'heart_rate' => 'nullable|integer',
-            'oxygen_saturation' => 'nullable|integer',
-            'temperature' => 'nullable|numeric',
-            'blood_pressure' => 'nullable|string|max:20',
+        'heart_rate' => 'nullable|integer',
+        'oxygen_saturation' => 'nullable|integer',
+        'temperature' => 'nullable|numeric',
+        'blood_pressure' => 'nullable|string|max:20',
 
-            'notes' => 'nullable|string',
-            // 👇 nuevos campos
-            'iv_type' => 'nullable|string|max:255',
-            'symptoms' => 'nullable|string',
-        ]);
+        'referral_source' => 'nullable|string|max:150',
+        'referral_other' => 'nullable|string|max:150',
 
-        // Normalizar valores de dropdown "Yes/No" a booleanos
-        $data['pregnant'] = $request->pregnant === 'Yes' ? 1 : 0;
-        $data['vitamins_intolerance'] = $request->vitamins_intolerance === 'Yes' ? 1 : 0;
-        $data['minerals_intolerance'] = $request->minerals_intolerance === 'Yes' ? 1 : 0;
-        $data['consent_accepted'] = $request->consent_accepted === 'Yes' ? 1 : 0;
-        $data['symptoms'] = $request->has('symptoms')
-            ? implode(',', $request->symptoms)
-            : null;
+        'notes' => 'nullable|string',
+        'iv_type' => 'nullable|string|max:255',
+        'symptoms' => 'nullable|array', // 👈 si tu formulario manda checkboxes
+    ]);
 
-        // Guardar fecha/hora de registro en zona horaria de Cancún
-        $data['registration_date'] = Carbon::now('America/Cancun');
+    // Normalizar valores
+    $data['pregnant'] = $request->pregnant === 'Yes' ? 1 : 0;
+    $data['vitamins_intolerance'] = $request->vitamins_intolerance === 'Yes' ? 1 : 0;
+    $data['minerals_intolerance'] = $request->minerals_intolerance === 'Yes' ? 1 : 0;
+    $data['consent_accepted'] = $request->consent_accepted === 'Yes' ? 1 : 0;
+    $data['symptoms'] = $request->has('symptoms') ? implode(',', $request->symptoms) : null;
 
-        Patient::create($data);
+    $data['registration_date'] = Carbon::now('America/Cancun');
 
-        return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente ✅');
-    }
+    Patient::create($data);
+
+    return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente ✅');
+}
 
     // Mostrar detalle de un paciente
     public function show($id)
@@ -123,6 +128,8 @@ class PatientController extends Controller
             'iv_type' => 'nullable|string|max:255',
             'symptoms' => 'nullable|string',
             'reason' => 'nullable|string',
+            'referral_source' => 'nullable|string|max:150',
+            'referral_other' => 'nullable|string|max:150',
         ]);
 
         $patient->update($data);
