@@ -27,7 +27,7 @@ class PatientController extends Controller
             'name' => 'required|string|max:150',
             'date_of_birth' => 'required|date',
             'phone' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:150|',
+            'email' => 'nullable|email|max:150|unique:patients,email',
             'address' => 'nullable|string|max:255',
 
             'emergency_name' => 'nullable|string|max:150',
@@ -81,7 +81,14 @@ class PatientController extends Controller
 
         Patient::create($data);
 
-        return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente ✅');
+        // 🔹 Diferenciar según la ruta
+        if ($request->route()->getName() === 'patient.form.store') {
+            // Formulario público → regresar a la misma vista con alerta
+            return back()->with('success', 'Your data has been saved successfully ✅');
+        } else {
+            // Formulario interno → ir al listado
+            return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente ✅');
+        }
     }
 
     // Mostrar detalle
@@ -146,6 +153,11 @@ class PatientController extends Controller
         $data['symptoms'] = $request->has('symptoms') ? implode(',', $request->input('symptoms')) : null;
 
         $data['referral_source'] = $request->has('referral_source') ? implode(',', $request->input('referral_source')) : null;
+
+        $data['referral_other'] = $request->input('referral_other');
+
+        // Fecha de registro
+        $data['registration_date'] = Carbon::now('America/Cancun');
 
         $patient->update($data);
 

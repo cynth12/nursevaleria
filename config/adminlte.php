@@ -325,7 +325,7 @@ return [
         ],
         [
             'text' => 'Crear paciente',
-            'url' => 'patient/create',
+            'url' => 'patient/index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

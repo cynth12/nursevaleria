@@ -8,19 +8,41 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+    <div class="toast show text-white" role="alert" aria-live="assertive" aria-atomic="true"
+         style="background-color:#333c50;">
+        <div class="d-flex">
+            <div class="toast-body">
+                @foreach ($errors->all() as $error)
+                    {{ $error }} <br>
+                @endforeach
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" 
+                    data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
     </div>
+</div>
 @endif
 
+@if(session('success'))
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+    <div class="toast show text-white" role="alert" aria-live="assertive" aria-atomic="true"
+         style="background-color:#b49779;">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ session('success') }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" 
+                    data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+@endif
 
 <div class="container">
     <img src="{{ asset('img/formulario.png') }}" class="form-header-image"><br>
