@@ -24,13 +24,17 @@ Route::get('/home', [HomeController::class, 'index'])
 Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
 
 
-// 👉 Vista interna de tu sistema (patient.index)
-Route::get('/patient/create', [PatientController::class, 'createIndex'])->name('patient.create');
-Route::post('/patient', [PatientController::class, 'store'])->name('patient.store');
 
-// 👉 Vista pública que ve el paciente (patient.form)
+
+
+
+// Formulario que ve el paciente
 Route::get('/patient/form', [PatientController::class, 'createForm'])->name('patient.form');
 Route::post('/patient/form', [PatientController::class, 'store'])->name('patient.form.store');
+
+// Formulario interno de tu sistema
+Route::get('/patient/index', [PatientController::class, 'createIndex'])->name('patient.index');
+Route::post('/patient/index', [PatientController::class, 'store'])->name('patient.index.store');
 
 // Mostrar detalle de un paciente
 Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patient.show');
@@ -41,6 +45,8 @@ Route::put('/patient/{id}', [PatientController::class, 'update'])->name('patient
 
 // Eliminar paciente
 Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('patient.destroy');
+
+
 
 
 Route::get('/consentimientos', [ConsentimientoController::class, 'index'])->name('consentimiento.index');

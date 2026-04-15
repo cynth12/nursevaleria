@@ -11,12 +11,21 @@
 
 </head>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 
 <div class="container">
     <img src="{{ asset('img/formulario.png') }}" class="form-header-image"><br>
 
-    <form action="{{ route('patient.store') }}" method="POST">
+    <form action="{{ route('patient.form.store') }}" method="POST">
         @csrf
         <h1></h1><br>
         <h2 class="form-title">BASIC EVALUATION FOR IV THERAPY</h2><br>
@@ -28,15 +37,15 @@
         </div>
         <div class="form-group">
             <label>Date of birth:</label>
-            <input type="date" name="date_of_birth" id="date_of_birth" class="form-control">
+            <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Phone (WhatsApp)</label>
-            <input type="text" name="phone" id="phone" class="form-control">
+            <input type="text" name="phone" id="phone" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" id="email" class="form-control">
+            <input type="email" name="email" id="email" class="form-control" required>
         </div>
 
         <div class="form-group">
@@ -48,10 +57,10 @@
             <label>HOW DID YOU HEAR ABOUT US?</label>
         </div>
         <div class="form-group">
-            <label><input type="checkbox" name="symptoms[]" value="instagram"> Instagram</label><br>
-            <label><input type="checkbox" name="symptoms[]" value="facebook"> Facebook</label><br>
+            <label><input type="checkbox" name="referral_source[]" value="instagram"> Instagram</label><br>
+            <label><input type="checkbox" name="referral_source[]" value="facebook"> Facebook</label><br>
             <label>Other</label>
-            <input type="text" name="other" class="form-control">
+            <input type="text" name="referral_other" class="form-control">
         </div>
         <!-- Motivo y síntomas -->
         <h4>REASON FOR VISIT:</h4>
@@ -108,7 +117,7 @@
         <h4>MEDICAL / SURGICAL HISTORY:</h4>
         <div class="form-group">
             <label>ARE YOU, OR COULD YOU BE PREGNANT?</label>
-            <select name="prenant" id="prenant" class="form-control">
+            <select name="pregnant" class="form-control">
                 <option value="">Seleccione...</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -116,8 +125,8 @@
         </div>
 
         <div class="form-group">
-            <label for="vitamins">¿Have you ever had and intolerance to vitamins?</label>
-            <select name="vitamins" id="vitamins" class="form-control">
+            <label for="vitamins_intolerance">¿Have you ever had and intolerance to vitamins?</label>
+            <select name="vitamins_intolerance" id="vitamins_intolerance" class="form-control">
                 <option value="" disabled selected>Select</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -125,8 +134,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="minerals">¿Have you ever had and intolerance to minerals?</label>
-            <select name="minerals" id="minerals" class="form-control">
+            <label for="minerals_intolerance">¿Have you ever had and intolerance to minerals?</label>
+            <select name="minerals_intolerance" id="minerals_intolerance" class="form-control">
                 <option value="" disabled selected>Select</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -239,7 +248,7 @@
                 <button type="submit" class="btn btn-primary">SAVE</button>
                 
             </div> 
-            
+        
  </div>
 
             
