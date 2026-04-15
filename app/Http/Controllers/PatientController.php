@@ -84,10 +84,10 @@ class PatientController extends Controller
         // 🔹 Diferenciar según la ruta
         if ($request->route()->getName() === 'patient.form.store') {
             // Formulario público → regresar a la misma vista con alerta
-            return back()->with('success', 'Your data has been saved successfully ✅');
+            return back()->with('success', 'Your data has been saved successfully');
         } else {
             // Formulario interno → ir al listado
-            return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente ✅');
+            return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente');
         }
     }
 
