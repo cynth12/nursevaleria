@@ -58,6 +58,10 @@
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
         <div class="form-group">
+            <label>Last name</label>
+            <input type="text" name="last_name" id="last_name" class="form-control" required>
+        </div>
+        <div class="form-group">
             <label>Date of birth:</label>
             <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" required>
         </div>
