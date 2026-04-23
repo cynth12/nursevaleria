@@ -207,7 +207,7 @@
                 <input type="number" name="heart_rate" id="heart_rate" class="form-control" placeholder="Ej. 78">
             </div>
             <div class="form-group">
-                <label for="oxygen_saturation">Saturation O₂ (%)</label>
+                <label for="oxigen_saturation">Saturation O₂ (%)</label>
                 <input type="number" name="oxygen_saturation" id="oxygen_saturation" class="form-control"
                     placeholder="Ej. 97">
             </div>

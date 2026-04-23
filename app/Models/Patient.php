@@ -41,7 +41,7 @@ class Patient extends Model
         'digital_signature',
         'authorized_procedure',
         'heart_rate',
-        'oxygen_saturation',
+        'oxigen_saturation',
         'temperature',
         'blood_pressure',
     ];

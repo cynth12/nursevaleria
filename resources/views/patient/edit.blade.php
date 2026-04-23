@@ -200,7 +200,7 @@
                     </div>
                     <div class="col-md-3">
                         <label>O₂ Saturation (%):</label>
-                        <input type="number" name="oxygen_saturation" class="form-control"
+                        <input type="number" name="oxigen_saturation" class="form-control"
                             value="{{ $patient->oxygen_saturation }}">
                     </div>
                     <div class="col-md-3">
