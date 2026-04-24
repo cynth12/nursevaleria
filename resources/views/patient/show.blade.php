@@ -43,7 +43,7 @@
         <h4 class="mt-4">Allergies</h4>
         <p><strong>Medications:</strong> {{ $patient->allergy_medicine }}</p>
         <p><strong>Food:</strong> {{ $patient->allergy_food }}</p>
-        <p><strong>Reation:</strong> {{ $patient->reaction }}</p>
+        <p><strong>Reaction:</strong> {{ $patient->reaction }}</p>
 
         <h4 class="mt-4">Medications</h4>
         <p>{{ $patient->medications }}</p>
