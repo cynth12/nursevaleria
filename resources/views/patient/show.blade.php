@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <h4 class="mb-3">Datos Personales</h4>
+        <h4 class="mb-3"></h4>
         <p><strong>Name:</strong> {{ $patient->name }}</p>
         <p><strong>Last Name:</strong> {{ $patient->last_name }}</p>
         <p><strong>Date of Birth:</strong> {{ $patient->date_of_birth }}</p>
