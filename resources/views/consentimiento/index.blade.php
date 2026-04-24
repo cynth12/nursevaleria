@@ -4,17 +4,17 @@
 @section('title', 'Listado de Consentimientos')
 
 @section('content_header')
-    <h1>Listado de Consentimientos</h1>
+    <h1>List of Consents</h1>
 @endsection
 
 @section('content')
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Paciente</th>
-                <th>Procedimiento</th>
-                <th>Fecha</th>
-                <th>Acciones</th>
+                <th>Patient</th>
+                <th>Procedure</th>
+                <th>Date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -33,13 +33,13 @@
                         <form action="{{ route('consentimiento.destroy', $consentimiento->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delate</button>
                         </form>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">No hay consentimientos registrados.</td>
+                    <td colspan="4">There are no registered consents.</td>
                 </tr>
             @endforelse
         </tbody>

@@ -3,52 +3,52 @@
 @section('title', 'Detalle del Paciente del Grupo')
 
 @section('content_header')
-    <h1>Detalle del Paciente del Grupo</h1>
+    <h1>Patient Details of the Group</h1>
 @endsection
 
 @section('content')
     <div class="container">
         <h2>{{ $patient->name }}</h2>
-        <p><strong>Fecha de nacimiento:</strong> {{ $patient->date_of_birth }}</p>
-        <p><strong>Teléfono:</strong> {{ $patient->phone }}</p>
+        <p><strong>Date of birth:</strong> {{ $patient->date_of_birth }}</p>
+        <p><strong>Phone:</strong> {{ $patient->phone }}</p>
         <p><strong>Email:</strong> {{ $patient->email }}</p>
-        <p><strong>Dirección:</strong> {{ $patient->address }}</p>
+        <p><strong>Address:</strong> {{ $patient->address }}</p>
 
         <hr>
 
-        <h4>Contacto de emergencia</h4>
-        <p><strong>Nombre:</strong> {{ $patient->emergency_contact_name }}</p>
-        <p><strong>Teléfono:</strong> {{ $patient->emergency_contact_phone }}</p>
+        <h4>Emergency contact</h4>
+        <p><strong>Name:</strong> {{ $patient->emergency_contact_name }}</p>
+        <p><strong>Phone:</strong> {{ $patient->emergency_contact_phone }}</p>
 
         <hr>
-        <h4>Historial médico</h4>
-        <p><strong>¿Embarazada?:</strong> {{ $patient->pregnant ? 'Sí' : 'No' }}</p>
-        <p><strong>Intolerancia a vitaminas:</strong> {{ $patient->vitamins_intolerance ? 'Sí' : 'No' }}</p>
-        <p><strong>Intolerancia a minerales:</strong> {{ $patient->minerals_intolerance ? 'Sí' : 'No' }}</p>
+        <h4>Medical History</h4>
+        <p><strong>Pregnant?</strong> {{ $patient->pregnant ? 'Sí' : 'No' }}</p>
+        <p><strong>Vitamins intolerance:</strong> {{ $patient->vitamins_intolerance ? 'Sí' : 'No' }}</p>
+        <p><strong>Minerals_intolerance:</strong> {{ $patient->minerals_intolerance ? 'Sí' : 'No' }}</p>
 
         <hr>
-        <h4>Alergias</h4>
-        <p><strong>Medicamentos:</strong> {{ $patient->allergy_medicine }}</p>
-        <p><strong>Alimentos:</strong> {{ $patient->allergy_food }}</p>
-        <p><strong>Reacción:</strong> {{ $patient->reaction }}</p>
+        <h4>Allergies</h4>
+        <p><strong>Medications:</strong> {{ $patient->allergy_medicine }}</p>
+        <p><strong>Food:</strong> {{ $patient->allergy_food }}</p>
+        <p><strong>Reacction:</strong> {{ $patient->reaction }}</p>
         <hr>
-        <h4>Medicamentos y suplementos</h4>
-        <p><strong>Medicamentos:</strong> {{ $patient->medications }}</p>
-        <p><strong>Suplementos:</strong> {{ $patient->supplements }}</p>
+        <h4>Medications and supplements</h4>
+        <p><strong>Medications:</strong> {{ $patient->medications }}</p>
+        <p><strong>Supplements:</strong> {{ $patient->supplements }}</p>
 
         <hr>
-        <h4>Signos vitales</h4>
-        <p><strong>Frecuencia cardíaca:</strong> {{ $patient->heart_rate }}</p>
-        <p><strong>Saturación de oxígeno:</strong> {{ $patient->oxygen_saturation }}</p>
-        <p><strong>Temperatura:</strong> {{ $patient->temperature }}</p>
-        <p><strong>Presión arterial:</strong> {{ $patient->blood_pressure }}</p>
+        <h4>Vital sings</h4>
+        <p><strong>Heart rate:</strong> {{ $patient->heart_rate }}</p>
+        <p><strong>Oxígen saturation:</strong> {{ $patient->oxygen_saturation }}</p>
+        <p><strong>Temperature:</strong> {{ $patient->temperature }}</p>
+        <p><strong>Blood pressure:</strong> {{ $patient->blood_pressure }}</p>
 
         <hr>
-        <h4>Notas</h4>
+        <h4>Notes</h4>
         <p>{{ $patient->notes }}</p>
         <hr>
 
-        <h4>Consentimiento</h4>
+        <h4>INFORMED CONSENT</h4>
         <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
         <p>
             I <strong>{{ $patient->name }}</strong>, in full use of my mental faculties and the exircise of legal capacity,
@@ -78,20 +78,20 @@
                 results, assuming the consequences of this decision.</p>
         </ol>
 
-        <p><strong>Procedimiento autorizado:</strong> {{ $patient->authorized_procedure }}</p>
-        <p><strong>Firma digital:</strong> {{ $patient->digital_signature }}</p>
-        <p><strong>Fecha del consentimiento:</strong> {{ $patient->created_at }}</p>
+        <p><strong>Authorized procedure:</strong> {{ $patient->authorized_procedure }}</p>
+        <p><strong>Digital singature:</strong> {{ $patient->digital_signature }}</p>
+        <p><strong>Consent Date:</strong> {{ $patient->created_at }}</p>
 
 
-        <a href="{{ route('groupPatients.edit', $patient->id) }}" class="btn btn-success">Editar</a>
+        <a href="{{ route('groupPatients.edit', $patient->id) }}" class="btn btn-success">Edit</a>
         <form action="{{ route('groupPatients.destroy', $patient->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Borrar</button>
+            <button type="submit" class="btn btn-danger">Delate</button>
         </form>
         <hr>
         <a href="{{ route('grupos.show', $patient->group_id) }}" class="btn btn-secondary">
-            ← Regresar al listado de pacientes del grupo
+            ← Return to the group's patient list
         </a>
     </div>
 

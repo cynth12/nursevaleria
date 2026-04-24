@@ -3,19 +3,19 @@
 @section('title', 'Detalle del Paciente')
 
 @section('content_header')
-    <h1>Detalle del Paciente</h1>
+    <h1>Patient Details</h1>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-body">
         <h4 class="mb-3">Datos Personales</h4>
-        <p><strong>Nombre:</strong> {{ $patient->name }}</p>
+        <p><strong>Name:</strong> {{ $patient->name }}</p>
         <p><strong>Last Name:</strong> {{ $patient->last_name }}</p>
-        <p><strong>Fecha de nacimiento:</strong> {{ $patient->date_of_birth }}</p>
-        <p><strong>Teléfono:</strong> {{ $patient->phone }}</p>
+        <p><strong>Date of Birth:</strong> {{ $patient->date_of_birth }}</p>
+        <p><strong>Phone:</strong> {{ $patient->phone }}</p>
         <p><strong>Email:</strong> {{ $patient->email }}</p>
-        <h4 class="mt-4">Dirección</h4><p>{{ $patient->address }}</p>
+        <h4 class="mt-4">Address</h4><p>{{ $patient->address }}</p>
 
         <h4 class="mt-4">How did you hear about us?</h4>
         <p><strong>Referral Source:</strong> {{ $patient->referral_source }}</p>
@@ -30,29 +30,29 @@
         <h4 class="mt-4">Which Intravenous Route</h4>
         <p><strong>IV Type:</strong> {{ $patient->iv_type }}</p>
 
-        <h4 class="mt-4">Contacto de Emergencia</h4>
-        <p><strong>Nombre:</strong> {{ $patient->emergency_name }}</p>
-        <p><strong>Relación:</strong> {{ $patient->emergency_relationship }}</p>
-        <p><strong>Teléfono:</strong> {{ $patient->emergency_phone }}</p>
+        <h4 class="mt-4">Emergency contact</h4>
+        <p><strong>Name:</strong> {{ $patient->emergency_name }}</p>
+        <p><strong>Relation:</strong> {{ $patient->emergency_relationship }}</p>
+        <p><strong>Phone:</strong> {{ $patient->emergency_phone }}</p>
 
-        <h4 class="mt-4">Historial Médico</h4>
-        <p><strong>¿Embarazada?:</strong> {{ $patient->pregnant ? 'Sí' : 'No' }}</p>
-        <p><strong>Intolerancia a vitaminas:</strong> {{ $patient->vitamins_intolerance ? 'Sí' : 'No' }}</p>
-        <p><strong>Intolerancia a minerales:</strong> {{ $patient->minerals_intolerance ? 'Sí' : 'No' }}</p>
+        <h4 class="mt-4">Médical History</h4>
+        <p><strong>¿Pregnant?:</strong> {{ $patient->pregnant ? 'Sí' : 'No' }}</p>
+        <p><strong>Vitamin intolerance</strong> {{ $patient->vitamins_intolerance ? 'Sí' : 'No' }}</p>
+        <p><strong>Minerals intolerance</strong> {{ $patient->minerals_intolerance ? 'Sí' : 'No' }}</p>
 
-        <h4 class="mt-4">Alergias</h4>
-        <p><strong>Medicamentos:</strong> {{ $patient->allergy_medicine }}</p>
-        <p><strong>Alimentos:</strong> {{ $patient->allergy_food }}</p>
-        <p><strong>Reacción:</strong> {{ $patient->reaction }}</p>
+        <h4 class="mt-4">Allergies</h4>
+        <p><strong>Medications:</strong> {{ $patient->allergy_medicine }}</p>
+        <p><strong>Food:</strong> {{ $patient->allergy_food }}</p>
+        <p><strong>Reation:</strong> {{ $patient->reaction }}</p>
 
-        <h4 class="mt-4">Medicamentos</h4>
+        <h4 class="mt-4">Medications</h4>
         <p>{{ $patient->medications }}</p>
 
-        <h4 class="mt-4">Suplementos</h4>
+        <h4 class="mt-4">Supplements</h4>
         <p>{{ $patient->supplements }}</p>
 
-        <h4 class="mt-4">Examen físico</h4>
-        <p>{{ $patient->physical_exam }}</p>
+        <!--<h4 class="mt-4">Examen físico</h4>
+        <p>{{ $patient->physical_exam }}</p>-->
 
         <!-- Consentimiento informado -->
     <h4 class="mt-4">Informed Consent</h4>
@@ -61,7 +61,7 @@
     <p><strong>Authorized Procedure:</strong> {{ $patient->authorized_procedure }}</p>
 
     <!-- Signos vitales -->
-    <h4 class="mt-4">Signos Vitales</h4>
+    <h4 class="mt-4">Vital signs</h4>
     <div class="row">
         <div class="col-md-3"><strong>Heart Rate:</strong> {{ $patient->heart_rate }}</div>
         <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $patient->oxigen_saturation }}%</div>
@@ -77,5 +77,5 @@
     </div>
 </div>
 
-<a href="{{ route('pacientes.index') }}" class="btn btn-secondary mt-3">⬅️ Volver al listado</a>
+<a href="{{ route('pacientes.index') }}" class="btn btn-secondary mt-3">⬅️ Return to list</a>
 @endsection

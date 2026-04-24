@@ -67,7 +67,7 @@
             <input type="date" name="consent_date" class="form-control" value="{{ now()->toDateString() }}" required>
         </div>
 
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
 
 @endsection

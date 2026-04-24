@@ -3,7 +3,7 @@
 @section('title', 'Listado de Pacientes')
 
 @section('content_header')
-    <h1>Listado de Pacientes</h1>
+    <h1>patient list</h1>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Date</th>
-                <th>Acciones</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,23 +29,23 @@
                     <td>{{ $patient->email }}</td>
                     <td>{{ $patient->registration_date }}</td> 
                     <td>
-                        <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-primary btn-sm">Ver</a>
+                        <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-primary btn-sm">see</a>
                         <a href="{{ route('consentimiento.create', $patient->id) }}" class="btn btn-warning btn-sm">
-                            Firmar
+                            singature
                         </a>
 
                         @if ($patient->consentimientos && $patient->consentimientos->count() > 0)
                             <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
                                 class="btn btn-info btn-sm">
-                                Ver
+                                see
                             </a>
                         @endif
                         <!-- Editar -->
-                        <a href="{{ route('patient.edit', $patient->id) }}" class="btn btn-success btn-sm">Editar</a>
+                        <a href="{{ route('patient.edit', $patient->id) }}" class="btn btn-success btn-sm">Edit</a>
                         <form action="{{ route('patient.destroy', $patient->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
                 </tr>

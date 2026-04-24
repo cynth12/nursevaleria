@@ -324,7 +324,7 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'Crear paciente',
+            'text' => 'Create patient',
             'url' => 'patient/index',
             'icon' => 'fas fa-fw fa-user',
         ],
@@ -337,30 +337,30 @@ return [
         
         ['header' => ''],
         [
-            'text' => 'Pacientes',
+            'text' => 'Patients',
             'url' => 'pacientes',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
         ],
          [
-            'text' => 'Pacientes importados',
+            'text' => 'Imported patients',
             'url' => 'imported_patients',
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
         
         [
-            'text' => 'Consentimientos',
+            'text' => 'Consents',
             'url' => 'consentimientos',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'Grupos',
+            'text' => 'Groups',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Crear grupo',
+                    'text' => 'Create group',
                     'url' => 'grupos/create',
                 ],
                 [
@@ -371,19 +371,19 @@ return [
                
             ],
         ],
-        ['header' => 'Configuracion'],
+        ['header' => 'Settings'],
         [
-            'text' => 'Correo masivo',
+            'text' => 'Mails',
             'icon_color' => 'red',
             'url' => '#',
         ],
         [
-            'text' => 'Estadisticas',
+            'text' => 'Statistics',
             'icon_color' => 'yellow',
             'url' => '#',
         ],
         [
-            'text' => 'informacion general',
+            'text' => 'Gneral Information',
             'icon_color' => 'cyan',
             'url' => '#',
         ],

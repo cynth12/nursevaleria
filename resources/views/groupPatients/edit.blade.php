@@ -3,51 +3,51 @@
 @section('title', 'Editar Paciente del Grupo')
 
 @section('content_header')
-    <h1>Editar Paciente del Grupo</h1>
+    <h1>Edit group patient</h1>
 @endsection
 
 @section('content')
     <div class="container">
-        <h2>Editar: {{ $patient->name }}</h2>
+        <h2>Edit: {{ $patient->name }}</h2>
 
         <form action="{{ route('groupPatients.update', $patient->id) }}" method="POST">
             @csrf
             @method('PUT')
 
             <div class="form-group">
-                <label for="name">Nombre del paciente</label>
+                <label for="name">Name</label>
                 <input type="text" name="name" class="form-control" value="{{ old('name', $patient->name) }}" required>
             </div>
 
             <div class="form-group">
-                <label for="date_of_birth">Fecha de nacimiento</label>
+                <label for="date_of_birth">Date of birth</label>
                 <input type="date" name="date_of_birth" class="form-control"
                     value="{{ old('date_of_birth', $patient->date_of_birth) }}">
             </div>
 
             <div class="form-group">
-                <label for="phone">Teléfono</label>
+                <label for="phone">Phone</label>
                 <input type="text" name="phone" class="form-control" value="{{ old('phone', $patient->phone) }}">
             </div>
 
             <div class="form-group">
-                <label for="email">Correo</label>
+                <label for="email">Email</label>
                 <input type="email" name="email" class="form-control" value="{{ old('email', $patient->email) }}">
             </div>
 
             <div class="form-group">
-                <label for="address">Dirección</label>
+                <label for="address">Address</label>
                 <input type="text" name="address" class="form-control" value="{{ old('address', $patient->address) }}">
             </div>
 
             <div class="form-group">
-                <label for="emergency_contact_name">Contacto de emergencia (nombre)</label>
+                <label for="emergency_contact_name">Emergency contact (name)</label>
                 <input type="text" name="emergency_contact_name" class="form-control"
                     value="{{ old('emergency_contact_name', $patient->emergency_contact_name ?? '') }}">
             </div>
 
             <div class="form-group">
-                <label for="emergency_contact_phone">Contacto de emergencia (teléfono)</label>
+                <label for="emergency_contact_phone">Emergency contact (Phone)</label>
                 <input type="text" name="emergency_contact_phone" class="form-control"
                     value="{{ old('emergency_contact_phone', $patient->emergency_contact_phone ?? '') }}">
             </div>
@@ -57,46 +57,46 @@
             <div class="form-check">
                 <input type="checkbox" name="pregnant" value="1" class="form-check-input"
                     {{ $patient->pregnant ? 'checked' : '' }}>
-                <label class="form-check-label">¿Embarazada?</label>
+                <label class="form-check-label">Pregnant?</label>
             </div>
             <div class="form-check">
                 <input type="checkbox" name="vitamins_intolerance" value="1" class="form-check-input"
                     {{ $patient->vitamins_intolerance ? 'checked' : '' }}>
-                <label class="form-check-label">Intolerancia a vitaminas</label>
+                <label class="form-check-label">Vitamins Intolerance</label>
             </div>
             <div class="form-check">
                 <input type="checkbox" name="minerals_intolerance" value="1" class="form-check-input"
                     {{ $patient->minerals_intolerance ? 'checked' : '' }}>
-                <label class="form-check-label">Intolerancia a minerales</label>
+                <label class="form-check-label">Minerals Intolerance</label>
             </div>
 
             <hr>
             <h4>Alergias</h4>
             <div class="form-group">
-                <label for="allergy_medicine">Medicamentos</label>
+                <label for="allergy_medicine">Medications</label>
                 <input type="text" name="allergy_medicine" class="form-control"
                     value="{{ old('allergy_medicine', $patient->allergy_medicine) }}">
             </div>
             <div class="form-group">
-                <label for="allergy_food">Alimentos</label>
+                <label for="allergy_food">Food</label>
                 <input type="text" name="allergy_food" class="form-control"
                     value="{{ old('allergy_food', $patient->allergy_food) }}">
             </div>
             <div class="form-group">
-                <label for="reaction">Reacción</label>
+                <label for="reaction">Reaction</label>
                 <input type="text" name="reaction" class="form-control"
                     value="{{ old('reaction', $patient->reaction) }}">
             </div>
 
             <hr>
             <div class="form-group">
-                <label for="medications">Medicamentos</label>
+                <label for="medications">Medications</label>
                 <input type="text" name="medications" class="form-control"
                     value="{{ old('medications', $patient->medications ?? '') }}">
             </div>
 
             <div class="form-group">
-                <label for="supplements">Suplementos</label>
+                <label for="supplements">Supplements</label>
                 <input type="text" name="supplements" class="form-control"
                     value="{{ old('supplements', $patient->supplements ?? '') }}">
             </div>
@@ -109,33 +109,33 @@
             <hr>
             <h4>Signos vitales</h4>
             <div class="form-group">
-                <label for="heart_rate">Frecuencia cardíaca</label>
+                <label for="heart_rate">Heart rate</label>
                 <input type="number" name="heart_rate" class="form-control"
                     value="{{ old('heart_rate', $patient->heart_rate) }}">
             </div>
             <div class="form-group">
-                <label for="oxygen_saturation">Saturación de oxígeno</label>
+                <label for="oxygen_saturation">Oxigen saturation</label>
                 <input type="number" name="oxygen_saturation" class="form-control"
                     value="{{ old('oxygen_saturation', $patient->oxygen_saturation) }}">
             </div>
             <div class="form-group">
-                <label for="temperature">Temperatura</label>
+                <label for="temperature">Temperature</label>
                 <input type="text" name="temperature" class="form-control"
                     value="{{ old('temperature', $patient->temperature) }}">
             </div>
             <div class="form-group">
-                <label for="blood_pressure">Presión arterial</label>
+                <label for="blood_pressure">Blood pressure</label>
                 <input type="text" name="blood_pressure" class="form-control"
                     value="{{ old('blood_pressure', $patient->blood_pressure) }}">
             </div>
 
             <hr>
-            <h4>Notas</h4>
+            <h4>Notes</h4>
             <div class="form-group">
                 <textarea name="notes" class="form-control">{{ old('notes', $patient->notes) }}</textarea>
             </div>
 
-            <h4>Consentimiento</h4>
+            <h4>Consent</h4>
             <h1>NURSE VALERIA IV THERAPY</h1><br>
 
 
@@ -182,7 +182,7 @@
             <div class="form-check">
                 <input type="checkbox" name="consent_accepted" value="1" class="form-check-input"
                     {{ $patient->consent_accepted ? 'checked' : '' }}>
-                <label class="form-check-label">Consentimiento aceptado</label>
+                <label class="form-check-label">Consent accepted</label>
             </div>
             <div class="form-group">
             <label>Digital signature:</label><br>
@@ -192,7 +192,7 @@
         </div>
             
             <div class="form-group">
-                <label for="authorized_procedure">Procedimiento autorizado</label>
+                <label for="authorized_procedure">Authorized procedure</label>
                 <input type="text" name="authorized_procedure" class="form-control"
                     value="{{ old('authorized_procedure', $patient->authorized_procedure) }}">
             </div>

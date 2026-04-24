@@ -3,7 +3,7 @@
 @section('title', 'Consentimiento Firmado')
 
 @section('content_header')
-    <h1>Consentimiento Informado</h1>
+    <h1>INFORMED CONSENT</h1>
 @endsection
 
 @section('content')
@@ -30,10 +30,10 @@
     once the benefits have been explained to me. I understand the possible complications, reactions, and results, assuming the consequences of this decision.</p>
 </ol>
 
-    <p><strong>Procedimiento autorizado:</strong> {{ $consentimiento->authorized_procedure }}</p>
-    <p><strong>Firma digital:</strong> {{ $consentimiento->digital_signature }}</p>
-    <p><strong>Fecha del consentimiento:</strong> {{ $consentimiento->consent_date }}</p>
-    <p><strong>Fecha de registro del paciente:</strong> {{ $consentimiento->patient->registration_date }}</p>
+    <p><strong>Authorized procedure:</strong> {{ $consentimiento->authorized_procedure }}</p>
+    <p><strong>Digital singature:</strong> {{ $consentimiento->digital_signature }}</p>
+    <p><strong>Consent date:</strong> {{ $consentimiento->consent_date }}</p>
+    <p><strong>Registration date:</strong> {{ $consentimiento->patient->registration_date }}</p>
 @endsection
 
 
