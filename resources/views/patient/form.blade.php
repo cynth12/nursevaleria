@@ -144,7 +144,7 @@
         <div class="form-group">
             <label>ARE YOU, OR COULD YOU BE PREGNANT?</label>
             <select name="pregnant" class="form-control">
-                <option value="">Seleccione...</option>
+                <option value="">Select...</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
