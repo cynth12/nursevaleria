@@ -49,16 +49,16 @@
     <hr>
 
     <!-- Listado de pacientes del grupo -->
-    <h4>Pacientes del grupo</h4>
+    <h4>Group patients</h4>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Fecha de nacimiento</th>
-                <th>Teléfono</th>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Phone</th>
                 <th>Email</th>
-                <th>Acciones</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -71,12 +71,12 @@
                 <td>{{ $patient->email }}</td>
                 <td>
                     <!-- Botón para ver detalle completo del paciente -->
-                    <a href="{{ route('groupPatients.show', $patient->id) }}" class="btn btn-info">Ver</a>
-                    <a href="{{ route('groupPatients.edit', $patient->id) }}" class="btn btn-success">Editar</a>
+                    <a href="{{ route('groupPatients.show', $patient->id) }}" class="btn btn-info">See</a>
+                    <a href="{{ route('groupPatients.edit', $patient->id) }}" class="btn btn-success">Edit</a>
                     <form action="{{ route('groupPatients.destroy', $patient->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                        <button type="submit" class="btn btn-danger">Delate</button>
                     </form>
                 </td>
             </tr>
