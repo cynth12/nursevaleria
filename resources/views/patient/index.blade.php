@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Paciente')
+@section('title', 'Create Patient')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
@@ -117,7 +117,7 @@
             </div>
 
             <!-- IV Type -->
-            <h4>WHICH INTRAVENOUS ROUTE WOULD YOU LIKE?</h4>
+            <h4>WHICH IV WOULD YOU LIKE TO REQUEST?</h4>
             <p>Nurse Valeria does an evaluation and in her professional opinion, you may not receive
                 the IV that you have initially requested.</p>
             <div class="form-group">
@@ -142,7 +142,7 @@
             <div class="form-group">
                 <label>ARE YOU, OR COULD YOU BE PREGNANT?</label>
                 <select name="pregnant" id="pregnant" class="form-control">
-                    <option value="">Seleccione...</option>
+                    <option value="">Select...</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>

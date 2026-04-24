@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Listado de Pacientes')
+@section('title', 'Patient list')
 
 @section('content_header')
     <h1>Listado de Grupos</h1>
@@ -15,9 +15,9 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Lugar</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
+                    <th>Place</th>
+                    <th>Date</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,13 +27,13 @@
                         <td>{{ $group->place }}</td>
                         <td>{{ $group->date }}</td>
                         <td>
-                            <a href="{{ route('grupos.show', $group->id) }}" class="btn btn-info">Ver grupo</a>
+                            <a href="{{ route('grupos.show', $group->id) }}" class="btn btn-info">See group</a>
                             <form action="{{ route('grupos.destroy', $group->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('¿Seguro que deseas borrar este grupo?')">
-                                    Borrar
+                                    Delate
                                 </button>
                             </form>
                         </td>

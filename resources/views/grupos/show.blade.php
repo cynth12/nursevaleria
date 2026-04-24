@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalle del Paciente')
+@section('title', 'Patient details')
 
 @section('content_header')
     
@@ -8,40 +8,41 @@
 
 @section('content')
 <div class="container">
-    <h2>Grupo: {{ $group->place }}</h2>
-    <p><strong>Fecha de creación:</strong> {{ $group->date }}</p>
+    <h2>Group: {{ $group->place }}</h2>
+    <p><strong>Creation date:</strong> {{ $group->date }}</p>
 
     <hr>
 
     <!-- Formulario para agregar pacientes -->
-    <h4>Agregar paciente al grupo</h4>
+    <h4>Add patient to group</h4>
     <form action="{{ route('groupPatients.store') }}" method="POST">
         @csrf
         <input type="hidden" name="group_id" value="{{ $group->id }}">
 
         <div class="form-group">
-            <label for="name">Nombre del paciente</label>
+            <label for="name">Name</label>
             <input type="text" name="name" class="form-control" required>
         </div>
+        
 
         <div class="form-group">
-            <label for="date_of_birth">Fecha de nacimiento</label>
+            <label for="date_of_birth">Date of birth</label>
             <input type="date" name="date_of_birth" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="phone">Teléfono</label>
+            <label for="phone">Phone</label>
             <input type="text" name="phone" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="email">Correo</label>
+            <label for="email">Email</label>
             <input type="email" name="email" class="form-control">
         </div>
 
         <!-- Aquí puedes seguir replicando todos los demás campos igual que en create patient -->
 
-        <button type="submit" class="btn btn-success mt-2">Guardar paciente</button>
+        <button type="submit" class="btn btn-success mt-2">Save patient</button>
 
     </form>
 

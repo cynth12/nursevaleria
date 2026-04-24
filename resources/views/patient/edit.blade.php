@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Paciente')
+@section('title', 'Edit Patient')
 
 @section('content_header')
     <h1>Editar Paciente</h1>
@@ -159,7 +159,7 @@
                         value="{{ $patient->allergy_food }}">
                 </div>
                 <div class="form-group">
-                    <label>Reacción:</label>
+                    <label>Reaction:</label>
                     <input type="text" name="reaction" class="form-control" value="{{ $patient->reaction }}">
                 </div>
 
