@@ -25,7 +25,7 @@ class PatientController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:150',
-            'last_name' => 'required|string|max:150', 
+            'last_name' => 'required|string|max:150',
             'date_of_birth' => 'required|date',
             'phone' => 'nullable|string|max:20',
             'email' => 'nullable|email|max:150|unique:patients,email',
@@ -113,23 +113,23 @@ class PatientController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string|max:150',
-            'last_name' => 'required|string|max:150', 
+            'last_name' => 'required|string|max:150',
             'date_of_birth' => 'required|date',
             'phone' => 'nullable|string|max:20',
             'email' => 'nullable|email|max:150',
             'emergency_name' => 'nullable|string|max:150',
             'emergency_relationship' => 'nullable|string|max:100',
             'emergency_phone' => 'nullable|string|max:20',
-            'pregnant' => 'nullable|string',
-            'vitamins_intolerance' => 'nullable|string',
-            'minerals_intolerance' => 'nullable|string',
+            'pregnant' => 'nullable|boolean',
+            'vitamins_intolerance' => 'nullable|boolean',
+            'minerals_intolerance' => 'nullable|boolean',
             'allergy_medicine' => 'nullable|string|max:100',
             'allergy_food' => 'nullable|string|max:150',
             'reaction' => 'nullable|string|max:150',
             'medications' => 'nullable|string',
             'supplements' => 'nullable|string',
             'physical_exam' => 'nullable|string',
-            'consent_accepted' => 'nullable|string',
+            'consent_accepted' => 'nullable|boolean',
             'digital_signature' => 'nullable|string',
             'authorized_procedure' => 'nullable|string|max:255',
             'heart_rate' => 'nullable|integer',
@@ -146,11 +146,10 @@ class PatientController extends Controller
         ]);
 
         // Normalizar valores Yes/No → 1/0
-        $data['pregnant'] = $request->pregnant === 'Yes' ? 1 : 0;
-        $data['vitamins_intolerance'] = $request->vitamins_intolerance === 'Yes' ? 1 : 0;
-        $data['minerals_intolerance'] = $request->minerals_intolerance === 'Yes' ? 1 : 0;
-        $data['consent_accepted'] = $request->consent_accepted === 'Yes' ? 1 : 0;
-
+        $data['consent_accepted'] = $request->input('consent_accepted', 0);
+        $data['pregnant'] = $request->input('pregnant', 0);
+        $data['vitamins_intolerance'] = $request->input('vitamins_intolerance', 0);
+        $data['minerals_intolerance'] = $request->input('minerals_intolerance', 0);
         // Checkboxes: convertir array a string separado por comas
         $data['symptoms'] = $request->has('symptoms') ? implode(',', $request->input('symptoms')) : null;
 
@@ -175,22 +174,21 @@ class PatientController extends Controller
     }
 
     public function addToGroup(Request $request, $id)
-{
-    $patient = Patient::findOrFail($id);
+    {
+        $patient = Patient::findOrFail($id);
 
-    // Verificar si hay grupos
-    $groups = Group::all();
-    if ($groups->isEmpty()) {
-        return response()->json(['error' => 'No hay ningún grupo creado'], 404);
+        // Verificar si hay grupos
+        $groups = Group::all();
+        if ($groups->isEmpty()) {
+            return response()->json(['error' => 'No hay ningún grupo creado'], 404);
+        }
+
+        // Agregar paciente al grupo seleccionado
+        $groupId = $request->input('group_id');
+        $group = Group::findOrFail($groupId);
+
+        $group->patients()->attach($patient->id);
+
+        return response()->json(['success' => 'Paciente agregado al grupo correctamente']);
     }
-
-    // Agregar paciente al grupo seleccionado
-    $groupId = $request->input('group_id');
-    $group = Group::findOrFail($groupId);
-
-    $group->patients()->attach($patient->id);
-
-    return response()->json(['success' => 'Paciente agregado al grupo correctamente']);
-}
-
 }
