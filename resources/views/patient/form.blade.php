@@ -171,7 +171,7 @@
 
 
 <div class="form-group">
-    <h4>MANY FOOD OR DRUG ALLERGIES?</h4>
+    <h4>ANY FOOD OR DRUG ALLERGIES?</h4>
     <div class="form-group">
         <label>Food</label>
         <textarea name="allergy_food" class="form-control"></textarea>

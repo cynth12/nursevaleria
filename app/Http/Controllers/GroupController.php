@@ -65,4 +65,8 @@ class GroupController extends Controller
 
         return redirect()->route('grupos.index')->with('success', 'Grupo eliminado correctamente ✅');
     }
+    public function list()
+    {
+        return response()->json(Group::all());
+    }
 }

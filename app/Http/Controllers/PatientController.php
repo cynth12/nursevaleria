@@ -173,4 +173,24 @@ class PatientController extends Controller
         $patient->delete();
         return redirect()->route('pacientes.index')->with('success', 'Paciente eliminado correctamente ✅');
     }
+
+    public function addToGroup(Request $request, $id)
+{
+    $patient = Patient::findOrFail($id);
+
+    // Verificar si hay grupos
+    $groups = Group::all();
+    if ($groups->isEmpty()) {
+        return response()->json(['error' => 'No hay ningún grupo creado'], 404);
+    }
+
+    // Agregar paciente al grupo seleccionado
+    $groupId = $request->input('group_id');
+    $group = Group::findOrFail($groupId);
+
+    $group->patients()->attach($patient->id);
+
+    return response()->json(['success' => 'Paciente agregado al grupo correctamente']);
+}
+
 }

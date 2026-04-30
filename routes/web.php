@@ -45,7 +45,7 @@ Route::put('/patient/{id}', [PatientController::class, 'update'])->name('patient
 
 // Eliminar paciente
 Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('patient.destroy');
-
+Route::post('/patients/{id}/add-to-group', [PatientController::class, 'addToGroup']);
 
 
 
@@ -61,6 +61,10 @@ Route::get('/grupos/create', [App\Http\Controllers\GroupController::class, 'crea
 Route::post('/grupos', [App\Http\Controllers\GroupController::class, 'store'])->name('grupos.store');
 Route::get('/grupos/{id}', [App\Http\Controllers\GroupController::class, 'show'])->name('grupos.show');
 Route::delete('/grupos/{id}', [App\Http\Controllers\GroupController::class, 'destroy'])->name('grupos.destroy');
+Route::get('/groups/list', [App\Http\Controllers\GroupController::class, 'list'])->name('groups.list');;
+
+
+
 
 
 
@@ -70,6 +74,7 @@ Route::get('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::
 Route::get('/groupPatients/{id}/edit', [App\Http\Controllers\GroupPatientController::class, 'edit'])->name('groupPatients.edit');
 Route::put('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::class, 'update'])->name('groupPatients.update');
 Route::delete('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::class, 'destroy'])->name('groupPatients.destroy');
+
 
 
 // Ruta de busqueda

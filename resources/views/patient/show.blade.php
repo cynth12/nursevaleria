@@ -27,7 +27,7 @@
         <p><strong>Symptoms:</strong> {{ $patient->symptoms }}</p>
 
             <!-- Solicitud de IV -->
-        <h4 class="mt-4">Which Intravenous Route</h4>
+        <h4 class="mt-4">Which IV would you like to request?</h4>
         <p><strong>IV Type:</strong> {{ $patient->iv_type }}</p>
 
         <h4 class="mt-4">Emergency contact</h4>
