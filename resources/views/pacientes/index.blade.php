@@ -29,7 +29,7 @@
                     <td>{{ $patient->email }}</td>
                     <td>{{ $patient->registration_date }}</td> 
                     <td>
-                        <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-primary btn-sm">see</a>
+                        <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-primary btn-sm">View</a>
                         <a href="{{ route('consentimiento.create', $patient->id) }}" class="btn btn-warning btn-sm">
                             singature
                         </a>
