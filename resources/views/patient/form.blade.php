@@ -212,8 +212,8 @@
     <label for="consent_accepted">Accept treatment</label>
     <select name="consent_accepted" id="consent_accepted" class="form-control">
         <option value="" disabled selected>Select</option>
-        <option value="1">Yes</option>
-        <option value="0">No</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
     </select>
 </div>
 
