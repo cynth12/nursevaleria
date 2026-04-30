@@ -22,6 +22,8 @@ Route::get('/home', [HomeController::class, 'index'])
 
 // Listado de pacientes
 Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
+Route::get('/pacientes', [PacientesController::class, 'index']) ->middleware('is_admin') ->name('pacientes.index');
+
 
 
 
@@ -90,6 +92,8 @@ Route::post('/imported_patients/import', [ImportedPatientsController::class, 'im
 Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::class, 'destroyAll'])
     ->name('imported_patients.destroyAll');
 
+
+    
 
 
 

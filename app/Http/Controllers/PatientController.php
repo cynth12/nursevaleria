@@ -11,7 +11,11 @@ class PatientController extends Controller
     // Formulario público
     public function createForm()
     {
-        return view('patient.form');
+       return response()
+            ->view('patient.form')
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+            ->header('Pragma', 'no-cache');
+    
     }
 
     // Formulario interno
