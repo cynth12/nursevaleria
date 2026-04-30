@@ -364,7 +364,7 @@ return [
                     'url' => 'grupos/create',
                 ],
                 [
-                    'text' => ' view group',
+                    'text' => ' View group',
                     'url' => 'grupos',
                     
                 ],
