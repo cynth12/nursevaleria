@@ -21,7 +21,7 @@ Route::get('/home', [HomeController::class, 'index'])
 
 
 // Listado de pacientes
-//Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
+Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
 Route::get('/pacientes', [PacientesController::class, 'index']) ->middleware('is_admin') ->name('pacientes.index');
 
 
