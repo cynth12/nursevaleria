@@ -7,6 +7,8 @@ use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\ConsentimientoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ImportedPatientsController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\GroupPatientController;
 
 
 Route::get('/', function () {
@@ -15,24 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])
-    ->middleware('auth')
-    ->name('home');
-
-
-// Listado de pacientes
-Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
-
-
-
-
-
-
-
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth') ->name('home');
 
 // Formulario que ve el paciente
 Route::get('/patient/form', [PatientController::class, 'createForm'])->name('patient.form');
 Route::post('/patient/form', [PatientController::class, 'store'])->name('patient.form.store');
+
+Route::middleware(['auth'])->group(function () {
+// Listado de pacientes
+Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
 
 // Formulario interno de tu sistema
 Route::get('/patient/index', [PatientController::class, 'createIndex'])->name('patient.index');
@@ -92,7 +85,7 @@ Route::post('/imported_patients/import', [ImportedPatientsController::class, 'im
 Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::class, 'destroyAll'])
     ->name('imported_patients.destroyAll');
 
-
+});
     
 
 

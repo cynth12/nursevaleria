@@ -91,7 +91,7 @@ class PatientController extends Controller
             return back()->with('success', 'Your data has been saved successfully');
         } else {
             // Formulario interno → ir al listado
-            return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente');
+            return redirect()->route('patient.form')->with('success', 'Paciente creado correctamente');
         }
     }
 
