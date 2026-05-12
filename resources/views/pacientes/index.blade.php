@@ -30,6 +30,7 @@
                 @foreach ($patients as $patient)
 
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $patient->id }}</td>
                         <td>{{ $patient->name }}</td>
                         <td>{{ $patient->date_of_birth }}</td>
