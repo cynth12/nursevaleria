@@ -9,7 +9,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ImportedPatientsController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupPatientController;
-
+use App\Http\Controllers\ConsultationController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -86,6 +86,32 @@ Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::cla
     ->name('imported_patients.destroyAll');
 
 });
+
+
+
+// Historial de un paciente
+Route::get('/patients/{patient}/consultas', [ConsultationController::class, 'index'])
+     ->name('consultas.index');
+
+// Detalle de una consulta
+Route::get('/consultas/{consultation}', [ConsultationController::class, 'show'])
+     ->name('consultas.show');
+
+// Editar consulta
+Route::get('/consultas/{consultation}/edit', [ConsultationController::class, 'edit'])
+     ->name('consultas.edit');
+
+// Actualizar consulta
+Route::put('/consultas/{consultation}', [ConsultationController::class, 'update'])
+     ->name('consultas.update');
+
+// Eliminar consulta
+Route::delete('/consultas/{consultation}', [ConsultationController::class, 'destroy'])
+     ->name('consultas.destroy');
+
+
+
+
     
 
 

@@ -45,4 +45,10 @@ class Patient extends Model
         'temperature',
         'blood_pressure',
     ];
+
+    public function consultations()
+{
+    return $this->hasMany(Consultation::class);
+}
+
 }

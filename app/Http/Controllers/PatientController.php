@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use App\Models\Consultation;
 use Carbon\Carbon;
 
 class PatientController extends Controller
@@ -11,10 +12,7 @@ class PatientController extends Controller
     // Formulario público
     public function createForm()
     {
-        return response()
-            ->view('patient.form')
-            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-            ->header('Pragma', 'no-cache');
+        return response()->view('patient.form')->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')->header('Pragma', 'no-cache');
     }
 
     // Formulario interno
@@ -31,7 +29,7 @@ class PatientController extends Controller
             'last_name' => 'required|string|max:150',
             'date_of_birth' => 'required|date',
             'phone' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:150|unique:patients,email',
+            'email' => 'nullable|email|max:150',
             'address' => 'nullable|string|max:255',
 
             'emergency_name' => 'nullable|string|max:150',
@@ -83,30 +81,85 @@ class PatientController extends Controller
         // Fecha de registro
         $data['registration_date'] = Carbon::now('America/Cancun');
 
-        Patient::create($data);
+        // Buscar paciente existente
+        $patient = Patient::where('name', $request->name)->where('date_of_birth', $request->date_of_birth)->where('email', $request->email)->first();
 
-        // 🔹 Diferenciar según la ruta
-        if ($request->route()->getName() === 'patient.form.store') {
-            // Formulario público → regresar a la misma vista con alerta
-            return back()->with('success', 'Your data has been saved successfully');
-        } else {
-            // Formulario interno → ir al listado
-            return redirect()->route('patient.form')->with('success', 'Paciente creado correctamente');
+        if (!$patient) {
+            // 🔹 Crear paciente nuevo
+            $patient = Patient::create($data);
+
+            // 🔹 Crear su primera consulta automáticamente
+            Consultation::create([
+                'patient_id' => $patient->id,
+                'registration_date' => Carbon::now('America/Cancun'),
+            ]);
+
+            // Diferenciar según la ruta
+            if ($request->route()->getName() === 'patient.form.store') {
+                // Formulario público → regresar a la misma vista con alerta
+                return back()->with('success', 'Your data has been saved successfully');
+            } else {
+                // Formulario interno → ir al listado
+                return redirect()->route('patients.index')->with('success', 'Paciente creado correctamente');
+            }
         }
+
+        // 🔹 Paciente ya existe → crear nueva consulta
+        $consultation = Consultation::create([
+            'patient_id' => $patient->id,
+            'registration_date' => Carbon::now('America/Cancun'),
+            'name' => $data['name'] ?? null,
+            'last_name' => $data['last_name'] ?? null,
+            'date_of_birth' => $data['date_of_birth'] ?? null,
+            'phone' => $data['phone'] ?? null,
+            'email' => $data['email'] ?? null,
+            'address' => $data['address'] ?? null,
+            'emergency_name' => $data['emergency_name'] ?? null,
+            'emergency_relationship' => $data['emergency_relationship'] ?? null,
+            'emergency_phone' => $data['emergency_phone'] ?? null,
+            'pregnant' => $data['pregnant'] ?? null,
+            'vitamins_intolerance' => $data['vitamins_intolerance'] ?? null,
+            'minerals_intolerance' => $data['minerals_intolerance'] ?? null,
+            'allergy_medicine' => $data['allergy_medicine'] ?? null,
+            'allergy_food' => $data['allergy_food'] ?? null,
+            'reaction' => $data['reaction'] ?? null,
+            'medications' => $data['medications'] ?? null,
+            'supplements' => $data['supplements'] ?? null,
+            'physical_exam' => $data['physical_exam'] ?? null,
+            'consent_accepted' => $data['consent_accepted'] ?? null,
+            'digital_signature' => $data['digital_signature'] ?? null, // 🔹 aquí el fix
+            'authorized_procedure' => $data['authorized_procedure'] ?? null,
+            'heart_rate' => $data['heart_rate'] ?? null,
+            'oxygen_saturation' => $data['oxygen_saturation'] ?? null,
+            'temperature' => $data['temperature'] ?? null,
+            'blood_pressure' => $data['blood_pressure'] ?? null,
+            'notes' => $data['notes'] ?? null,
+            'iv_type' => $data['iv_type'] ?? null,
+            'symptoms' => $data['symptoms'] ?? null,
+            'reason' => $data['reason'] ?? null,
+            'referral_source' => $data['referral_source'] ?? null,
+            'referral_other' => $data['referral_other'] ?? null,
+        ]);
+
+        return redirect()->route('consultas.show', $consultation->id)->with('success', 'Consulta registrada correctamente ✅');
     }
 
     // Mostrar detalle
     public function show($id)
     {
         $patient = Patient::findOrFail($id);
-        return view('patient.show', compact('patient'));
+        $consultation = $patient->consultations()->latest('registration_date')->first();
+
+        return view('consultas.show', compact('consultation'));
     }
 
     // Editar
     public function edit($id)
     {
         $patient = Patient::findOrFail($id);
-        return view('patient.edit', compact('patient'));
+        $consultation = $patient->consultations()->latest('registration_date')->first();
+
+        return view('consultas.edit', compact('patient', 'consultation'));
     }
 
     // Actualizar
@@ -165,7 +218,10 @@ class PatientController extends Controller
 
         $patient->update($data);
 
-        return redirect()->route('patient.show', $patient->id)->with('success', 'Paciente actualizado correctamente ✅');
+        // Redirigir a la última consulta del paciente
+        $consultation = $patient->consultations()->latest('registration_date')->first();
+
+        return redirect()->route('consultas.show', $consultation->id)->with('success', 'Paciente actualizado correctamente ✅');
     }
 
     // Eliminar

@@ -26,62 +26,51 @@
             </thead>
 
             <tbody>
-
-                @foreach ($patients as $patient)
-
+               @foreach ($consultations as $consultation)
                     <tr>
-                        <td>{{ $patient->id }}</td>
-                        <td>{{ $patient->name }}</td>
-                        <td>{{ $patient->date_of_birth }}</td>
-                        <td>{{ $patient->phone }}</td>
-                        <td>{{ $patient->email }}</td>
-                        <td>{{ $patient->registration_date }}</td>
+                        <td>{{ $consultation->id }}</td>
+                        <td>{{ $consultation->patient->name }}</td>
+                        <td>{{ $consultation->patient->date_of_birth }}</td>
+                        <td>{{ $consultation->patient->phone }}</td>
+                        <td>{{ $consultation->patient->email }}</td>
+                        <td>{{ $consultation->registration_date }}</td>
 
                         <td>
-
-                            <a href="{{ route('consultas.index', $patient->id) }}"
+                            <a href="{{ route('consultas.show', $consultation->id) }}"
                                class="btn btn-primary btn-sm">
                                View
                             </a>
 
-                            <!-- <a href="{{ route('consentimiento.create', $patient->id) }}"
+                            <a href="{{ route('consentimiento.create', $consultation->patient->id) }}"
                                class="btn btn-warning btn-sm">
                                Signature
-                            </a>-->
+                            </a>
 
-                            @if ($patient->consentimientos && $patient->consentimientos->count() > 0)
-
-                                <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
+                            @if ($consultation->patient->consentimientos && $consultation->patient->consentimientos->count() > 0)
+                                <a href="{{ route('consentimiento.show', $consultation->patient->consentimientos->first()->id) }}"
                                    class="btn btn-info btn-sm">
                                    See
                                 </a>
-
                             @endif
 
-                            <!-- <a href="{{ route('patient.edit', $patient->id) }}"
+                            <a href="{{ route('consultas.edit', $consultation->id) }}"
                                class="btn btn-success btn-sm">
                                Edit
-                            </a>-->
+                            </a>
 
-                            <form action="{{ route('patient.destroy', $patient->id) }}"
+                            <form action="{{ route('patient.destroy', $consultation->id) }}"
                                   method="POST"
                                   style="display:inline;">
-
                                 @csrf
                                 @method('DELETE')
-
                                 <button type="submit"
                                         class="btn btn-danger btn-sm">
                                         Delete
                                 </button>
-
                             </form>
-
                         </td>
                     </tr>
-
                 @endforeach
-
             </tbody>
 
         </table>
@@ -90,7 +79,7 @@
 
     {{-- PAGINACIÓN --}}
     <div class="card-footer clearfix">
-        {{ $patients->links() }}
+        {{ $consultations->links() }}
     </div>
 
 </div>
