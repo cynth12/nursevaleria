@@ -82,7 +82,7 @@ class PatientController extends Controller
         $data['registration_date'] = Carbon::now('America/Cancun');
 
         // Buscar paciente existente
-        $patient = Patient::where('name', $request->name)->where('date_of_birth', $request->date_of_birth)->where('email', $request->email)->first();
+        $patient = Patient::where('name', $request->name)->where('date_of_birth', $request->date_of_birth)->first();
 
         if (!$patient) {
             // 🔹 Crear paciente nuevo
@@ -92,6 +92,45 @@ class PatientController extends Controller
             Consultation::create([
                 'patient_id' => $patient->id,
                 'registration_date' => Carbon::now('America/Cancun'),
+
+                'name' => $data['name'] ?? null,
+                'last_name' => $data['last_name'] ?? null,
+                'date_of_birth' => $data['date_of_birth'] ?? null,
+                'phone' => $data['phone'] ?? null,
+                'email' => $data['email'] ?? null,
+                'address' => $data['address'] ?? null,
+
+                'emergency_name' => $data['emergency_name'] ?? null,
+                'emergency_relationship' => $data['emergency_relationship'] ?? null,
+                'emergency_phone' => $data['emergency_phone'] ?? null,
+
+                'pregnant' => $data['pregnant'] ?? null,
+                'vitamins_intolerance' => $data['vitamins_intolerance'] ?? null,
+                'minerals_intolerance' => $data['minerals_intolerance'] ?? null,
+
+                'allergy_medicine' => $data['allergy_medicine'] ?? null,
+                'allergy_food' => $data['allergy_food'] ?? null,
+                'reaction' => $data['reaction'] ?? null,
+
+                'medications' => $data['medications'] ?? null,
+                'supplements' => $data['supplements'] ?? null,
+                'physical_exam' => $data['physical_exam'] ?? null,
+
+                'consent_accepted' => $data['consent_accepted'] ?? null,
+                'digital_signature' => $data['digital_signature'] ?? null,
+                'authorized_procedure' => $data['authorized_procedure'] ?? null,
+
+                'heart_rate' => $data['heart_rate'] ?? null,
+                'oxygen_saturation' => $data['oxygen_saturation'] ?? null,
+                'temperature' => $data['temperature'] ?? null,
+                'blood_pressure' => $data['blood_pressure'] ?? null,
+
+                'notes' => $data['notes'] ?? null,
+                'iv_type' => $data['iv_type'] ?? null,
+                'symptoms' => $data['symptoms'] ?? null,
+                'reason' => $data['reason'] ?? null,
+                'referral_source' => $data['referral_source'] ?? null,
+                'referral_other' => $data['referral_other'] ?? null,
             ]);
 
             // Diferenciar según la ruta
