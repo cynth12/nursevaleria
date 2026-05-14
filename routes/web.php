@@ -89,26 +89,20 @@ Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::cla
 
 
 
-// Historial de un paciente
 Route::get('/patients/{patient}/consultas', [ConsultationController::class, 'index'])
-     ->name('consultas.index');
+    ->name('consultas.index');
 
-// Detalle de una consulta
 Route::get('/consultas/{consultation}', [ConsultationController::class, 'show'])
-     ->name('consultas.show');
+    ->name('consultas.show');
 
-// Editar consulta
 Route::get('/consultas/{consultation}/edit', [ConsultationController::class, 'edit'])
-     ->name('consultas.edit');
+    ->name('consultas.edit');
 
-// Actualizar consulta
 Route::put('/consultas/{consultation}', [ConsultationController::class, 'update'])
-     ->name('consultas.update');
+    ->name('consultas.update');
 
-// Eliminar consulta
 Route::delete('/consultas/{consultation}', [ConsultationController::class, 'destroy'])
-     ->name('consultas.destroy');
-
+    ->name('consultas.destroy');
 
 
 

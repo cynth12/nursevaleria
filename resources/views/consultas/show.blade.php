@@ -73,5 +73,5 @@
     </div>
 </div>
 
-<a href="{{ route('consultas.index', $consultation->id) }}" class="btn btn-secondary mt-3">⬅️ Return to list</a>
+<a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to list</a>
 @endsection

@@ -57,7 +57,7 @@ class ConsultationController extends Controller
             'digital_signature' => 'nullable|string',
             'authorized_procedure' => 'nullable|string|max:255',
             'heart_rate' => 'nullable|integer',
-            'oxigen_saturation' => 'nullable|integer',
+            'oxygen_saturation' => 'nullable|integer',
             'temperature' => 'nullable|numeric',
             'blood_pressure' => 'nullable|string|max:20',
             'notes' => 'nullable|string',

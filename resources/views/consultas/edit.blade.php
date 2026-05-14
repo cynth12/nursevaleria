@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('patient.update', $consultation->id) }}" method="POST">
+    <form action="{{ route('consultas.update', $consultation->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -200,7 +200,7 @@
                     </div>
                     <div class="col-md-3">
                         <label>O₂ Saturation (%):</label>
-                        <input type="number" name="oxigen_saturation" class="form-control"
+                        <input type="number" name="oxygen_saturation" class="form-control"
                             value="{{ $consultation->oxygen_saturation }}">
                     </div>
                     <div class="col-md-3">
@@ -226,7 +226,7 @@
         <button type="submit" class="btn btn-primary mt-3">Add patient to group</button>
 
         <button type="submit" class="btn btn-primary mt-3">Save changes</button>
-        <a href="{{ route('consultas.index', $consultation->id) }}" class="btn btn-secondary mt-3">⬅️ Return to list</a>
+        <a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to list</a>
 
     </form>
 @endsection

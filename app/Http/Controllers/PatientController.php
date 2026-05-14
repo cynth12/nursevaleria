@@ -228,7 +228,7 @@ class PatientController extends Controller
             'digital_signature' => 'nullable|string',
             'authorized_procedure' => 'nullable|string|max:255',
             'heart_rate' => 'nullable|integer',
-            'oxigen_saturation' => 'nullable|integer',
+            'oxygen_saturation' => 'nullable|integer',
             'temperature' => 'nullable|numeric',
             'blood_pressure' => 'nullable|string|max:20',
             'notes' => 'nullable|string',
@@ -255,11 +255,20 @@ class PatientController extends Controller
         // Fecha de registro
         $data['registration_date'] = Carbon::now('America/Cancun');
 
-        $patient->update($data);
+        // Actualizar SOLO datos del paciente
+        $patient->update([
+            'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'date_of_birth' => $data['date_of_birth'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+        ]);
 
-        // Redirigir a la última consulta del paciente
+        // Obtener última consulta
         $consultation = $patient->consultations()->latest('registration_date')->first();
 
+        // Actualizar consulta
+        $consultation->update($data);
         return redirect()->route('consultas.show', $consultation->id)->with('success', 'Paciente actualizado correctamente ✅');
     }
 
