@@ -20,12 +20,13 @@
                 </div>
                 <div class="form-group">
                     <label>Last name:</label>
-                    <input type="text" name="last_name" class="form-control" value="{{ $consultation->last_name }}" required>
+                    <input type="text" name="last_name" class="form-control" value="{{ $consultation->last_name }}"
+                        required>
                 </div>
                 <div class="form-group">
                     <label>Date of birth:</label>
-                    <input type="date" name="date_of_birth" class="form-control" value="{{ $consultation->date_of_birth }}"
-                        required>
+                    <input type="date" name="date_of_birth" class="form-control"
+                        value="{{ $consultation->date_of_birth }}" required>
                 </div>
                 <div class="form-group">
                     <label>Phone:</label>
@@ -39,7 +40,8 @@
                 <h4 class="mt-4">Emergency contact</h4>
                 <div class="form-group">
                     <label>Name:</label>
-                    <input type="text" name="emergency_name" class="form-control" value="{{ $consultation->emergency_name }}">
+                    <input type="text" name="emergency_name" class="form-control"
+                        value="{{ $consultation->emergency_name }}">
                 </div>
                 <div class="form-group">
                     <label>Relation:</label>
@@ -87,7 +89,8 @@
                     <label><input type="checkbox" name="symptoms[]" value="Diarrea"
                             {{ str_contains($consultation->symptoms, 'Diarrea') ? 'checked' : '' }}> Diarrhea</label><br>
                     <label><input type="checkbox" name="symptoms[]" value="Ninguno"
-                            {{ str_contains($consultation->symptoms, 'Ninguno') ? 'checked' : '' }}> None of the above</label>
+                            {{ str_contains($consultation->symptoms, 'Ninguno') ? 'checked' : '' }}> None of the
+                        above</label>
                 </div>
 
 
@@ -102,22 +105,28 @@
                         </option>
                         <option value="Wellness Duo" {{ $consultation->iv_type == 'Wellness Duo' ? 'selected' : '' }}>IV
                             Wellness Duo</option>
-                        <option value="Energy Boost" {{ $consultation->iv_type == 'Energy Boost' ? 'selected' : '' }}>IV Energy
+                        <option value="Energy Boost" {{ $consultation->iv_type == 'Energy Boost' ? 'selected' : '' }}>IV
+                            Energy
                             Boost</option>
-                        <option value="Beauty Glow" {{ $consultation->iv_type == 'Beauty Glow' ? 'selected' : '' }}>IV Beauty
+                        <option value="Beauty Glow" {{ $consultation->iv_type == 'Beauty Glow' ? 'selected' : '' }}>IV
+                            Beauty
                             Glow</option>
                         <option value="Hangover" {{ $consultation->iv_type == 'Hangover' ? 'selected' : '' }}>IV Hangover
                         </option>
-                        <option value="Immune Boost" {{ $consultation->iv_type == 'Immune Boost' ? 'selected' : '' }}>IV Immune
+                        <option value="Immune Boost" {{ $consultation->iv_type == 'Immune Boost' ? 'selected' : '' }}>IV
+                            Immune
                             Boost</option>
                         <option value="Immune master Boost"
                             {{ $consultation->iv_type == 'Immune master Boost' ? 'selected' : '' }}>IV Immune master Boost
                         </option>
-                        <option value="Superdetox" {{ $consultation->iv_type == 'Superdetox' ? 'selected' : '' }}>IV Superdetox
+                        <option value="Superdetox" {{ $consultation->iv_type == 'Superdetox' ? 'selected' : '' }}>IV
+                            Superdetox
                         </option>
-                        <option value="Sportpower" {{ $consultation->iv_type == 'Sportpower' ? 'selected' : '' }}>IV Sportpower
+                        <option value="Sportpower" {{ $consultation->iv_type == 'Sportpower' ? 'selected' : '' }}>IV
+                            Sportpower
                         </option>
-                        <option value="Post op" {{ $consultation->iv_type == 'Post op' ? 'selected' : '' }}>IV Post op</option>
+                        <option value="Post op" {{ $consultation->iv_type == 'Post op' ? 'selected' : '' }}>IV Post op
+                        </option>
                         <option value="NAD" {{ $consultation->iv_type == 'NAD' ? 'selected' : '' }}>IV NAD</option>
                     </select>
                 </div>
@@ -170,7 +179,7 @@
                 <textarea name="supplements" class="form-control">{{ $consultation->supplements }}</textarea>
 
                 <!--<h4 class="mt-4">Examen físico</h4>
-                <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
+                    <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
 
                 <h4 class="mt-4">Informed Consent</h4>
                 <div class="form-group">
@@ -218,15 +227,20 @@
                 <h4 class="mt-4">Notes</h4>
                 <textarea name="notes" class="form-control">{{ $consultation->notes }}</textarea>
 
-                <h4 class="mt-4">Registration Date</h4>
-                <p>{{ $consultation->registration_date }}</p>
+                <div class="form-group">
+                    <label>Registration Date</label>
+
+                    <input type="datetime-local" name="registration_date" class="form-control"
+                        value="{{ \Carbon\Carbon::parse($consultation->registration_date)->format('Y-m-d\TH:i') }}">
+                </div>
             </div>
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Add patient to group</button>
 
         <button type="submit" class="btn btn-primary mt-3">Save changes</button>
-        <a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to list</a>
+        <a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to
+            list</a>
 
     </form>
 @endsection

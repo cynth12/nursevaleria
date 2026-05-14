@@ -253,7 +253,7 @@ class PatientController extends Controller
         $data['referral_other'] = $request->input('referral_other');
 
         // Fecha de registro
-        $data['registration_date'] = Carbon::now('America/Cancun');
+     
 
         // Actualizar SOLO datos del paciente
         $patient->update([
