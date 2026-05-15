@@ -14,15 +14,17 @@
         <table class="table table-bordered table-striped table-hover">
 
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Date of Birth</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <!--<th>Date</th>-->
-                    <th>Actions</th>
-                </tr>
+                <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Date of Birth</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+</thead>
             </thead>
 
             <tbody>
@@ -33,6 +35,7 @@
                         
                         <td>{{ $patient->id }}</td>
                         <td>{{ $patient->name }}</td>
+                        <td>{{ $patient->last_name }}</td>
                         <td>{{ $patient->date_of_birth }}</td>
                         <td>{{ $patient->phone }}</td>
                         <td>{{ $patient->email }}</td>

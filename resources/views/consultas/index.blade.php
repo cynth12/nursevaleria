@@ -17,6 +17,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Last name</th>
                     <th>Date of Birth</th>
                     <th>Phone</th>
                     <th>Email</th>
@@ -30,6 +31,7 @@
                     <tr>
                         <td>{{ $consultation->id }}</td>
                         <td>{{ $consultation->patient->name }}</td>
+                        <td>{{ $consultation->patient->last_name }}</td>
                         <td>{{ $consultation->patient->date_of_birth }}</td>
                         <td>{{ $consultation->patient->phone }}</td>
                         <td>{{ $consultation->patient->email }}</td>
