@@ -55,7 +55,7 @@
                     @foreach ($patients as $patient)
                         <tr>
 
-                            <td>{{ $patient->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $patient->name }}</td>
                             <td>{{ $patient->last_name }}</td>
                             <td>{{ $patient->date_of_birth }}</td>

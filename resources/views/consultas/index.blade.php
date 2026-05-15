@@ -33,7 +33,7 @@
                 <tbody>
                     @foreach ($consultations as $consultation)
                         <tr>
-                            <td>{{ $consultation->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $consultation->patient->name }}</td>
                             <td>{{ $consultation->patient->last_name }}</td>
                             <td>{{ $consultation->patient->date_of_birth }}</td>
