@@ -8,6 +8,28 @@
 
 @section('content')
 
+<form method="GET" action="{{ route('pacientes.index') }}" class="mb-3">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <input type="text"
+                   name="search"
+                   class="form-control"
+                   placeholder="Search patient..."
+                   value="{{ request('search') }}">
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">
+                Search
+            </button>
+        </div>
+
+    </div>
+
+</form>
+
     <div class="card">
         <div class="card-body">
 
