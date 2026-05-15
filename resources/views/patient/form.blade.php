@@ -226,12 +226,12 @@
                 <option value="Energy Boost"> IV Energy Boost</option>
                 <option value="Beauty Glow">IV Beauty Glow</option>
                 <option value="Hangover"> IV Hangover</option>
-                <option value="Immune Boost">IV Immune Boost</option>
-                <option value="Immune Boost">IV Immune master Boost</option>
-                <option value="Immune Boost">IV Superdetox</option>
-                <option value="Immune Boost">IV Sportpower</option>
-                <option value="Immune Boost">IV Post op</option>
-                <option value="Immune Boost">IV NAD</option>
+                <option value="IV Immune Boost">IV Immune Boost</option>
+                <option value="IV Immune master Boost">IV Immune master Boost</option>
+                <option value="IV Superdetox">IV Superdetox</option>
+                <option value="IV Sportpower">IV Sportpower</option>
+                <option value="IV Post op">IV Post op</option>
+                <option value="IV NAD">IV NAD</option>
             </select>
 </div>
 
