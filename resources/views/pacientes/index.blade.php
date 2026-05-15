@@ -22,6 +22,7 @@
                             <th>Date of Birth</th>
                             <th>Phone</th>
                             <th>Email</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -38,7 +39,7 @@
                             <td>{{ $patient->date_of_birth }}</td>
                             <td>{{ $patient->phone }}</td>
                             <td>{{ $patient->email }}</td>
-                            <!-- <td>{{ $patient->registration_date }}</td>-->
+                            <td>{{ $patient->registration_date }}</td>
 
                             <td>
 

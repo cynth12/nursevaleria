@@ -17,9 +17,12 @@ class PatientController extends Controller
 
     // Formulario interno
     public function createIndex()
-    {
-        return view('patient.index');
-    }
+{
+    $patients = Patient::orderBy('registration_date', 'desc')
+        ->paginate(10);
+
+    return view('patient.index', compact('patients'));
+}
 
     // Guardar paciente
     public function store(Request $request)
