@@ -312,11 +312,7 @@ return [
 
         // Sidebar items:
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-            'method' => 'GET',
-            'input_name' => 'q',
-            'url' => '/buscar',
+            
         ],
         [
             'text' => 'blog',
