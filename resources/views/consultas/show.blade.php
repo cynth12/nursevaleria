@@ -3,13 +3,13 @@
 @section('title', 'Consulta detalle')
 
 @section('content_header')
-    <h1>Consulta detalle</h1>
+    <h1>Consulting details</h1>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <h4 class="mb-3">Consulta #{{ $consultation->id }}</h4>
+        <h4 class="mb-3">Consult #{{ $consultation->id }}</h4>
 
         <p><strong>Name:</strong> {{ $consultation->name }}</p>
         <p><strong>Last Name:</strong> {{ $consultation->last_name }}</p>
