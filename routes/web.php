@@ -103,7 +103,11 @@ Route::put('/consultas/{consultation}', [ConsultationController::class, 'update'
 
 Route::delete('/consultas/{consultation}', [ConsultationController::class, 'destroy'])
     ->name('consultas.destroy');
+Route::get('/patients/{patient}/consultations/create', [ConsultationController::class, 'create'])
+    ->name('consultas.create');
 
+Route::post('/patients/{patient}/consultations',[ConsultationController::class, 'store'])
+    ->name('consultas.store');
 
 
     

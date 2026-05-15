@@ -8,95 +8,88 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-body">
+    <div class="card">
+        <div class="card-body">
 
-        <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover">
 
-            <thead>
                 <thead>
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Last Name</th>
-        <th>Date of Birth</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Actions</th>
-    </tr>
-</thead>
-            </thead>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Date of Birth</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-                @foreach ($patients as $patient)
+                    @foreach ($patients as $patient)
+                        <tr>
 
-                    <tr>
-                        
-                        <td>{{ $patient->id }}</td>
-                        <td>{{ $patient->name }}</td>
-                        <td>{{ $patient->last_name }}</td>
-                        <td>{{ $patient->date_of_birth }}</td>
-                        <td>{{ $patient->phone }}</td>
-                        <td>{{ $patient->email }}</td>
-                        <!-- <td>{{ $patient->registration_date }}</td>-->
+                            <td>{{ $patient->id }}</td>
+                            <td>{{ $patient->name }}</td>
+                            <td>{{ $patient->last_name }}</td>
+                            <td>{{ $patient->date_of_birth }}</td>
+                            <td>{{ $patient->phone }}</td>
+                            <td>{{ $patient->email }}</td>
+                            <!-- <td>{{ $patient->registration_date }}</td>-->
 
-                        <td>
+                            <td>
 
-                            <a href="{{ route('consultas.index', $patient->id) }}"
-                               class="btn btn-primary btn-sm">
-                               View
-                            </a>
-
-                            <!-- <a href="{{ route('consentimiento.create', $patient->id) }}"
-                               class="btn btn-warning btn-sm">
-                               Signature
-                            </a>-->
-
-                            @if ($patient->consentimientos && $patient->consentimientos->count() > 0)
-
-                                <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
-                                   class="btn btn-info btn-sm">
-                                   See
+                                <a href="{{ route('consultas.index', $patient->id) }}" class="btn btn-primary btn-sm">
+                                    View
                                 </a>
 
-                            @endif
+                                <!-- <a href="{{ route('consentimiento.create', $patient->id) }}"
+                                   class="btn btn-warning btn-sm">
+                                   Signature
+                                </a>-->
 
-                            <!-- <a href="{{ route('patient.edit', $patient->id) }}"
-                               class="btn btn-success btn-sm">
-                               Edit
-                            </a>-->
+                                @if ($patient->consentimientos && $patient->consentimientos->count() > 0)
+                                    <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
+                                        class="btn btn-info btn-sm">
+                                        See
+                                    </a>
+                                @endif
 
-                            <form action="{{ route('patient.destroy', $patient->id) }}"
-                                  method="POST"
-                                  style="display:inline;">
+                                <!-- <a href="{{ route('patient.edit', $patient->id) }}"
+                                   class="btn btn-success btn-sm">
+                                   Edit
+                                </a>-->
 
-                                @csrf
-                                @method('DELETE')
+                                <form action="{{ route('patient.destroy', $patient->id) }}" method="POST"
+                                    style="display:inline;">
 
-                                <button type="submit"
-                                        class="btn btn-danger btn-sm">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm">
                                         Delete
-                                </button>
+                                    </button>
 
-                            </form>
+                                </form>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    @endforeach
 
-                @endforeach
+                </tbody>
 
-            </tbody>
+            </table>
 
-        </table>
+        </div>
+
+        {{-- PAGINACIÓN --}}
+        <div class="card-footer clearfix">
+            {{ $patients->links() }}
+        </div>
 
     </div>
-
-    {{-- PAGINACIÓN --}}
-    <div class="card-footer clearfix">
-        {{ $patients->links() }}
-    </div>
-
-</div>
 
 @endsection
