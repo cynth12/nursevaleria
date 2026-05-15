@@ -24,64 +24,59 @@ class ConsultationController extends Controller
     }
 
     // Guardar nueva consulta
-public function store(Request $request, Patient $patient)
-{
-    $data = $request->validate([
-        'name' => 'required|string|max:150',
-        'last_name' => 'required|string|max:150',
-        'date_of_birth' => 'required|date',
-        'phone' => 'nullable|string|max:20',
-        'email' => 'nullable|email|max:150',
-        'emergency_name' => 'nullable|string|max:150',
-        'emergency_relationship' => 'nullable|string|max:100',
-        'emergency_phone' => 'nullable|string|max:20',
-        'pregnant' => 'nullable|boolean',
-        'vitamins_intolerance' => 'nullable|boolean',
-        'minerals_intolerance' => 'nullable|boolean',
-        'allergy_medicine' => 'nullable|string|max:100',
-        'allergy_food' => 'nullable|string|max:150',
-        'reaction' => 'nullable|string|max:150',
-        'medications' => 'nullable|string',
-        'supplements' => 'nullable|string',
-        'physical_exam' => 'nullable|string',
-        'consent_accepted' => 'nullable|boolean',
-        'digital_signature' => 'nullable|string',
-        'authorized_procedure' => 'nullable|string|max:255',
-        'heart_rate' => 'nullable|integer',
-        'oxygen_saturation' => 'nullable|integer',
-        'temperature' => 'nullable|numeric',
-        'blood_pressure' => 'nullable|string|max:20',
-        'notes' => 'nullable|string',
-        'registration_date' => 'nullable|date',
-        'iv_type' => 'nullable|string|max:255',
-        'symptoms' => 'nullable|array',
-        'reason' => 'nullable|string',
-        'referral_source' => 'nullable|array',
-        'referral_other' => 'nullable|string|max:255',
-    ]);
+    public function store(Request $request, Patient $patient)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:150',
+            'last_name' => 'required|string|max:150',
+            'date_of_birth' => 'required|date',
+            'phone' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:150',
+            'emergency_name' => 'nullable|string|max:150',
+            'emergency_relationship' => 'nullable|string|max:100',
+            'emergency_phone' => 'nullable|string|max:20',
+            'pregnant' => 'nullable|boolean',
+            'vitamins_intolerance' => 'nullable|boolean',
+            'minerals_intolerance' => 'nullable|boolean',
+            'allergy_medicine' => 'nullable|string|max:100',
+            'allergy_food' => 'nullable|string|max:150',
+            'reaction' => 'nullable|string|max:150',
+            'medications' => 'nullable|string',
+            'supplements' => 'nullable|string',
+            'physical_exam' => 'nullable|string',
+            'consent_accepted' => 'nullable|boolean',
+            'digital_signature' => 'nullable|string',
+            'authorized_procedure' => 'nullable|string|max:255',
+            'heart_rate' => 'nullable|integer',
+            'oxygen_saturation' => 'nullable|integer',
+            'temperature' => 'nullable|numeric',
+            'blood_pressure' => 'nullable|string|max:20',
+            'notes' => 'nullable|string',
+            'registration_date' => 'nullable|date',
+            'iv_type' => 'nullable|string|max:255',
+            'symptoms' => 'nullable|array',
+            'reason' => 'nullable|string',
+            'referral_source' => 'nullable|array',
+            'referral_other' => 'nullable|string|max:255',
+        ]);
 
-    $data['patient_id'] = $patient->id;
+        $data['patient_id'] = $patient->id;
 
-    $data['consent_accepted'] = $request->input('consent_accepted', 0);
-    $data['pregnant'] = $request->input('pregnant', 0);
-    $data['vitamins_intolerance'] = $request->input('vitamins_intolerance', 0);
-    $data['minerals_intolerance'] = $request->input('minerals_intolerance', 0);
+        $data['consent_accepted'] = $request->input('consent_accepted', 0);
+        $data['pregnant'] = $request->input('pregnant', 0);
+        $data['vitamins_intolerance'] = $request->input('vitamins_intolerance', 0);
+        $data['minerals_intolerance'] = $request->input('minerals_intolerance', 0);
 
-    $data['symptoms'] = $request->has('symptoms')
-        ? implode(',', $request->input('symptoms'))
-        : null;
+        $data['symptoms'] = $request->has('symptoms') ? implode(',', $request->input('symptoms')) : null;
 
-    $data['referral_source'] = $request->has('referral_source')
-        ? implode(',', $request->input('referral_source'))
-        : null;
+        $data['referral_source'] = $request->has('referral_source') ? implode(',', $request->input('referral_source')) : null;
 
-    $data['registration_date'] = now();
+        $data['registration_date'] = now();
 
-    $consultation = Consultation::create($data);
+        $consultation = Consultation::create($data);
 
-    return redirect()->route('consultas.show', $consultation->id)
-        ->with('success', 'Nueva consulta creada correctamente ✅');
-}
+        return redirect()->route('consultas.show', $consultation->id)->with('success', 'Nueva consulta creada correctamente ✅');
+    }
 
     // Mostrar detalle de una consulta
     public function show(Consultation $consultation)
@@ -150,6 +145,10 @@ public function store(Request $request, Patient $patient)
 
         // Actualizar la consulta
         $consultation->update($data);
+
+        $consultation->patient->update([
+            'registration_date' => $data['registration_date'],
+        ]);
 
         return redirect()->route('consultas.show', $consultation->id)->with('success', 'Consulta actualizada correctamente ✅');
     }
