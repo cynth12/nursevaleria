@@ -16,7 +16,7 @@ return [
 
     'title' => 'Nurse Valeria',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => '| ',
 
     /*
     |--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => 'Nurse</b>Valeria',
+    'logo' => '<b>Nurse</b>&nbsp;Valeria',
     'logo_img' => 'resources/img/nursevaleria.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -383,7 +383,7 @@ return [
             'url' => '#',
         ],
         [
-            'text' => 'Gneral Information',
+            'text' => 'General Information',
             'icon_color' => 'cyan',
             'url' => '#',
         ],
