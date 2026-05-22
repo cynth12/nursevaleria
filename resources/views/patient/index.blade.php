@@ -6,43 +6,43 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-</head>
+    </head>
 @endsection
 
 @section('content')
 
 
-@if ($errors->any())
-<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
-    <div class="toast show text-white" role="alert" aria-live="assertive" aria-atomic="true"
-         style="background-color:#333c50;">
-        <div class="d-flex">
-            <div class="toast-body">
-                @foreach ($errors->all() as $error)
-                    {{ $error }} <br>
-                @endforeach
+    @if ($errors->any())
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+            <div class="toast show text-white" role="alert" aria-live="assertive" aria-atomic="true"
+                style="background-color:#333c50;">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        @foreach ($errors->all() as $error)
+                            {{ $error }} <br>
+                        @endforeach
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" 
-                    data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-    </div>
-</div>
-@endif
+    @endif
 
-@if(session('success'))
-<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
-    <div class="toast show text-white" role="alert" aria-live="assertive" aria-atomic="true"
-         style="background-color:#b49779;">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{ session('success') }}
+    @if (session('success'))
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+            <div class="toast show text-white" role="alert" aria-live="assertive" aria-atomic="true"
+                style="background-color:#b49779;">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ session('success') }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" 
-                    data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-    </div>
-</div>
-@endif
+    @endif
 
 
     <div class="patient-index container">
@@ -57,6 +57,10 @@
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="last_name" id="last_name" class="form-control" required>
             </div>
             <div class="form-group">
                 <label>Date of birth:</label>
@@ -208,7 +212,7 @@
             </div>
             <div class="form-group">
                 <label for="oxigen_saturation">Saturation O₂ (%)</label>
-                <input type="number" name="oxygen_saturation" id="oxygen_saturation" class="form-control"
+                <input type="number" name="oxigen_saturation" id="oxigen_saturation" class="form-control"
                     placeholder="Ej. 97">
             </div>
             <div class="form-group">
@@ -254,11 +258,11 @@
                     <option value="Beauty Glow">IV Beauty Glow</option>
                     <option value="Hangover"> IV Hangover</option>
                     <option value="Immune Boost">IV Immune Boost</option>
-                    <option value="Immune Boost">IV Immune master Boost</option>
-                    <option value="Immune Boost">IV Superdetox</option>
-                    <option value="Immune Boost">IV Sportpower</option>
-                    <option value="Immune Boost">IV Post op</option>
-                    <option value="Immune Boost">IV NAD</option>
+                    <option value="Immune master Boost">IV Immune master Boost</option>
+                    <option value="IV Superdetox">IV Superdetox</option>
+                    <option value="IV Sportpower">IV Sportpower</option>
+                    <option value="IV Post op">IV Post op</option>
+                    <option value="IV NAD">IV NAD</option>
                 </select>
             </div>
 
@@ -275,31 +279,19 @@
 
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 <script>
-    // Firma del paciente
     var patientCanvas = document.getElementById('patient-signature-pad');
-    if (patientCanvas) {
-        var patientSignaturePad = new SignaturePad(patientCanvas);
-        document.querySelector('form').addEventListener('submit', function() {
-            if (!patientSignaturePad.isEmpty()) {
-                document.getElementById('patient_signature').value = patientSignaturePad.toDataURL();
-            }
-        });
-        document.getElementById('clear-patient-signature').addEventListener('click', function() {
-            patientSignaturePad.clear();
-        });
-    }
 
-    // Firma del consentimiento
-    var consentCanvas = document.getElementById('consent-signature-pad');
-    if (consentCanvas) {
-        var consentSignaturePad = new SignaturePad(consentCanvas);
+    if (patientCanvas) {
+
+        var patientSignaturePad = new SignaturePad(patientCanvas);
+
         document.querySelector('form').addEventListener('submit', function() {
-            if (!consentSignaturePad.isEmpty()) {
-                document.getElementById('consent_signature').value = consentSignaturePad.toDataURL();
+
+            if (!patientSignaturePad.isEmpty()) {
+
+                document.getElementById('digital_signature').value =
+                    patientSignaturePad.toDataURL();
             }
-        });
-        document.getElementById('clear-consent-signature').addEventListener('click', function() {
-            consentSignaturePad.clear();
         });
     }
 </script>
@@ -318,10 +310,5 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-            successModal.show();
-        });
-    </script>
+    
 @endif

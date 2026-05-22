@@ -20,7 +20,7 @@ class PatientController extends Controller
     {
         $patients = Patient::orderBy('registration_date', 'desc')->paginate(10);
 
-        return view('patient.index', compact('patients'));
+        return view('pacientes.index', compact('pacientes'));
     }
 
     // Guardar paciente
