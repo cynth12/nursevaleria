@@ -20,7 +20,7 @@ class PatientController extends Controller
     {
         $patients = Patient::orderBy('registration_date', 'desc')->paginate(10);
 
-        return view('pacientes.index', compact('patients'));
+        return view('patient.index', compact('patients'));
     }
 
     // Guardar paciente
@@ -55,7 +55,7 @@ class PatientController extends Controller
             'authorized_procedure' => 'nullable|string|max:255',
 
             'heart_rate' => 'nullable|integer',
-            'oxygen_saturation' => 'nullable|integer',
+            'oxigen_saturation' => 'nullable|integer',
             'temperature' => 'nullable|numeric',
             'blood_pressure' => 'nullable|string|max:20',
 
@@ -123,7 +123,7 @@ class PatientController extends Controller
                 'authorized_procedure' => $data['authorized_procedure'] ?? null,
 
                 'heart_rate' => $data['heart_rate'] ?? null,
-                'oxygen_saturation' => $data['oxygen_saturation'] ?? null,
+                'oxigen_saturation' => $data['oxigen_saturation'] ?? null,
                 'temperature' => $data['temperature'] ?? null,
                 'blood_pressure' => $data['blood_pressure'] ?? null,
 
@@ -141,7 +141,7 @@ class PatientController extends Controller
                 return back()->with('success', 'Your data has been saved successfully');
             } else {
                 // Formulario interno → ir al listado
-                return redirect()->route('patients.index')->with('success', 'Paciente creado correctamente');
+                return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente');
             }
         }
 
