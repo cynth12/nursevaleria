@@ -43,6 +43,7 @@ class ConsentimientoController extends Controller
 
         $validated['patient_id'] = $patientId;
 
+       
         Consentimiento::create($validated);
 
         return redirect()->route('consentimiento.index')->with('success', 'Consentimiento firmado y guardado correctamente ✅');

@@ -5,7 +5,9 @@
 @section('content')
     <h1>NURSE VALERIA IV THERAPY</h1><br>
 
-    <form action="{{ route('consentimiento.store', $patient->id) }}" method="POST">
+    <form id="consent-form"
+      action="{{ route('consentimiento.store', $patient->id) }}"
+      method="POST">
         @csrf
 
         <p><strong>Date:</strong> {{ $patient->registration_date }}</p><br>
@@ -72,33 +74,42 @@
 
 @endsection
 
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
-<script>
-    // Firma del paciente
-    var patientCanvas = document.getElementById('patient-signature-pad');
-    if (patientCanvas) {
-        var patientSignaturePad = new SignaturePad(patientCanvas);
-        document.querySelector('form').addEventListener('submit', function () {
-            if (!patientSignaturePad.isEmpty()) {
-                document.getElementById('patient_signature').value = patientSignaturePad.toDataURL();
-            }
-        });
-        document.getElementById('clear-patient-signature').addEventListener('click', function () {
-            patientSignaturePad.clear();
-        });
-    }
+@section('js')
 
-    // Firma del consentimiento
-    var consentCanvas = document.getElementById('consent-signature-pad');
-    if (consentCanvas) {
-        var consentSignaturePad = new SignaturePad(consentCanvas);
-        document.querySelector('form').addEventListener('submit', function () {
-            if (!consentSignaturePad.isEmpty()) {
-                document.getElementById('consent_signature').value = consentSignaturePad.toDataURL();
-            }
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById('consent-form');
+
+    const canvas = document.getElementById('consent-signature-pad');
+
+    const hiddenInput = document.getElementById('consent_signature');
+
+    if (!canvas || !form) return;
+
+    const signaturePad = new SignaturePad(canvas);
+
+    form.addEventListener('submit', function () {
+
+        if (!signaturePad.isEmpty()) {
+
+            hiddenInput.value = signaturePad.toDataURL();
+
+            console.log(hiddenInput.value);
+        }
+    });
+
+    document.getElementById('clear-consent-signature')
+        .addEventListener('click', function () {
+
+            signaturePad.clear();
+
+            hiddenInput.value = '';
         });
-        document.getElementById('clear-consent-signature').addEventListener('click', function () {
-            consentSignaturePad.clear();
-        });
-    }
+
+});
 </script>
+
+@endsection
