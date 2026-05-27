@@ -200,7 +200,7 @@
                         value="{{ $consultation->authorized_procedure }}">
                 </div>
 
-                <h4 class="mt-4">Vital sings</h4>
+                <h4 class="mt-4">Vital signs</h4>
                 <div class="row">
                     <div class="col-md-3">
                         <label>Heart Rate:</label>
