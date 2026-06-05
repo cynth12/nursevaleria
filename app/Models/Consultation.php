@@ -50,4 +50,8 @@ class Consultation extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+    public function consentimiento()
+{
+    return $this->hasOne(Consentimiento::class);
+}
 }

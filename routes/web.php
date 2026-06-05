@@ -42,17 +42,30 @@ Route::put('/patient/{id}', [PatientController::class, 'update'])->name('patient
 Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('patient.destroy');
 Route::post('/patients/{id}/add-to-group', [PatientController::class, 'addToGroup']);
 
+// Consentimientos
+Route::get('/consentimientos', [ConsentimientoController::class, 'index'])
+    ->name('consentimiento.index');
+
+Route::get('/consentimientos/create/{consultationId}', [ConsentimientoController::class, 'create'])
+    ->name('consentimiento.create');
+
+Route::post('/consentimientos/{consultationId}', [ConsentimientoController::class, 'store'])
+    ->name('consentimiento.store');
+
+Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])
+    ->name('consentimiento.show');
+
+Route::get('/consentimientos/{id}/edit', [ConsentimientoController::class, 'edit'])
+    ->name('consentimiento.edit');
+
+Route::put('/consentimientos/{id}', [ConsentimientoController::class, 'update'])
+    ->name('consentimiento.update');
+
+Route::delete('/consentimientos/{id}', [ConsentimientoController::class, 'destroy'])
+    ->name('consentimiento.destroy');
 
 
-Route::get('/consentimientos', [ConsentimientoController::class, 'index'])->name('consentimiento.index');
-Route::get('/consentimientos/create/{patientId}', [ConsentimientoController::class, 'create'])->name('consentimiento.create');
-Route::post('/consentimientos/{patientId}', [ConsentimientoController::class, 'store'])->name('consentimiento.store');
-Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])->name('consentimiento.show');
-Route::get('/consentimiento/{id}/edit', [ConsentimientoController::class, 'edit'])->name('consentimiento.edit');
-Route::put('/consentimiento/{id}', [ConsentimientoController::class, 'update'])->name('consentimiento.update');
-Route::delete('/consentimientos/{id}', [ConsentimientoController::class, 'destroy'])->name('consentimiento.destroy');
 
-// Grupos
 Route::get('/grupos', [App\Http\Controllers\GroupController::class, 'index'])->name('grupos.index');
 Route::get('/grupos/create', [App\Http\Controllers\GroupController::class, 'create'])->name('grupos.create');
 Route::post('/grupos', [App\Http\Controllers\GroupController::class, 'store'])->name('grupos.store');
@@ -105,6 +118,7 @@ Route::put('/consultas/{consultation}', [ConsultationController::class, 'update'
 
 Route::delete('/consultas/{consultation}', [ConsultationController::class, 'destroy'])
     ->name('consultas.destroy');
+    
 Route::get('/patients/{patient}/consultations/create', [ConsultationController::class, 'create'])
     ->name('consultas.create');
 

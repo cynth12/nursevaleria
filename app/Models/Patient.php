@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Consentimiento;
 
 class Patient extends Model
 {
@@ -49,6 +50,11 @@ class Patient extends Model
     public function consultations()
 {
     return $this->hasMany(Consultation::class);
+}
+
+public function consentimientos()
+{
+    return $this->hasMany(Consentimiento::class);
 }
 
 }

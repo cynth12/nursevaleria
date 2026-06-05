@@ -46,15 +46,15 @@
                                     View
                                 </a>
 
-                                <a href="{{ route('consentimiento.create', $consultation->patient->id) }}"
+                                <a href="{{ route('consentimiento.create', $consultation->id) }}"
                                     class="btn btn-warning btn-sm">
                                     Signature
                                 </a>
 
-                                @if ($consultation->patient->consentimientos && $consultation->patient->consentimientos->count() > 0)
-                                    <a href="{{ route('consentimiento.show', $consultation->patient->consentimientos->first()->id) }}"
+                                @if ($consultation->consentimiento)
+                                    <a href="{{ route('consentimiento.show', $consultation->consentimiento->id) }}"
                                         class="btn btn-info btn-sm">
-                                        See
+                                        Consent
                                     </a>
                                 @endif
 
@@ -62,11 +62,13 @@
                                     Edit
                                 </a>
 
-                                <form action="{{ route('patient.destroy', $consultation->id) }}" method="POST"
+                                <form action="{{ route('consultas.destroy', $consultation->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
+
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('¿Deseas eliminar esta consulta?')">
                                         Delete
                                     </button>
                                 </form>

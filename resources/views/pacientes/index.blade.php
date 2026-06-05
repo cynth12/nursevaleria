@@ -74,12 +74,12 @@
                                    Signature
                                 </a>-->
 
-                                @if ($patient->consentimientos && $patient->consentimientos->count() > 0)
+                                <!--@if ($patient->consentimientos && $patient->consentimientos->count() > 0)
                                     <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
                                         class="btn btn-info btn-sm">
-                                        See
+                                        Consent
                                     </a>
-                                @endif
+                                @endif-->
 
                                 <!-- <a href="{{ route('patient.edit', $patient->id) }}"
                                    class="btn btn-success btn-sm">

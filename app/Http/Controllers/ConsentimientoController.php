@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consentimiento;
 use App\Models\Patient;
+use App\Models\Consultation;
 
 class ConsentimientoController extends Controller
 {
@@ -24,15 +25,20 @@ class ConsentimientoController extends Controller
     }
 
     // Formulario para firmar consentimiento
-    public function create($patientId)
+    public function create($consultationId)
     {
-        $patient = Patient::findOrFail($patientId);
-        return view('consentimiento.create', compact('patient'));
+        $consultation = Consultation::findOrFail($consultationId);
+
+        $patient = $consultation->patient;
+
+        return view('consentimiento.create', compact('consultation', 'patient'));
     }
 
     // Guardar consentimiento firmado
-    public function store(Request $request, $patientId)
+    public function store(Request $request, $consultationId)
     {
+        $consultation = Consultation::findOrFail($consultationId);
+
         $validated = $request->validate([
             'consent_accepted' => 'required|boolean',
             'digital_signature' => 'nullable|string',
@@ -42,7 +48,8 @@ class ConsentimientoController extends Controller
             'nurse_id' => 'nullable|string|max:50',
         ]);
 
-        $validated['patient_id'] = $patientId;
+        $validated['patient_id'] = $consultation->patient_id;
+        $validated['consultation_id'] = $consultation->id;
 
         Consentimiento::create($validated);
 

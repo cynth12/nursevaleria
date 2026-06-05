@@ -54,4 +54,5 @@
    class="btn btn-warning">
     Edit Consent
 </a>
+
 @endsection

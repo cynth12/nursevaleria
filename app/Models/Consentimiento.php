@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Consultation;
 
 class Consentimiento extends Model
 {
@@ -11,6 +12,7 @@ class Consentimiento extends Model
 
     protected $fillable = [
         'patient_id',
+        'consultation_id',
         'consent_accepted',
         'digital_signature',
         'consent_date',
@@ -23,4 +25,8 @@ class Consentimiento extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+    public function consultation()
+{
+    return $this->belongsTo(Consultation::class);
+}
 }

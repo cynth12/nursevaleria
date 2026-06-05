@@ -4,9 +4,11 @@
 
 @section('content')
     <h1>NURSE VALERIA IV THERAPY</h1><br>
+<pre>
+
 
     <form id="consent-form"
-      action="{{ route('consentimiento.store', $patient->id) }}"
+      action="{{ route('consentimiento.store', $consultation->id) }}"
       method="POST">
         @csrf
 
