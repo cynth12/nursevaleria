@@ -11,7 +11,8 @@ class ConsentimientoController extends Controller
     // Listado de todos los consentimientos
     public function index()
     {
-        $consentimientos = Consentimiento::with('patient')->get();
+        $consentimientos = Consentimiento::with('patient')->orderBy('consent_date', 'desc')->paginate(10);
+
         return view('consentimiento.index', compact('consentimientos'));
     }
 

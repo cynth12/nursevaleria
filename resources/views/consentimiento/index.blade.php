@@ -10,6 +10,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Patient</th>
                 <th>Procedure</th>
                 <th>Date</th>
@@ -19,6 +20,7 @@
         <tbody>
             @forelse($consentimientos as $consentimiento)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>
                         {{ $consentimiento->patient->name }}
                         {{ $consentimiento->patient->last_name }}
@@ -47,4 +49,9 @@
             @endforelse
         </tbody>
     </table>
+
+      {{-- PAGINACIÓN --}}
+        <div class="card-footer clearfix">
+            {{ $consentimientos->links() }}
+        </div>
 @endsection
