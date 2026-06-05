@@ -9,7 +9,7 @@
 @section('content')
     <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
     <p>
-        I <strong>{{ $consentimiento->patient->name }}</strong>, in full use of my mental faculties and the exircise of
+        I <strong>{{ $consentimiento->patient->name }} {{ $consentimiento->patient->last_name }}</strong>, in full use of my mental faculties and the exircise of
         legal capacity,
         DECLARE the following:
     </p>

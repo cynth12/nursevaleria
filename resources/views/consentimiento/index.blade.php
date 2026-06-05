@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Listado de Consentimientos')
@@ -20,7 +19,10 @@
         <tbody>
             @forelse($consentimientos as $consentimiento)
                 <tr>
-                    <td>{{ $consentimiento->patient->name }}</td>
+                    <td>
+                        {{ $consentimiento->patient->name }}
+                        {{ $consentimiento->patient->last_name }}
+                    </td>
                     <td>{{ $consentimiento->authorized_procedure }}</td>
                     <td>{{ $consentimiento->consent_date }}</td>
                     <td>
@@ -30,7 +32,8 @@
                         </a>
 
                         <!-- Botón Eliminar -->
-                        <form action="{{ route('consentimiento.destroy', $consentimiento->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('consentimiento.destroy', $consentimiento->id) }}" method="POST"
+                            style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delate</button>

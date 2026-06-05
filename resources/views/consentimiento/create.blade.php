@@ -13,7 +13,7 @@
         <p><strong>Date:</strong> {{ $patient->registration_date }}</p><br>
         <h3>INFORMED CONSENT FOR THE APPLICATION OF IM/IV MEDICATIONS</h3><br>
         <p>
-            I <strong>{{ $patient->name }}</strong>, in full use of my mental faculties and the exircise of legal capacity,
+            I <strong>{{ $patient->name }} {{ $patient->last_name }}</strong>, in full use of my mental faculties and the exircise of legal capacity,
             DECLARE the following:
         </p>
 
