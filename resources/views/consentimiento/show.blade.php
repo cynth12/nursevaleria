@@ -47,4 +47,11 @@
     @endif
     <p><strong>Consent date:</strong> {{ $consentimiento->consent_date }}</p>
     <p><strong>Registration date:</strong> {{ $consentimiento->patient->registration_date }}</p>
+
+    <br>
+
+<a href="{{ route('consentimiento.edit', $consentimiento->id) }}"
+   class="btn btn-warning">
+    Edit Consent
+</a>
 @endsection

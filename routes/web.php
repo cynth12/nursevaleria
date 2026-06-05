@@ -48,6 +48,8 @@ Route::get('/consentimientos', [ConsentimientoController::class, 'index'])->name
 Route::get('/consentimientos/create/{patientId}', [ConsentimientoController::class, 'create'])->name('consentimiento.create');
 Route::post('/consentimientos/{patientId}', [ConsentimientoController::class, 'store'])->name('consentimiento.store');
 Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])->name('consentimiento.show');
+Route::get('/consentimiento/{id}/edit', [ConsentimientoController::class, 'edit'])->name('consentimiento.edit');
+Route::put('/consentimiento/{id}', [ConsentimientoController::class, 'update'])->name('consentimiento.update');
 Route::delete('/consentimientos/{id}', [ConsentimientoController::class, 'destroy'])->name('consentimiento.destroy');
 
 // Grupos
