@@ -365,6 +365,71 @@ return [
                
             ],
         ],
+         [
+            'text' => 'Calendario 2026',
+            'icon' => 'fas fa-fw fa-calendar',
+            'submenu' => [
+                [
+                    'text' => 'Enero',
+                    'url' => 'calendario/1',
+                ],
+                [
+                    'text' => 'Febrero',
+                    'url' => 'calendario/2',
+                    
+                ],
+               [
+                    'text' => 'Marzo',
+                    'url' => 'calendario/3',
+                    
+                ],
+                [
+                    'text' => 'Abril',
+                    'url' => 'calendario/4',
+                    
+                ],
+                [
+                    'text' => 'Mayo',
+                    'url' => 'calendario/5',
+                    
+                ],
+                [
+                    'text' => 'Junio',
+                    'url' => 'calendario/6',
+                    
+                ],
+                [
+                    'text' => 'Julio',
+                    'url' => 'calendario/7',
+                    
+                ],
+                [
+                    'text' => 'Agosto',
+                    'url' => 'calendario/8',
+                    
+                ],
+                [
+                    'text' => 'Septiembre',
+                    'url' => 'calendario/9',
+                    
+                ],
+                [
+                    'text' => 'Octubre',
+                    'url' => 'calendario/10',
+                    
+                ],
+                [
+                    'text' => 'Noviembre',
+                    'url' => 'calendario/11',
+                    
+                ],
+                [
+                    'text' => 'Diciembre',
+                    'url' => 'calendario/12',
+                    
+                ],
+            ],
+        ],
         ['header' => 'Settings'],
         [
             'text' => 'Mails',

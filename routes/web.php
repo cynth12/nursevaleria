@@ -126,6 +126,10 @@ Route::post('/patients/{patient}/consultations',[ConsultationController::class, 
     ->name('consultas.store');
 
 
+Route::get('/calendario/{mes}', [PacientesController::class, 'mes'])
+    ->name('calendario.mes');
+
+
     
 
 

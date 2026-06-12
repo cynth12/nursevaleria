@@ -3,7 +3,7 @@
 @section('title', 'Patient list')
 
 @section('content_header')
-    <h1>Patient list</h1>
+   <h1>{{ $titulo ?? 'Pacientes' }}</h1>
 @endsection
 
 @section('content')
