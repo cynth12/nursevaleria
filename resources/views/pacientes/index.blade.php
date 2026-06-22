@@ -3,32 +3,29 @@
 @section('title', 'Patient list')
 
 @section('content_header')
-   <h1>{{ $titulo ?? 'Patients' }}</h1>
+    <h1>{{ $titulo ?? 'Patients' }}</h1>
 @endsection
 
 @section('content')
 
-<form method="GET" action="{{ route('pacientes.index') }}" class="mb-3">
+    <form method="GET" action="{{ route('pacientes.index') }}" class="mb-3">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-md-4">
-            <input type="text"
-                   name="search"
-                   class="form-control"
-                   placeholder="Search patient..."
-                   value="{{ request('search') }}">
+            <div class="col-md-4">
+                <input type="text" name="search" class="form-control" placeholder="Search patient..."
+                    value="{{ request('search') }}">
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">
+                    Search
+                </button>
+            </div>
+
         </div>
 
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary">
-                Search
-            </button>
-        </div>
-
-    </div>
-
-</form>
+    </form>
 
     <div class="card">
         <div class="card-body">
@@ -70,21 +67,21 @@
                                 </a>
 
                                 <!-- <a href="{{ route('consentimiento.create', $patient->id) }}"
-                                   class="btn btn-warning btn-sm">
-                                   Signature
-                                </a>-->
+                                       class="btn btn-warning btn-sm">
+                                       Signature
+                                    </a>-->
 
                                 <!--@if ($patient->consentimientos && $patient->consentimientos->count() > 0)
-                                    <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
-                                        class="btn btn-info btn-sm">
-                                        Consent
-                                    </a>
-                                @endif-->
+    <a href="{{ route('consentimiento.show', $patient->consentimientos->first()->id) }}"
+                                            class="btn btn-info btn-sm">
+                                            Consent
+                                        </a>
+    @endif-->
 
                                 <!-- <a href="{{ route('patient.edit', $patient->id) }}"
-                                   class="btn btn-success btn-sm">
-                                   Edit
-                                </a>-->
+                                       class="btn btn-success btn-sm">
+                                       Edit
+                                    </a>-->
 
                                 <form action="{{ route('patient.destroy', $patient->id) }}" method="POST"
                                     style="display:inline;">
@@ -92,7 +89,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="deletePatient(this.form)">
                                         Delete
                                     </button>
 
@@ -116,3 +113,22 @@
     </div>
 
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function deletePatient(form) {
+    Swal.fire({
+        title: 'Delete patient?',
+        text: "This action will move the patient to the trash (it won't be permanently deleted)",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+}
+</script>
