@@ -438,7 +438,7 @@ return [
         [
             'text' => 'Statistics',
             'icon_color' => 'yellow',
-            'url' => '#',
+            'url' => '/estadisticas',
         ],
         [
             'text' => 'General Information',

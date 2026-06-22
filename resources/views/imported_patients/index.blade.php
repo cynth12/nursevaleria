@@ -41,42 +41,7 @@
     <div class="card">
         <div class="card-header">List</div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Last name</th>
-                        <th>Date of Birth</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($patients as $patient)
-                        <tr>
-                            <td>{{ $patient->id }}</td>
-                            <td>{{ $patient->name }}</td>
-                            <td>{{ $patient->last_name }}</td>
-                            <td>{{ $patient->date_of_birth }}</td>
-                            <td>{{ $patient->phone ?? '—' }}</td>
-                            <td>{{ $patient->email ?? '—' }}</td>
-                            <td>{{ $patient->date ?? '—' }}</td>
-                            <td>
-                                <a href="#" class="btn btn-info btn-sm">See</a>
-                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delate</a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="7">There are no imported patients yet.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+            
         </div>
     </div>
 @stop

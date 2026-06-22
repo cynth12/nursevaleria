@@ -10,6 +10,7 @@ use App\Http\Controllers\ImportedPatientsController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupPatientController;
 use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\StatsController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -128,6 +129,12 @@ Route::post('/patients/{patient}/consultations',[ConsultationController::class, 
 
 Route::get('/calendario/{mes}', [PacientesController::class, 'mes'])
     ->name('calendario.mes');
+
+
+Route::get('/estadisticas', [StatsController::class, 'index'])->name('stats.index');
+
+
+
 
 
     
