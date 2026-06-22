@@ -38,10 +38,30 @@
     </div>
 
     {{-- Tabla de pacientes importados --}}
-    <div class="card">
-        <div class="card-header">List</div>
-        <div class="card-body">
-            
-        </div>
-    </div>
+
+    <table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Archivo</th>
+            <th>Fecha</th>
+            <th>Descarga</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach($files as $file)
+            <tr>
+                <td>{{ $file->original_name }}</td>
+                <td>{{ $file->created_at }}</td>
+                <td>
+                    <a href="/imports/download/{{ $file->id }}"
+                       class="btn btn-sm btn-primary">
+                        Descargar
+                    </a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+    
 @stop

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ImportedPatient;
 use App\Imports\ImportedPatientsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\ImportFile;
+use Illuminate\Support\Facades\Storage;
 
 class ImportedPatientsController extends Controller
 {
@@ -13,7 +15,8 @@ class ImportedPatientsController extends Controller
     public function index()
     {
         $patients = ImportedPatient::all();
-        return view('imported_patients.index', compact('patients'));
+         $files = \App\Models\ImportFile::latest()->get();
+        return view('imported_patients.index', compact('patients', 'files'));
     }
 
     // Importar archivo Excel
@@ -29,6 +32,7 @@ class ImportedPatientsController extends Controller
         return redirect()->route('imported_patients.index')
             ->with('success', 'Pacientes importados correctamente.');
     }
+    
 
     public function destroyAll()
 {

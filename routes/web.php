@@ -11,6 +11,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupPatientController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\StatsController;
+use App\Http\Controllers\ImportFileController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -132,6 +133,11 @@ Route::get('/calendario/{mes}', [PacientesController::class, 'mes'])
 
 
 Route::get('/estadisticas', [StatsController::class, 'index'])->name('stats.index');
+
+Route::get('/imports', [ImportFileController::class, 'index']);
+Route::post('/imports', [ImportFileController::class, 'store']);
+Route::get('/imports/download/{id}', [ImportFileController::class, 'download']);
+Route::delete('/imports/{id}', [ImportFileController::class, 'destroy']);
 
 
 
