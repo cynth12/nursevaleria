@@ -11,8 +11,11 @@ use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
 class ImportedPatientsImport implements ToModel, WithHeadingRow, SkipsEmptyRows
 {
+
     public function model(array $row)
     {
+      
+
         $dateBirth = null;
 
         if (!empty($row['date_of_birth'])) {

@@ -101,8 +101,11 @@ Route::post('/imported_patients/import', [ImportedPatientsController::class, 'im
 
 Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::class, 'destroyAll'])
     ->name('imported_patients.destroyAll');
+    });
 
-});
+Route::get('/imports/download/{id}', [ImportedPatientsController::class, 'download'] )->name('imports.download');
+Route::delete('/imports/{id}', [ImportedPatientsController::class, 'destroyFile'])->name('imports.destroy');
+
 
 
 
@@ -133,11 +136,6 @@ Route::get('/calendario/{mes}', [PacientesController::class, 'mes'])
 
 
 Route::get('/estadisticas', [StatsController::class, 'index'])->name('stats.index');
-
-Route::get('/imports', [ImportFileController::class, 'index']);
-Route::post('/imports', [ImportFileController::class, 'store']);
-Route::get('/imports/download/{id}', [ImportFileController::class, 'download']);
-Route::delete('/imports/{id}', [ImportFileController::class, 'destroy']);
 
 
 

@@ -39,29 +39,74 @@
 
     {{-- Tabla de pacientes importados --}}
 
-    <table class="table table-bordered mt-3">
-    <thead>
-        <tr>
-            <th>Archivo</th>
-            <th>Fecha</th>
-            <th>Descarga</th>
-        </tr>
-    </thead>
+    <div class="card mt-4">
+        <div class="card-header">
+            Archivos Importados
+        </div>
 
-    <tbody>
-        @foreach($files as $file)
-            <tr>
-                <td>{{ $file->original_name }}</td>
-                <td>{{ $file->created_at }}</td>
-                <td>
-                    <a href="/imports/download/{{ $file->id }}"
-                       class="btn btn-sm btn-primary">
-                        Descargar
-                    </a>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-    
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Date</th>
+                         <!--<th>Patients</th>-->
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($files as $file)
+                        <tr>
+                            <td>{{ $file->original_name }}</td>
+                            <td>{{ $file->created_at->format('d/m/Y H:i') }}</td>
+                             <!--<td>{{ $file->patients_count }}</td>-->
+                            <td>
+                                <a href="{{ route('imports.download', $file->id) }}" class="btn btn-sm btn-success">
+                                    Download
+                                </a>
+
+                                <form action="{{ route('imports.destroy', $file) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="button" class="btn btn-sm btn-danger"
+                                        onclick="deleteFile(event, this.form)">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                No hay archivos importados
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 @stop
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function deleteFile(event, form) {
+        event.preventDefault(); // 🔥 DETIENE EL SUBMIT INMEDIATO
+
+        Swal.fire({
+            title: 'Delete file?',
+            text: "This action will permanently delete the file",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); // 🔥 SOLO AQUÍ SE ENVÍA
+            }
+        });
+    }
+</script>
