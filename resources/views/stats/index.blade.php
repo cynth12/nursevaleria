@@ -30,28 +30,74 @@
 
 </div>
 
-<canvas id="chart"></canvas>
+{{-- GRÁFICA --}}
+<div class="card mt-4">
+    <div class="card-body">
+        <canvas id="chart"></canvas>
+    </div>
+</div>
 
 @endsection
+
 
 @section('js')
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+/**
+ * 📊 Datos reales desde Laravel
+ */
+const consultas = @json($consultasPorMes);
+const pacientes = @json($pacientesPorMes);
+
+/**
+ * 📅 Meses en español
+ */
+const meses = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+];
+
+/**
+ * 🔁 Convierte datos {mes: total} → array de 12 posiciones
+ */
+function mapMeses(data) {
+    let result = [];
+
+    for (let i = 1; i <= 12; i++) {
+        result.push(data[i] ?? 0);
+    }
+
+    return result;
+}
+
 const ctx = document.getElementById('chart');
 
-const chart = new Chart(ctx, {
+new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: {!! json_encode(range(1,12)) !!},
+        labels: meses,
         datasets: [
             {
                 label: 'Consultations',
-                data: {!! json_encode(array_fill(0,12,0)) !!},
-                backgroundColor: 'blue'
+                data: mapMeses(consultas),
+                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+            },
+            {
+                label: 'Patients',
+                data: mapMeses(pacientes),
+                backgroundColor: 'rgba(75, 192, 192, 0.6)'
             }
         ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
+            }
+        }
     }
 });
 </script>

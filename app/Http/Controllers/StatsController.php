@@ -18,14 +18,14 @@ class StatsController extends Controller
             ->whereYear('created_at', $year)
             ->groupBy('mes')
             ->orderBy('mes')
-            ->get();
+            ->pluck('total', 'mes');
 
         // 👤 Pacientes por mes
         $pacientesPorMes = Patient::selectRaw('MONTH(created_at) as mes, COUNT(*) as total')
             ->whereYear('created_at', $year)
             ->groupBy('mes')
             ->orderBy('mes')
-            ->get();
+            ->pluck('total', 'mes');
 
         // 📅 Mes actual
         $consultasMesActual = Consultation::whereMonth('created_at', Carbon::now()->month)->count();
