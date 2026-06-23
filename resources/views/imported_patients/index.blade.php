@@ -29,7 +29,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger mt-2"
-                    onclick="return confirm('¿Seguro que quieres borrar todos los pacientes importados?')">
+                    onclick="return confirm('Are you sure you want to delete all imported patients?')">
                     Delate all
                 </button>
             </form>
@@ -41,7 +41,7 @@
 
     <div class="card mt-4">
         <div class="card-header">
-            Archivos Importados
+            Imported Files
         </div>
 
         <div class="card-body">
@@ -79,7 +79,7 @@
                     @empty
                         <tr>
                             <td colspan="4" class="text-center">
-                                No hay archivos importados
+                                No files imported
                             </td>
                         </tr>
                     @endforelse
