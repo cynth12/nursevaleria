@@ -179,7 +179,7 @@
                 <textarea name="supplements" class="form-control">{{ $consultation->supplements }}</textarea>
 
                 <!--<h4 class="mt-4">Examen físico</h4>
-                    <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
+                        <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
 
                 <h4 class="mt-4">Informed Consent</h4>
                 <div class="form-group">
@@ -200,7 +200,34 @@
                         value="{{ $consultation->authorized_procedure }}">
                 </div>
 
-                <h4 class="mt-4">Vital signs</h4>
+                <h4 class="mt-4">Vital signs pre</h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Heart Rate:</label>
+                        <input type="number" name="pre_heart_rate" class="form-control"
+                            value="{{ $consultation->pre_heart_rate }}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>O₂ Saturation (%):</label>
+                        <input type="number" name="pre_oxygen_saturation" class="form-control"
+                            value="{{ $consultation->pre_oxygen_saturation }}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Temperature (°C):</label>
+                        <input type="number" step="0.1" name="pre_temperature" class="form-control"
+                            value="{{ $consultation->pre_temperature }}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Blood Pressure:</label>
+                        <input type="text" name="pre_blood_pressure" class="form-control"
+                            value="{{ $consultation->pre_blood_pressure }}">
+                    </div>
+                </div>
+
+                <h4 class="mt-4">Vital signs post</h4>
                 <div class="row">
                     <div class="col-md-3">
                         <label>Heart Rate:</label>
@@ -236,7 +263,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Add patient to group</button>
+        <button type="button" class="btn btn-primary mt-3">Add patient to group</button>
 
         <button type="submit" class="btn btn-primary mt-3">Save changes</button>
         <a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to

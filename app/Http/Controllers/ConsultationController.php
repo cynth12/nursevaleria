@@ -47,6 +47,10 @@ class ConsultationController extends Controller
             'consent_accepted' => 'nullable|boolean',
             'digital_signature' => 'nullable|string',
             'authorized_procedure' => 'nullable|string|max:255',
+            'pre_heart_rate' => 'nullable|integer',
+            'pre_oxygen_saturation' => 'nullable|integer',
+            'pre_temperature' => 'nullable|numeric',
+            'pre_blood_pressure' => 'nullable|string|max:20',
             'heart_rate' => 'nullable|integer',
             'oxygen_saturation' => 'nullable|integer',
             'temperature' => 'nullable|numeric',
@@ -94,6 +98,7 @@ class ConsultationController extends Controller
     // Actualizar consulta
     public function update(Request $request, Consultation $consultation)
     {
+
         $data = $request->validate([
             'name' => 'required|string|max:150',
             'last_name' => 'required|string|max:150',
@@ -115,6 +120,10 @@ class ConsultationController extends Controller
             'consent_accepted' => 'nullable|boolean',
             'digital_signature' => 'nullable|string',
             'authorized_procedure' => 'nullable|string|max:255',
+            'pre_heart_rate' => 'nullable|integer',
+            'pre_oxygen_saturation' => 'nullable|integer',
+            'pre_temperature' => 'nullable|numeric',
+            'pre_blood_pressure' => 'nullable|string|max:20',
             'heart_rate' => 'nullable|integer',
             'oxygen_saturation' => 'nullable|integer',
             'temperature' => 'nullable|numeric',

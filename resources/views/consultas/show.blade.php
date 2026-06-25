@@ -57,7 +57,16 @@
         <p><strong>Signature:</strong> {{ $consultation->digital_signature }}</p>
         <p><strong>Authorized Procedure:</strong> {{ $consultation->authorized_procedure }}</p>
 
-        <h4 class="mt-4">Vital signs</h4>
+        
+        <h4 class="mt-4">Vital signs Pre-Procedure</h4>
+        <div class="row">
+            <div class="col-md-3"><strong>Heart Rate:</strong>  {{ $consultation->pre_heart_rate}}</div>
+            <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->pre_oxygen_saturation }}%</div>
+            <div class="col-md-3"><strong>Temperature:</strong> {{ $consultation->pre_temperature }} °C</div>
+            <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $consultation->pre_blood_pressure }}</div>
+        </div>
+
+        <h4 class="mt-4">Vital signs post</h4>
         <div class="row">
             <div class="col-md-3"><strong>Heart Rate:</strong> {{ $consultation->heart_rate }}</div>
             <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->oxygen_saturation }}%</div>
