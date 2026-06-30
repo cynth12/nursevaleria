@@ -98,7 +98,6 @@ class ConsultationController extends Controller
     // Actualizar consulta
     public function update(Request $request, Consultation $consultation)
     {
-
         $data = $request->validate([
             'name' => 'required|string|max:150',
             'last_name' => 'required|string|max:150',
@@ -156,6 +155,11 @@ class ConsultationController extends Controller
         $consultation->update($data);
 
         $consultation->patient->update([
+            'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'date_of_birth' => $data['date_of_birth'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
             'registration_date' => $data['registration_date'],
         ]);
 
