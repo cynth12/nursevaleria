@@ -58,6 +58,8 @@ class Consultation extends Model
         'referral_source',
         'referral_other',
         'treatment_id',
+        'treatment_description',
+        'treatment_formula',
     ];
 
     // Relación con paciente
@@ -73,5 +75,10 @@ class Consultation extends Model
     public function treatment()
     {
         return $this->belongsTo(Treatment::class);
+    }
+
+    public function consultations()
+    {
+        return $this->hasMany(Consultation::class);
     }
 }

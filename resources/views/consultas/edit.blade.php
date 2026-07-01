@@ -179,7 +179,7 @@
                 <textarea name="supplements" class="form-control">{{ $consultation->supplements }}</textarea>
 
                 <!--<h4 class="mt-4">Examen físico</h4>
-                            <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
+                                                            <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
 
                 <h4 class="mt-4">Informed Consent</h4>
                 <div class="form-group">
@@ -251,24 +251,39 @@
                     </div>
                 </div>
 
-                <label>Tratment</label>
+                <label>Tratamiento</label>
 
                 <select id="treatment_id" name="treatment_id" class="form-control">
 
-                    <option value="">Selection...</option>
+                    <option value="">Selecciona...</option>
 
                     @foreach ($treatments as $treatment)
                         <option value="{{ $treatment->id }}" data-description="{{ $treatment->description }}"
-                            data-formula="{{ $treatment->formula }}">
+                            data-formula="{{ $treatment->formula }}"
+                            {{ $consultation->treatment_id == $treatment->id ? 'selected' : '' }}>
+
                             {{ $treatment->name }}
+
                         </option>
                     @endforeach
 
                 </select>
 
-                <h4 class="mt-4">Notes</h4>
-                <textarea name="notes" class="form-control">{{ $consultation->notes }}</textarea>
+                <br>
 
+                <label>Descripción</label>
+
+                <textarea name="treatment_description" id="treatment_description" class="form-control" rows="4">{{ old('treatment_description', $consultation->treatment_description) }}</textarea>
+
+                <br>
+
+                <label>Fórmula</label>
+
+                <textarea name="treatment_formula" id="treatment_formula" class="form-control" rows="8">{{ old('treatment_formula', $consultation->treatment_formula) }}</textarea>
+
+                <label>Notas</label>
+
+                <textarea name="notes" id="notes" class="form-control" rows="8">{{ old('notes', $consultation->notes) }}</textarea>
                 <div class="form-group">
                     <label>Registration Date</label>
 
@@ -285,4 +300,35 @@
             list</a>
 
     </form>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const select = document.getElementById('treatment_id');
+
+            const description = document.getElementById('treatment_description');
+
+            const formula = document.getElementById('treatment_formula');
+
+            function cargar() {
+
+                let option = select.options[select.selectedIndex];
+
+                if (select.value == "") return;
+
+                if (description.value == "")
+                    description.value = option.dataset.description;
+
+                if (formula.value == "")
+                    formula.value = option.dataset.formula;
+
+            }
+
+            select.addEventListener('change', cargar);
+
+            cargar();
+
+        });
+    </script>
 @endsection
