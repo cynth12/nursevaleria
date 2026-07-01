@@ -189,11 +189,11 @@
                         <option value="0" {{ !$consultation->consent_accepted ? 'selected' : '' }}>No</option>
                     </select>
                 </div>
-                <div class="form-group">
+               <!-- <div class="form-group">
                     <label>Signature:</label>
                     <input type="text" name="digital_signature" class="form-control"
                         value="{{ $consultation->digital_signature }}">
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label>Authorized Procedure:</label>
                     <input type="text" name="authorized_procedure" class="form-control"

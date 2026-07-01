@@ -54,7 +54,7 @@
 
             <h4 class="mt-4">Informed Consent</h4>
             <p><strong>Accepted:</strong> {{ $consultation->consent_accepted ? 'Yes' : 'No' }}</p>
-            <p><strong>Signature:</strong> {{ $consultation->digital_signature }}</p>
+            <!-- <p><strong>Signature:</strong> {{ $consultation->digital_signature }}</p>-->
             <p><strong>Authorized Procedure:</strong> {{ $consultation->authorized_procedure }}</p>
 
 
