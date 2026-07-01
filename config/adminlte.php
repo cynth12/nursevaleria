@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -300,18 +299,14 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            
-        ],
+        [],
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
-            
-        ],
+        [],
         [
             'text' => 'blog',
             'url' => 'admin/blog',
@@ -327,8 +322,7 @@ return [
             'url' => 'patient/form',
             'icon' => 'fas fa-fw fa-user',
         ],
-        
-        
+
         ['header' => ''],
         [
             'text' => 'Patients',
@@ -336,13 +330,20 @@ return [
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
-         [
+        [
             'text' => 'Imported patients',
             'url' => 'imported_patients',
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
-        
+
+        [
+            'text' => 'Treatments',
+            'url' => 'treatments',
+            'icon' => 'fas fa-fw fa-syringe',
+            'label_color' => 'warning',
+        ],
+
         [
             'text' => 'Consents',
             'url' => 'consentimientos',
@@ -359,73 +360,60 @@ return [
                 [
                     'text' => ' View group',
                     'url' => 'grupos',
-                    
                 ],
-               
             ],
         ],
-         [
-            'text' => 'Calendario 2026',
+        [
+            'text' => 'Calendar 2026',
             'icon' => 'fas fa-fw fa-calendar',
             'submenu' => [
                 [
-                    'text' => 'Enero',
+                    'text' => 'January',
                     'url' => 'calendario/1',
                 ],
                 [
-                    'text' => 'Febrero',
+                    'text' => 'February',
                     'url' => 'calendario/2',
-                    
                 ],
-               [
-                    'text' => 'Marzo',
+                [
+                    'text' => 'March',
                     'url' => 'calendario/3',
-                    
                 ],
                 [
-                    'text' => 'Abril',
+                    'text' => 'April',
                     'url' => 'calendario/4',
-                    
                 ],
                 [
-                    'text' => 'Mayo',
+                    'text' => 'May',
                     'url' => 'calendario/5',
-                    
                 ],
                 [
-                    'text' => 'Junio',
+                    'text' => 'June',
                     'url' => 'calendario/6',
-                    
                 ],
                 [
-                    'text' => 'Julio',
+                    'text' => 'July',
                     'url' => 'calendario/7',
-                    
                 ],
                 [
-                    'text' => 'Agosto',
+                    'text' => 'August',
                     'url' => 'calendario/8',
-                    
                 ],
                 [
-                    'text' => 'Septiembre',
+                    'text' => 'September',
                     'url' => 'calendario/9',
-                    
                 ],
                 [
-                    'text' => 'Octubre',
+                    'text' => 'October',
                     'url' => 'calendario/10',
-                    
                 ],
                 [
-                    'text' => 'Noviembre',
+                    'text' => 'November',
                     'url' => 'calendario/11',
-                    
                 ],
                 [
-                    'text' => 'Diciembre',
+                    'text' => 'December',
                     'url' => 'calendario/12',
-                    
                 ],
             ],
         ],
@@ -459,15 +447,7 @@ return [
     |
     */
 
-    'filters' => [
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
-    ],
+    'filters' => [JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class, JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class],
 
     /*
     |--------------------------------------------------------------------------

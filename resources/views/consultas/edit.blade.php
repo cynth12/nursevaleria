@@ -179,7 +179,7 @@
                 <textarea name="supplements" class="form-control">{{ $consultation->supplements }}</textarea>
 
                 <!--<h4 class="mt-4">Examen físico</h4>
-                        <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
+                            <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
 
                 <h4 class="mt-4">Informed Consent</h4>
                 <div class="form-group">
@@ -250,6 +250,21 @@
                             value="{{ $consultation->blood_pressure }}">
                     </div>
                 </div>
+
+                <label>Tratment</label>
+
+                <select id="treatment_id" name="treatment_id" class="form-control">
+
+                    <option value="">Selection...</option>
+
+                    @foreach ($treatments as $treatment)
+                        <option value="{{ $treatment->id }}" data-description="{{ $treatment->description }}"
+                            data-formula="{{ $treatment->formula }}">
+                            {{ $treatment->name }}
+                        </option>
+                    @endforeach
+
+                </select>
 
                 <h4 class="mt-4">Notes</h4>
                 <textarea name="notes" class="form-control">{{ $consultation->notes }}</textarea>

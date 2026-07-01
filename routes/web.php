@@ -12,6 +12,7 @@ use App\Http\Controllers\GroupPatientController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\StatsController;
 use App\Http\Controllers\ImportFileController;
+use App\Http\Controllers\TreatmentController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -136,6 +137,22 @@ Route::get('/calendario/{mes}', [PacientesController::class, 'mes'])
 
 
 Route::get('/estadisticas', [StatsController::class, 'index'])->name('stats.index');
+
+//tratamientos
+
+Route::get('/treatments', [TreatmentController::class, 'index'])->name('treatments.index');
+
+Route::get('/treatments/create', [TreatmentController::class, 'create'])->name('treatments.create');
+
+Route::post('/treatments', [TreatmentController::class, 'store'])->name('treatments.store');
+
+Route::get('/treatments/{treatment}', [TreatmentController::class, 'show'])->name('treatments.show');
+
+Route::get('/treatments/{treatment}/edit', [TreatmentController::class, 'edit'])->name('treatments.edit');
+
+Route::put('/treatments/{treatment}', [TreatmentController::class, 'update'])->name('treatments.update');
+
+Route::delete('/treatments/{treatment}', [TreatmentController::class, 'destroy'])->name('treatments.destroy');
 
 
 

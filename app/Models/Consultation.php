@@ -10,54 +10,55 @@ class Consultation extends Model
 {
     use HasFactory, SoftDeletes;
 
-   protected $fillable = [
-    'patient_id',
-    'registration_date',
-    'name',
-    'last_name',
-    'date_of_birth',
-    'phone',
-    'email',
-    'address',
-    'emergency_name',
-    'emergency_relationship',
-    'emergency_phone',
+    protected $fillable = [
+        'patient_id',
+        'registration_date',
+        'name',
+        'last_name',
+        'date_of_birth',
+        'phone',
+        'email',
+        'address',
+        'emergency_name',
+        'emergency_relationship',
+        'emergency_phone',
 
-    'pregnant',
-    'vitamins_intolerance',
-    'minerals_intolerance',
+        'pregnant',
+        'vitamins_intolerance',
+        'minerals_intolerance',
 
-    'allergy_medicine',
-    'allergy_food',
-    'reaction',
+        'allergy_medicine',
+        'allergy_food',
+        'reaction',
 
-    'medications',
-    'supplements',
-    'physical_exam',
+        'medications',
+        'supplements',
+        'physical_exam',
 
-    'consent_accepted',
-    'digital_signature',
-    'authorized_procedure',
+        'consent_accepted',
+        'digital_signature',
+        'authorized_procedure',
 
-    // PRE
-    'pre_heart_rate',
-    'pre_oxygen_saturation',
-    'pre_temperature',
-    'pre_blood_pressure',
+        // PRE
+        'pre_heart_rate',
+        'pre_oxygen_saturation',
+        'pre_temperature',
+        'pre_blood_pressure',
 
-    // POST
-    'heart_rate',
-    'oxygen_saturation',
-    'temperature',
-    'blood_pressure',
+        // POST
+        'heart_rate',
+        'oxygen_saturation',
+        'temperature',
+        'blood_pressure',
 
-    'notes',
-    'iv_type',
-    'symptoms',
-    'reason',
-    'referral_source',
-    'referral_other',
-];
+        'notes',
+        'iv_type',
+        'symptoms',
+        'reason',
+        'referral_source',
+        'referral_other',
+        'treatment_id',
+    ];
 
     // Relación con paciente
     public function patient()
@@ -65,7 +66,12 @@ class Consultation extends Model
         return $this->belongsTo(Patient::class);
     }
     public function consentimiento()
-{
-    return $this->hasOne(Consentimiento::class);
-}
+    {
+        return $this->hasOne(Consentimiento::class);
+    }
+
+    public function treatment()
+    {
+        return $this->belongsTo(Treatment::class);
+    }
 }

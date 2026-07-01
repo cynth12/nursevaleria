@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\Patient;
+use App\Models\Treatment;
 use Carbon\Carbon;
 
 class ConsultationController extends Controller
@@ -92,7 +93,10 @@ class ConsultationController extends Controller
     public function edit(Consultation $consultation)
     {
         $patient = $consultation->patient;
-        return view('consultas.edit', compact('consultation', 'patient'));
+
+        $treatments = Treatment::orderBy('name')->get();
+
+        return view('consultas.edit', compact('consultation', 'patient', 'treatments'));
     }
 
     // Actualizar consulta
