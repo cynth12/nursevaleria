@@ -26,23 +26,23 @@ class PacientesController extends Controller
         $patients = Patient::whereYear('registration_date', 2026)->whereMonth('registration_date', $mes)->orderBy('registration_date', 'desc')->paginate(10);
 
         $nombreMes = [
-            1 => 'Enero',
-            2 => 'Febrero',
-            3 => 'Marzo',
-            4 => 'Abril',
-            5 => 'Mayo',
-            6 => 'Junio',
-            7 => 'Julio',
-            8 => 'Agosto',
-            9 => 'Septiembre',
-            10 => 'Octubre',
-            11 => 'Noviembre',
-            12 => 'Diciembre',
+            1 => 'January',
+            2 => 'February',
+            3 => 'March',
+            4 => 'April',
+            5 => 'May',
+            6 => 'June',
+            7 => 'July',
+            8 => 'August',
+            9 => 'September',
+            10 => 'October',
+            11 => 'November',
+            12 => 'December',
         ];
 
         return view('pacientes.index', [
             'patients' => $patients,
-            'titulo' => 'Pacientes registrados en ' . $nombreMes[$mes],
+            'titulo' => 'Patients registered in ' . $nombreMes[$mes],
         ]);
     }
 }

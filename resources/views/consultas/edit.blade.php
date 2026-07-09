@@ -255,7 +255,7 @@
 
                 <select id="treatment_id" name="treatment_id" class="form-control">
 
-                    <option value="">Selecciona...</option>
+                    <option value="">Select...</option>
 
                     @foreach ($treatments as $treatment)
                         <option value="{{ $treatment->id }}" data-description="{{ $treatment->description }}"
@@ -271,17 +271,17 @@
 
                 <br>
 
-                <label>Descripción</label>
+                <label>Description</label>
 
                 <textarea name="treatment_description" id="treatment_description" class="form-control" rows="4">{{ old('treatment_description', $consultation->treatment_description) }}</textarea>
 
                 <br>
 
-                <label>Fórmula</label>
+                <label>Treatment</label>
 
                 <textarea name="treatment_formula" id="treatment_formula" class="form-control" rows="8">{{ old('treatment_formula', $consultation->treatment_formula) }}</textarea>
 
-                <label>Notas</label>
+                <label>Notes</label>
 
                 <textarea name="notes" id="notes" class="form-control" rows="8">{{ old('notes', $consultation->notes) }}</textarea>
                 <div class="form-group">
