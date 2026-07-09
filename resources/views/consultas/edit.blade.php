@@ -251,7 +251,7 @@
                     </div>
                 </div>
 
-                <label>Tratamiento</label>
+                <label>Treatment</label>
 
                 <select id="treatment_id" name="treatment_id" class="form-control">
 
