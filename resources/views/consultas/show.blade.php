@@ -52,39 +52,41 @@
             <h4 class="mt-4">Supplements</h4>
             <p>{{ $consultation->supplements }}</p>
 
-        <div class="card mt-4">
-            <div class="card-header bg-secondary">
+            <div class="card mt-4">
+                <div class="card-header bg-secondary">
                     <strong>Informed Consent</strong>
                 </div>
-        <div class="card-body">
-            <p style="white-space: pre-line;"><strong>Accepted:</strong> {{ $consultation->consent_accepted ? 'Yes' : 'No' }}</p>
-            <!-- <p><strong>Signature:</strong> {{ $consultation->digital_signature }}</p>-->
-            <p style="white-space: pre-line;"><strong>Authorized Procedure:</strong> {{ $consultation->authorized_procedure }}</p>
-        </div>
-          </div>
+                <div class="card-body">
+                    <p style="white-space: pre-line;"><strong>Accepted:</strong>
+                        {{ $consultation->consent_accepted ? 'Yes' : 'No' }}</p>
+                    <!-- <p><strong>Signature:</strong> {{ $consultation->digital_signature }}</p>-->
+                    <p style="white-space: pre-line;"><strong>Authorized Procedure:</strong>
+                        {{ $consultation->authorized_procedure }}</p>
+                </div>
+            </div>
 
-             <div class="card-header bg-primary">
-                        <strong>Vital signs</strong>
-                    </div>
+            <div class="card-header bg-primary">
+                <strong>Vital signs</strong>
+            </div>
             <div class="card-body">
-            <h4 class="mt-4">Vital signs pre</h4>
-            <div class="row">
-                <div class="col-md-3"><strong>Heart Rate:</strong> {{ $consultation->pre_heart_rate }}</div>
-                <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->pre_oxygen_saturation }}%</div>
-                <div class="col-md-3"><strong>Temperature:</strong> {{ $consultation->pre_temperature }} °C</div>
-                <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $consultation->pre_blood_pressure }}</div>
-            </div>
-            
-            <h4 class="mt-4">Vital signs post</h4>
-            <div class="row">
-                <div class="col-md-3"><strong>Heart Rate:</strong> {{ $consultation->heart_rate }}</div>
-                <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->oxygen_saturation }}%</div>
-                <div class="col-md-3"><strong>Temperature:</strong> {{ $consultation->temperature }} °C</div>
-                <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $consultation->blood_pressure }}</div>
-            </div>
-             </div>
+                <h4 class="mt-4">Vital signs pre</h4>
+                <div class="row">
+                    <div class="col-md-3"><strong>Heart Rate:</strong> {{ $consultation->pre_heart_rate }}</div>
+                    <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->pre_oxygen_saturation }}%</div>
+                    <div class="col-md-3"><strong>Temperature:</strong> {{ $consultation->pre_temperature }} °C</div>
+                    <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $consultation->pre_blood_pressure }}</div>
+                </div>
 
-            @if ($consultation->treatment)
+                <h4 class="mt-4">Vital signs post</h4>
+                <div class="row">
+                    <div class="col-md-3"><strong>Heart Rate:</strong> {{ $consultation->heart_rate }}</div>
+                    <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->oxygen_saturation }}%</div>
+                    <div class="col-md-3"><strong>Temperature:</strong> {{ $consultation->temperature }} °C</div>
+                    <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $consultation->blood_pressure }}</div>
+                </div>
+            </div>
+
+            @if ($consultation->treatment || $consultation->treatment_description || $consultation->treatment_formula)
                 <div class="card mt-4">
 
                     <div class="card-header bg-primary">
@@ -93,7 +95,7 @@
 
                     <div class="card-body">
 
-                        <h4>{{ $consultation->treatment->name }}</h4>
+                        <h4>{{ $consultation->treatment->name ?? '' }}</h4>
 
                         <hr>
 

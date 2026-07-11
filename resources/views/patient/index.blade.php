@@ -233,7 +233,7 @@
             </div>
 
             <!-- Consentimiento -->
-            <h4>CONSENT FORM:</h4>
+            <!--<h4>CONSENT FORM:</h4>
             <div class="form-group">
                 <p>ACKNOWLEDGING THE PROCEDURES TO BE PERFORMED BY THE MEDICAL TEAM AND THAT THEY HAVE BEEN EXPLAINED TO ME,
                     I GRANT AUTHORIZATION AND RELEASE THE MEDICAL TEAM AND THE LOCATION FROM ANY AND ALL LIABILITY ONCE THE
@@ -264,13 +264,13 @@
                     <option value="IV Post op">IV Post op</option>
                     <option value="IV NAD">IV NAD</option>
                 </select>
-            </div>
+            </div>-->
 
             <!-- Firma -->
-            <h4>Signature patient:</h4>
+            <!--<h4>Signature patient:</h4>
             <canvas id="patient-signature-pad" width="400" height="200"
                 style="border:1px solid #000;"></canvas><br>
-            <input type="hidden" name="digital_signature" id="digital_signature"><br>
+            <input type="hidden" name="digital_signature" id="digital_signature"><br>-->
 
             <button type="submit" class="btn btn-primary">SAVE</button>
         </form>

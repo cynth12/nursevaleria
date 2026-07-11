@@ -59,6 +59,7 @@ class PatientController extends Controller
             'temperature' => 'nullable|numeric',
             'blood_pressure' => 'nullable|string|max:20',
 
+            
             'notes' => 'nullable|string',
             'iv_type' => 'nullable|string|max:255',
             'symptoms' => 'nullable|array',
@@ -126,7 +127,7 @@ class PatientController extends Controller
                 'oxigen_saturation' => $data['oxigen_saturation'] ?? null,
                 'temperature' => $data['temperature'] ?? null,
                 'blood_pressure' => $data['blood_pressure'] ?? null,
-
+                
                 'notes' => $data['notes'] ?? null,
                 'iv_type' => $data['iv_type'] ?? null,
                 'symptoms' => $data['symptoms'] ?? null,

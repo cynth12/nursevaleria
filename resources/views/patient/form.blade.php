@@ -52,7 +52,7 @@
         <h1></h1><br>
         <h2 class="form-title">BASIC EVALUATION FOR IV THERAPY</h2><br>
         <!-- Datos personales -->
-        <h4>PERSONAL DATE</h4>
+        <h4>PERSONAL INFORMATION</h4>
         <div class="form-group">
             <label>Name</label>
             <input type="text" name="name" id="name" class="form-control" required>
