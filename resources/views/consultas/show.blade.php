@@ -133,6 +133,12 @@
                 </div>
 
             </div>
+            <a href="{{ route('consultas.pdf', $consultation->id) }}" class="btn btn-info mt-3" target="_blank">
+
+                <i class="fas fa-file-pdf"></i>
+
+                Print Treatment Summary
+            </a>
             @if ($consultation->patient->group)
                 <div class="callout callout-info">
                     <h5>

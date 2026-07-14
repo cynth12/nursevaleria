@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\Patient;
 use App\Models\Treatment;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use App\Models\Group;
 
@@ -193,4 +194,12 @@ class ConsultationController extends Controller
 
         return redirect()->route('consultas.index', $patientId)->with('success', 'Consulta eliminada correctamente ✅');
     }
+    public function pdf(Consultation $consultation)
+{
+    $pdf = Pdf::loadView('consultas.pdf', compact('consultation'));
+
+    return $pdf->stream(
+        'Treatment-'.$consultation->patient->name.'.pdf'
+    );
+}
 }

@@ -159,7 +159,9 @@ Route::put('/treatments/{treatment}', [TreatmentController::class, 'update'])->n
 
 Route::delete('/treatments/{treatment}', [TreatmentController::class, 'destroy'])->name('treatments.destroy');
 
-
+//print pdf
+Route::get('/consultas/{consultation}/pdf', [ConsultationController::class, 'pdf'])
+    ->name('consultas.pdf');
 
 
 
