@@ -107,7 +107,7 @@
 
 
             <hr>
-            <h4>Signos vitales</h4>
+            <h4>Vitals signs</h4>
             <div class="form-group">
                 <label for="heart_rate">Heart rate</label>
                 <input type="number" name="heart_rate" class="form-control"
