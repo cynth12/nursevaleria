@@ -364,59 +364,11 @@ return [
             ],
         ],
         [
-            'text' => 'Calendar 2026',
+            'text' => 'Calendar',
+            'url' => 'calendar',
             'icon' => 'fas fa-fw fa-calendar',
-            'submenu' => [
-                [
-                    'text' => 'January',
-                    'url' => 'calendario/1',
-                ],
-                [
-                    'text' => 'February',
-                    'url' => 'calendario/2',
-                ],
-                [
-                    'text' => 'March',
-                    'url' => 'calendario/3',
-                ],
-                [
-                    'text' => 'April',
-                    'url' => 'calendario/4',
-                ],
-                [
-                    'text' => 'May',
-                    'url' => 'calendario/5',
-                ],
-                [
-                    'text' => 'June',
-                    'url' => 'calendario/6',
-                ],
-                [
-                    'text' => 'July',
-                    'url' => 'calendario/7',
-                ],
-                [
-                    'text' => 'August',
-                    'url' => 'calendario/8',
-                ],
-                [
-                    'text' => 'September',
-                    'url' => 'calendario/9',
-                ],
-                [
-                    'text' => 'October',
-                    'url' => 'calendario/10',
-                ],
-                [
-                    'text' => 'November',
-                    'url' => 'calendario/11',
-                ],
-                [
-                    'text' => 'December',
-                    'url' => 'calendario/12',
-                ],
-            ],
         ],
+
         ['header' => 'Settings'],
         [
             'text' => 'Mails',

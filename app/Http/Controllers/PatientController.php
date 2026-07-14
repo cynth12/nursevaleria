@@ -264,6 +264,7 @@ class PatientController extends Controller
             'date_of_birth' => $data['date_of_birth'],
             'phone' => $data['phone'],
             'email' => $data['email'],
+            'address' => $data['address'],
         ]);
 
         // Obtener última consulta

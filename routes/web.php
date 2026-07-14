@@ -13,6 +13,8 @@ use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\StatsController;
 use App\Http\Controllers\ImportFileController;
 use App\Http\Controllers\TreatmentController;
+use App\Http\Controllers\CalendarController;
+
 
 Route::get('/', function () {
     return redirect('/login');
@@ -131,13 +133,14 @@ Route::get('/patients/{patient}/consultations/create', [ConsultationController::
 Route::post('/patients/{patient}/consultations',[ConsultationController::class, 'store'])
     ->name('consultas.store');
 
-
-Route::get('/calendario/{mes}', [PacientesController::class, 'mes'])
-    ->name('calendario.mes');
-
-
 Route::get('/estadisticas', [StatsController::class, 'index'])->name('stats.index');
 
+
+//calendario
+Route::get('/calendar', [CalendarController::class, 'index'])
+    ->name('calendar.index');
+Route::get('/calendario/{year}/{mes}', [PacientesController::class, 'mes'])
+    ->name('calendario');
 //tratamientos
 
 Route::get('/treatments', [TreatmentController::class, 'index'])->name('treatments.index');
