@@ -33,6 +33,7 @@ class ConsultationController extends Controller
             'date_of_birth' => 'required|date',
             'phone' => 'nullable|string|max:20',
             'email' => 'nullable|email|max:150',
+            'address' => 'nullable|string|max:255',
             'emergency_name' => 'nullable|string|max:150',
             'emergency_relationship' => 'nullable|string|max:100',
             'emergency_phone' => 'nullable|string|max:20',
@@ -111,6 +112,7 @@ class ConsultationController extends Controller
             'date_of_birth' => 'required|date',
             'phone' => 'nullable|string|max:20',
             'email' => 'nullable|email|max:150',
+            'address' => 'nullable|string|max:255',
             'emergency_name' => 'nullable|string|max:150',
             'emergency_relationship' => 'nullable|string|max:100',
             'emergency_phone' => 'nullable|string|max:20',
@@ -170,6 +172,7 @@ class ConsultationController extends Controller
             'date_of_birth' => $data['date_of_birth'],
             'phone' => $data['phone'],
             'email' => $data['email'],
+            'address' => $data['address'],
             'registration_date' => $data['registration_date'],
         ]);
 
