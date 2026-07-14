@@ -7,6 +7,7 @@ use App\Models\Consultation;
 use App\Models\Patient;
 use App\Models\Treatment;
 use Carbon\Carbon;
+use App\Models\Group;
 
 class ConsultationController extends Controller
 {
@@ -67,6 +68,7 @@ class ConsultationController extends Controller
             'reason' => 'nullable|string',
             'referral_source' => 'nullable|array',
             'referral_other' => 'nullable|string|max:255',
+            'group_id' => 'nullable|exists:groups,id',
         ]);
 
         $data['patient_id'] = $patient->id;
@@ -100,7 +102,9 @@ class ConsultationController extends Controller
 
         $treatments = Treatment::orderBy('name')->get();
 
-        return view('consultas.edit', compact('consultation', 'patient', 'treatments'));
+        $groups = Group::orderBy('place')->get();
+
+        return view('consultas.edit', compact('consultation', 'patient', 'treatments', 'groups'));
     }
 
     // Actualizar consulta
@@ -146,6 +150,7 @@ class ConsultationController extends Controller
             'reason' => 'nullable|string',
             'referral_source' => 'nullable|array',
             'referral_other' => 'nullable|string|max:255',
+            'group_id' => 'nullable|exists:groups,id',
         ]);
 
         // Normalizar valores Yes/No → 1/0
@@ -174,6 +179,7 @@ class ConsultationController extends Controller
             'email' => $data['email'],
             'address' => $data['address'],
             'registration_date' => $data['registration_date'],
+            'group_id' => $data['group_id'],
         ]);
 
         return redirect()->route('consultas.show', $consultation->id)->with('success', 'Consulta actualizada correctamente ✅');

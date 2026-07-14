@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Consentimiento;
+use App\Models\Group;
 
 class PacientesController extends Controller
 {
@@ -54,5 +55,18 @@ class PacientesController extends Controller
 
     ]);
 
+}
+
+public function assignGroup(Request $request, Patient $patient)
+{
+    $request->validate([
+        'group_id' => 'required|exists:groups,id',
+    ]);
+
+    $patient->update([
+        'group_id' => $request->group_id,
+    ]);
+
+    return back()->with('success', 'Patient assigned to group successfully.');
 }
 }

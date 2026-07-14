@@ -133,6 +133,18 @@
                 </div>
 
             </div>
+            @if ($consultation->patient->group)
+                <div class="callout callout-info">
+                    <h5>
+                        <i class="fas fa-users"></i>
+                        Patient belongs to the group
+                    </h5>
+
+                    <a href="{{ route('grupos.show', $consultation->patient->group->id) }}" class="btn btn-info btn-lg">
+                        {{ $consultation->patient->group->place }}
+                    </a>
+                </div>
+            @endif
             <div class="card mt-4">
                 <div class="card-header bg-secondary">
                     <strong>Registration date</strong>
@@ -144,6 +156,12 @@
         </div>
     </div>
 
+
+    @if ($consultation->patient->group)
+        <a href="{{ route('grupos.show', $consultation->patient->group->id) }}" class="btn btn-secondary">
+            Return to Group
+        </a>
+    @endif
     <a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to
         list</a>
 @endsection

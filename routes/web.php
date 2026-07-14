@@ -70,7 +70,7 @@ Route::delete('/consentimientos/{id}', [ConsentimientoController::class, 'destro
     ->name('consentimiento.destroy');
 
 
-
+//grupos
 Route::get('/grupos', [App\Http\Controllers\GroupController::class, 'index'])->name('grupos.index');
 Route::get('/grupos/create', [App\Http\Controllers\GroupController::class, 'create'])->name('grupos.create');
 Route::post('/grupos', [App\Http\Controllers\GroupController::class, 'store'])->name('grupos.store');
@@ -110,7 +110,7 @@ Route::get('/imports/download/{id}', [ImportedPatientsController::class, 'downlo
 Route::delete('/imports/{id}', [ImportedPatientsController::class, 'destroyFile'])->name('imports.destroy');
 
 
-
+//patients
 
 Route::get('/patients/{patient}/consultas', [ConsultationController::class, 'index'])
     ->name('consultas.index');
@@ -134,6 +134,8 @@ Route::post('/patients/{patient}/consultations',[ConsultationController::class, 
     ->name('consultas.store');
 
 Route::get('/estadisticas', [StatsController::class, 'index'])->name('stats.index');
+Route::post('/patients/{patient}/assign-group', [PacientesController::class, 'assignGroup'])
+    ->name('patients.assignGroup');
 
 
 //calendario

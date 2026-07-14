@@ -9,12 +9,13 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['place','date'];
+    protected $fillable = ['place', 'date'];
 
     // Relación: un grupo tiene muchos pacientes
     public function patients()
     {
-        return $this->hasMany(GroupPatient::class);
+        return $this->hasMany(Patient::class);
     }
-}
 
+    
+}

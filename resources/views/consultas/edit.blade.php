@@ -179,7 +179,7 @@
                 <textarea name="supplements" class="form-control">{{ $consultation->supplements }}</textarea>
 
                 <!--<h4 class="mt-4">Examen físico</h4>
-                                                            <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
+                                                                <textarea name="physical_exam" class="form-control">{{ $consultation->physical_exam }}</textarea>--->
 
                 <h4 class="mt-4">Informed Consent</h4>
                 <div class="form-group">
@@ -189,11 +189,11 @@
                         <option value="0" {{ !$consultation->consent_accepted ? 'selected' : '' }}>No</option>
                     </select>
                 </div>
-               <!-- <div class="form-group">
-                    <label>Signature:</label>
-                    <input type="text" name="digital_signature" class="form-control"
-                        value="{{ $consultation->digital_signature }}">
-                </div>-->
+                <!-- <div class="form-group">
+                        <label>Signature:</label>
+                        <input type="text" name="digital_signature" class="form-control"
+                            value="{{ $consultation->digital_signature }}">
+                    </div>-->
                 <div class="form-group">
                     <label>Authorized Procedure:</label>
                     <input type="text" name="authorized_procedure" class="form-control"
@@ -293,11 +293,36 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary mt-3">Add patient to group</button>
+
+        <div class="form-group mt-4">
+
+            <label>Group</label>
+
+            <select name="group_id" class="form-control">
+
+                <option value="">No group</option>
+
+                @foreach ($groups as $group)
+                    <option value="{{ $group->id }}" {{ $patient->group_id == $group->id ? 'selected' : '' }}>
+
+                        {{ $group->place }}
+
+                    </option>
+                @endforeach
+
+            </select>
+
+        </div>
 
         <button type="submit" class="btn btn-primary mt-3">Save changes</button>
+        
         <a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to
             list</a>
+        @if ($consultation->patient->group)
+            <a href="{{ route('grupos.show', $consultation->patient->group->id) }}" class="btn btn-secondary">
+                Return to Group
+            </a>
+        @endif
 
     </form>
 

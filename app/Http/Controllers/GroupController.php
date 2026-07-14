@@ -41,19 +41,7 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($id);
 
-        // Relación con pacientes de grupo
-        $patients = $group->patients;
-
-        // Opcional: mapear consentimiento de cada paciente
-        foreach ($patients as $patient) {
-            $patient->consentimiento = (object) [
-                'accepted' => $patient->consent_accepted,
-                'signature' => $patient->digital_signature,
-                'procedure' => $patient->authorized_procedure,
-                'nurse_name' => $patient->nurse_name ?? null,
-                'nurse_id' => $patient->nurse_id ?? null,
-            ];
-        }
+        $patients = $group->patients()->orderBy('name')->get();
 
         return view('grupos.show', compact('group', 'patients'));
     }

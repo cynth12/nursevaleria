@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Consultation;
+use App\Models\Treatment;
+use App\Models\Group;
 use Carbon\Carbon;
+
 
 class PatientController extends Controller
 {
@@ -66,6 +69,7 @@ class PatientController extends Controller
             'reason' => 'nullable|string',
             'referral_source' => 'nullable|array',
             'referral_other' => 'nullable|string|max:255',
+            'group_id' => $request->group_id,
         ]);
 
         // Normalizar valores Yes/No → 1/0
@@ -134,6 +138,7 @@ class PatientController extends Controller
                 'reason' => $data['reason'] ?? null,
                 'referral_source' => $data['referral_source'] ?? null,
                 'referral_other' => $data['referral_other'] ?? null,
+                'group_id' => $request->group_id,
             ]);
 
             // Diferenciar según la ruta
@@ -181,6 +186,7 @@ class PatientController extends Controller
             'reason' => $data['reason'] ?? null,
             'referral_source' => $data['referral_source'] ?? null,
             'referral_other' => $data['referral_other'] ?? null,
+            'group_id' => $request->group_id,
         ]);
 
         return redirect()->route('consultas.show', $consultation->id)->with('success', 'Consulta registrada correctamente ✅');
@@ -241,6 +247,7 @@ class PatientController extends Controller
             'reason' => 'nullable|string',
             'referral_source' => 'nullable|array',
             'referral_other' => 'nullable|string|max:255',
+            'group_id' => $request->group_id,
         ]);
 
         // Normalizar valores Yes/No → 1/0
@@ -265,6 +272,7 @@ class PatientController extends Controller
             'phone' => $data['phone'],
             'email' => $data['email'],
             'address' => $data['address'],
+            'group_id' => $request->group_id,
         ]);
 
         // Obtener última consulta

@@ -45,6 +45,7 @@ class Patient extends Model
         'oxygen_saturation',
         'temperature',
         'blood_pressure',
+        'group_id',
     ];
 
     public function consultations()
@@ -55,6 +56,11 @@ class Patient extends Model
 public function consentimientos()
 {
     return $this->hasMany(Consentimiento::class);
+}
+
+public function group()
+{
+    return $this->belongsTo(Group::class);
 }
 
 }
