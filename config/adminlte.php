@@ -298,94 +298,97 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [],
-        [
-            'type' => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
 
-        // Sidebar items:
-        [],
-        [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ],
-        [
-            'text' => 'Create patient',
-            'url' => 'patient/index',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Form patient',
-            'url' => 'patient/form',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+    // Navbar
+    [
+        'type' => 'fullscreen-widget',
+        'topnav_right' => true,
+    ],
 
-        ['header' => ''],
-        [
-            'text' => 'Patients',
-            'url' => 'pacientes',
-            'icon' => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
-        [
-            'text' => 'Imported patients',
-            'url' => 'imported_patients',
-            'icon' => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
+    // Sidebar
+    [
+        'text' => 'Home',
+        'route' => 'home',
+        'icon' => 'fas fa-fw fa-home',
+    ],
 
-        [
-            'text' => 'Treatments',
-            'url' => 'treatments',
-            'icon' => 'fas fa-fw fa-syringe',
-            'label_color' => 'warning',
-        ],
+    [
+        'header' => 'PATIENTS',
+    ],
 
-        [
-            'text' => 'Consents',
-            'url' => 'consentimientos',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'Groups',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Create group',
-                    'url' => 'grupos/create',
-                ],
-                [
-                    'text' => ' View group',
-                    'url' => 'grupos',
-                ],
+    [
+        'text' => 'Patient Intake Form',
+        'url' => 'patient/form',
+        'icon' => 'fas fa-fw fa-file-medical',
+    ],
+
+    [
+        'text' => 'Register Patient',
+        'url' => 'patient/index',
+        'icon' => 'fas fa-fw fa-user-plus',
+    ],
+
+    [
+        'text' => 'Patients',
+        'url' => 'pacientes',
+        'icon' => 'fas fa-fw fa-users',
+    ],
+
+    [
+        'text' => 'Patient Imports',
+        'url' => 'imported_patients',
+        'icon' => 'fas fa-fw fa-file-import',
+    ],
+
+    [
+        'header' => 'CLINICAL CARE',
+    ],
+
+    [
+        'text' => 'Treatments',
+        'url' => 'treatments',
+        'icon' => 'fas fa-fw fa-syringe',
+    ],
+
+    [
+        'text' => 'Consent Forms',
+        'url' => 'consentimientos',
+        'icon' => 'fas fa-fw fa-file-signature',
+    ],
+
+    [
+        'text' => 'Groups',
+        'icon' => 'fas fa-fw fa-layer-group',
+        'submenu' => [
+            [
+                'text' => 'Create Group',
+                'url' => 'grupos/create',
+                'icon' => 'fas fa-fw fa-plus-circle',
+            ],
+            [
+                'text' => 'View Groups',
+                'url' => 'grupos',
+                'icon' => 'fas fa-fw fa-list',
             ],
         ],
-        [
-            'text' => 'Calendar',
-            'url' => 'calendar',
-            'icon' => 'fas fa-fw fa-calendar',
-        ],
-
-        ['header' => 'Settings'],
-        [
-            'text' => 'Mails',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'Statistics',
-            'icon_color' => 'yellow',
-            'url' => '/estadisticas',
-        ],
-        [
-            'text' => 'General Information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
     ],
+
+    [
+        'text' => 'Calendar',
+        'url' => 'calendar',
+        'icon' => 'fas fa-fw fa-calendar-alt',
+    ],
+
+    [
+        'header' => 'REPORTS',
+    ],
+
+    [
+        'text' => 'Statistics',
+        'url' => 'estadisticas',
+        'icon' => 'fas fa-fw fa-chart-bar',
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------
