@@ -46,7 +46,7 @@
 
 
     <div class="patient-index container">
-        <img src="{{ asset('img/formulario.png') }}" class="form-header-image"><br>
+        <img src="{{ asset('img/logo.png') }}" class="form-header-image"><br>
 
         <form action="{{ route('patient.index.store') }}" method="POST">
             @csrf

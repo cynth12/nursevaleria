@@ -15,9 +15,10 @@
                         </div>
                     @endif
 
-                    {{ __('Bienvenido a tu panel de control NURSE VALERIA!!!!!') }}
+                      <h4>{{ __('Bienvenido a tu panel de control') }}</h4>
                     
                 </div>
+                <img src="{{ asset('img/logotipo.jpg') }}" class="form-header-image"><br>
             </div>
         </div>
     </div>
