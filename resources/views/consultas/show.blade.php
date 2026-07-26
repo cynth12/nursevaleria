@@ -1,173 +1,802 @@
 @extends('adminlte::page')
 
-@section('title', 'Consulta detalle')
+@section('title', 'Detalle de consulta')
 
 @section('content_header')
-    <h1>Consulting details</h1>
-@endsection
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+        <div>
+            <h1 class="mb-0">
+                {{ $consultation->name }} {{ $consultation->last_name }}
+            </h1>
+
+            <small class="text-muted">
+                Consulta #{{ $consultation->id }}
+            </small>
+        </div>
+
+        <div class="mt-2 mt-md-0">
+
+            <a
+                href="{{ route('consultas.pdf', $consultation->id) }}"
+                class="btn btn-info"
+                target="_blank"
+            >
+                <i class="fas fa-file-pdf mr-1"></i>
+                Imprimir resumen
+            </a>
+
+            <a
+                href="{{ route('consultas.index', $consultation->patient_id) }}"
+                class="btn btn-secondary"
+            >
+                <i class="fas fa-arrow-left mr-1"></i>
+                Regresar
+            </a>
+
+        </div>
+    </div>
+@stop
 
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            <h4 class="mb-3">Consult #{{ $consultation->id }}</h4>
 
-            <p><strong>Name:</strong> {{ $consultation->name }}</p>
-            <p><strong>Last Name:</strong> {{ $consultation->last_name }}</p>
-            <p><strong>Date of Birth:</strong> {{ $consultation->date_of_birth }}</p>
-            <p><strong>Phone:</strong> {{ $consultation->phone }}</p>
-            <p><strong>Email:</strong> {{ $consultation->email }}</p>
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="fas fa-check-circle mr-1"></i>
+            {{ session('success') }}
 
-            <h4 class="mt-4">Address</h4>
-            <p>{{ $consultation->address }}</p>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+    @endif
 
-            <h4 class="mt-4">How did you hear about us?</h4>
-            <p><strong>Referral Source:</strong> {{ $consultation->referral_source }}</p>
-            <p><strong>Other:</strong> {{ $consultation->referral_other }}</p>
+    <div class="row">
 
-            <h4 class="mt-4">Reason for Visit</h4>
-            <p><strong>Reason:</strong> {{ $consultation->reason }}</p>
-            <p><strong>Symptoms:</strong> {{ $consultation->symptoms }}</p>
+        {{-- COLUMNA PRINCIPAL --}}
+        <div class="col-lg-8">
 
-            <h4 class="mt-4">Which IV would you like to request?</h4>
-            <p><strong>IV Type:</strong> {{ $consultation->iv_type }}</p>
+            {{-- Datos personales --}}
+            <div class="card card-primary">
 
-            <h4 class="mt-4">Emergency contact</h4>
-            <p><strong>Name:</strong> {{ $consultation->emergency_name }}</p>
-            <p><strong>Relation:</strong> {{ $consultation->emergency_relationship }}</p>
-            <p><strong>Phone:</strong> {{ $consultation->emergency_phone }}</p>
-
-            <h4 class="mt-4">Medical History</h4>
-            <p><strong>Pregnant?:</strong> {{ $consultation->pregnant ? 'Sí' : 'No' }}</p>
-            <p><strong>Vitamin intolerance:</strong> {{ $consultation->vitamins_intolerance ? 'Sí' : 'No' }}</p>
-            <p><strong>Minerals intolerance:</strong> {{ $consultation->minerals_intolerance ? 'Sí' : 'No' }}</p>
-
-            <h4 class="mt-4">Allergies</h4>
-            <p><strong>Medications:</strong> {{ $consultation->allergy_medicine }}</p>
-            <p><strong>Food:</strong> {{ $consultation->allergy_food }}</p>
-            <p><strong>Reaction:</strong> {{ $consultation->reaction }}</p>
-
-            <h4 class="mt-4">Medications</h4>
-            <p>{{ $consultation->medications }}</p>
-
-            <h4 class="mt-4">Supplements</h4>
-            <p>{{ $consultation->supplements }}</p>
-
-            <div class="card mt-4">
-                <div class="card-header bg-secondary">
-                    <strong>Informed Consent</strong>
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-user mr-1"></i>
+                        Datos del paciente
+                    </h3>
                 </div>
+
                 <div class="card-body">
-                    <p style="white-space: pre-line;"><strong>Accepted:</strong>
-                        {{ $consultation->consent_accepted ? 'Yes' : 'No' }}</p>
-                    <!-- <p><strong>Signature:</strong> {{ $consultation->digital_signature }}</p>-->
-                    <p style="white-space: pre-line;"><strong>Authorized Procedure:</strong>
-                        {{ $consultation->authorized_procedure }}</p>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Nombre</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->name ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Apellidos</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->last_name ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Fecha de nacimiento</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->date_of_birth ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Teléfono</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->phone ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Correo electrónico</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->email ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Fecha de registro</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->registration_date ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-12">
+                            <strong>Dirección</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->address ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
-            <div class="card-header bg-primary">
-                <strong>Vital signs</strong>
-            </div>
-            <div class="card-body">
-                <h4 class="mt-4">Vital signs pre</h4>
-                <div class="row">
-                    <div class="col-md-3"><strong>Heart Rate:</strong> {{ $consultation->pre_heart_rate }}</div>
-                    <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->pre_oxygen_saturation }}%</div>
-                    <div class="col-md-3"><strong>Temperature:</strong> {{ $consultation->pre_temperature }} °C</div>
-                    <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $consultation->pre_blood_pressure }}</div>
+            {{-- Motivo de consulta --}}
+            <div class="card card-info">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-notes-medical mr-1"></i>
+                        Motivo de la consulta
+                    </h3>
                 </div>
 
-                <h4 class="mt-4">Vital signs post</h4>
-                <div class="row">
-                    <div class="col-md-3"><strong>Heart Rate:</strong> {{ $consultation->heart_rate }}</div>
-                    <div class="col-md-3"><strong>O₂ Saturation:</strong> {{ $consultation->oxygen_saturation }}%</div>
-                    <div class="col-md-3"><strong>Temperature:</strong> {{ $consultation->temperature }} °C</div>
-                    <div class="col-md-3"><strong>Blood Pressure:</strong> {{ $consultation->blood_pressure }}</div>
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-12 mb-3">
+                            <strong>Motivo de la visita</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->reason ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <strong>Síntomas</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->symptoms ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Tipo de suero solicitado</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->iv_type ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>¿Cómo conoció el servicio?</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->referral_source ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        @if ($consultation->referral_other)
+                            <div class="col-md-12">
+                                <strong>Otro medio de referencia</strong>
+
+                                <p class="text-muted mb-0">
+                                    {{ $consultation->referral_other }}
+                                </p>
+                            </div>
+                        @endif
+
+                    </div>
+
                 </div>
             </div>
 
-            @if ($consultation->treatment || $consultation->treatment_description || $consultation->treatment_formula)
-                <div class="card mt-4">
+            {{-- Contacto de emergencia --}}
+            <div class="card card-warning">
 
-                    <div class="card-header bg-primary">
-                        <strong>Treatment</strong>
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-phone-alt mr-1"></i>
+                        Contacto de emergencia
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <strong>Nombre</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->emergency_name ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <strong>Relación</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->emergency_relationship ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <strong>Teléfono</strong>
+
+                            <p class="text-muted mb-0">
+                                {{ $consultation->emergency_phone ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Historia médica --}}
+            <div class="card card-danger">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-heartbeat mr-1"></i>
+                        Historia médica
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <strong>¿Embarazo?</strong>
+
+                            <p class="mb-0 mt-1">
+                                @if ($consultation->pregnant)
+                                    <span class="badge badge-warning">Sí</span>
+                                @else
+                                    <span class="badge badge-success">No</span>
+                                @endif
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <strong>Intolerancia a vitaminas</strong>
+
+                            <p class="mb-0 mt-1">
+                                @if ($consultation->vitamins_intolerance)
+                                    <span class="badge badge-warning">Sí</span>
+                                @else
+                                    <span class="badge badge-success">No</span>
+                                @endif
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <strong>Intolerancia a minerales</strong>
+
+                            <p class="mb-0 mt-1">
+                                @if ($consultation->minerals_intolerance)
+                                    <span class="badge badge-warning">Sí</span>
+                                @else
+                                    <span class="badge badge-success">No</span>
+                                @endif
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <h5 class="mb-3">
+                        <i class="fas fa-allergies mr-1"></i>
+                        Alergias
+                    </h5>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Alergia a medicamentos</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->allergy_medicine ?: 'Ninguna registrada' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Alergia a alimentos</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->allergy_food ?: 'Ninguna registrada' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <strong>Reacción</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->reaction ?: 'Sin registrar' }}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Medicamentos actuales</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->medications ?: 'Ninguno registrado' }}
+                            </p>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <strong>Suplementos</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->supplements ?: 'Ninguno registrado' }}
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Signos vitales --}}
+            <div class="card card-success">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-stethoscope mr-1"></i>
+                        Signos vitales
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <h5 class="mb-3">
+                        Antes del procedimiento
+                    </h5>
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Frecuencia cardiaca
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->pre_heart_rate ?: '--' }}
+                                        <small>lpm</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-lungs"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Saturación O₂
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->pre_oxygen_saturation ?: '--' }}
+                                        <small>%</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-thermometer-half"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Temperatura
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->pre_temperature ?: '--' }}
+                                        <small>°C</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Presión arterial
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->pre_blood_pressure ?: '--' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <h5 class="mb-3">
+                        Después del procedimiento
+                    </h5>
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Frecuencia cardiaca
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->heart_rate ?: '--' }}
+                                        <small>lpm</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-lungs"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Saturación O₂
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->oxygen_saturation ?: '--' }}
+                                        <small>%</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-thermometer-half"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Temperatura
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->temperature ?: '--' }}
+                                        <small>°C</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-3">
+                            <div class="info-box bg-light">
+                                <span class="info-box-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">
+                                        Presión arterial
+                                    </span>
+
+                                    <span class="info-box-number">
+                                        {{ $consultation->blood_pressure ?: '--' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Tratamiento --}}
+            @if (
+                $consultation->treatment ||
+                $consultation->treatment_description ||
+                $consultation->treatment_formula
+            )
+
+                <div class="card card-primary">
+
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-syringe mr-1"></i>
+                            Tratamiento
+                        </h3>
                     </div>
 
                     <div class="card-body">
 
-                        <h4>{{ $consultation->treatment->name ?? '' }}</h4>
+                        <h4 class="mb-3">
+                            {{ $consultation->treatment->name ?? 'Tratamiento registrado' }}
+                        </h4>
 
-                        <hr>
+                        <div class="row">
 
-                        <strong>Description</strong>
+                            <div class="col-md-6 mb-3">
+                                <strong>Descripción</strong>
 
-                        <p style="white-space: pre-line;">
-                            {{ $consultation->treatment_description }}
-                        </p>
+                                <p class="text-muted mb-0" style="white-space: pre-line;">
+                                    {{ $consultation->treatment_description ?: 'Sin descripción' }}
+                                </p>
+                            </div>
 
-                        <br>
+                            <div class="col-md-6 mb-3">
+                                <strong>Fórmula</strong>
 
-                        <strong>Formula</strong>
+                                <p class="text-muted mb-0" style="white-space: pre-line;">
+                                    {{ $consultation->treatment_formula ?: 'Sin fórmula registrada' }}
+                                </p>
+                            </div>
 
-                        <p style="white-space: pre-line;">
-                            {{ $consultation->treatment_formula }}
-                        </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            @endif
+
+            {{-- Notas --}}
+            <div class="card card-secondary">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-clipboard mr-1"></i>
+                        Notas clínicas
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <p class="mb-0" style="white-space: pre-line;">
+                        {{ $consultation->notes ?: 'No se registraron notas para esta consulta.' }}
+                    </p>
+
+                </div>
+            </div>
+
+            {{-- Consentimiento --}}
+            <div class="card card-dark">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-file-signature mr-1"></i>
+                        Consentimiento informado
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <strong>Consentimiento aceptado</strong>
+
+                            <p class="mb-0 mt-1">
+                                @if ($consultation->consent_accepted)
+                                    <span class="badge badge-success">
+                                        Sí, aceptado
+                                    </span>
+                                @else
+                                    <span class="badge badge-danger">
+                                        No aceptado
+                                    </span>
+                                @endif
+                            </p>
+                        </div>
+
+                        <div class="col-md-8 mb-3">
+                            <strong>Procedimiento autorizado</strong>
+
+                            <p class="text-muted mb-0" style="white-space: pre-line;">
+                                {{ $consultation->authorized_procedure ?: 'Sin registrar' }}
+                            </p>
+                        </div>
 
                     </div>
 
                 </div>
-            @endif
-
-            <div class="card mt-4">
-
-                <div class="card-header bg-secondary">
-                    <strong>Notes</strong>
-                </div>
-
-                <div class="card-body">
-
-                    <p style="white-space: pre-line;">
-                        {{ $consultation->notes }}
-                    </p>
-
-                </div>
-
             </div>
-            <a href="{{ route('consultas.pdf', $consultation->id) }}" class="btn btn-info mt-3" target="_blank">
 
-                <i class="fas fa-file-pdf"></i>
-
-                Print Treatment Summary
-            </a>
-            @if ($consultation->patient->group)
-                <div class="callout callout-info">
-                    <h5>
-                        <i class="fas fa-users"></i>
-                        Patient belongs to the group
-                    </h5>
-
-                    <a href="{{ route('grupos.show', $consultation->patient->group->id) }}" class="btn btn-info btn-lg">
-                        {{ $consultation->patient->group->place }}
-                    </a>
-                </div>
-            @endif
-            <div class="card mt-4">
-                <div class="card-header bg-secondary">
-                    <strong>Registration date</strong>
-                </div>
-                <div class="card-body">
-                    <p style="white-space: pre-line;">{{ $consultation->registration_date }}</p>
-                </div>
-            </div>
         </div>
+
+        {{-- COLUMNA LATERAL --}}
+        <div class="col-lg-4">
+
+            {{-- Resumen --}}
+            <div class="card">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-clipboard-list mr-1"></i>
+                        Resumen
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="info-box bg-light">
+                        <span class="info-box-icon">
+                            <i class="fas fa-hashtag"></i>
+                        </span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">
+                                Número de consulta
+                            </span>
+
+                            <span class="info-box-number">
+                                #{{ $consultation->id }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="info-box bg-light">
+                        <span class="info-box-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">
+                                Fecha de registro
+                            </span>
+
+                            <span class="info-box-number">
+                                {{ $consultation->registration_date ?: 'Sin registrar' }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="info-box bg-light">
+                        <span class="info-box-icon">
+                            <i class="fas fa-user-injured"></i>
+                        </span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">
+                                Paciente
+                            </span>
+
+                            <span class="info-box-number">
+                                {{ $consultation->name }}
+                                {{ $consultation->last_name }}
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- Grupo --}}
+            @if ($consultation->patient && $consultation->patient->group)
+
+                <div class="card card-info">
+
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-users mr-1"></i>
+                            Grupo del paciente
+                        </h3>
+                    </div>
+
+                    <div class="card-body">
+
+                        <p class="mb-3">
+                            Este paciente pertenece al grupo:
+                        </p>
+
+                        <h5>
+                            {{ $consultation->patient->group->place }}
+                        </h5>
+
+                        <a
+                            href="{{ route('grupos.show', $consultation->patient->group->id) }}"
+                            class="btn btn-info btn-block"
+                        >
+                            <i class="fas fa-users mr-1"></i>
+                            Ver grupo
+                        </a>
+
+                    </div>
+                </div>
+
+            @endif
+
+            {{-- Acciones --}}
+            <div class="card">
+
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-tools mr-1"></i>
+                        Acciones
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <a
+                        href="{{ route('consultas.pdf', $consultation->id) }}"
+                        class="btn btn-info btn-block"
+                        target="_blank"
+                    >
+                        <i class="fas fa-file-pdf mr-1"></i>
+                        Imprimir resumen
+                    </a>
+
+                    @if (Route::has('consultas.edit'))
+                        <a
+                            href="{{ route('consultas.edit', $consultation->id) }}"
+                            class="btn btn-warning btn-block"
+                        >
+                            <i class="fas fa-edit mr-1"></i>
+                            Editar consulta
+                        </a>
+                    @endif
+
+                    @if ($consultation->patient && $consultation->patient->group)
+                        <a
+                            href="{{ route('grupos.show', $consultation->patient->group->id) }}"
+                            class="btn btn-secondary btn-block"
+                        >
+                            <i class="fas fa-arrow-left mr-1"></i>
+                            Regresar al grupo
+                        </a>
+                    @endif
+
+                    <a
+                        href="{{ route('consultas.index', $consultation->patient_id) }}"
+                        class="btn btn-secondary btn-block"
+                    >
+                        <i class="fas fa-list mr-1"></i>
+                        Historial de consultas
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-
-    @if ($consultation->patient->group)
-        <a href="{{ route('grupos.show', $consultation->patient->group->id) }}" class="btn btn-secondary">
-            Return to Group
-        </a>
-    @endif
-    <a href="{{ route('consultas.index', $consultation->patient_id) }}" class="btn btn-secondary mt-3">⬅️ Return to
-        list</a>
-@endsection
+@stop
