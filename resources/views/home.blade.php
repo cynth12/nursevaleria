@@ -733,16 +733,21 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
         }
 
-        .dashboard-hero {
-            overflow: hidden;
-            color: #ffffff;
-            border: 0;
-            border-radius: 15px;
-            background: linear-gradient(135deg,
-                    #007bff 0%,
-                    #17a2b8 100%);
-            box-shadow: 0 10px 28px rgba(0, 123, 255, .20);
-        }
+       .dashboard-hero {
+    overflow: hidden;
+    color: #ffffff;
+    border: 0;
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #2F4E78 0%,
+        #4E678C 45%,
+        #7E93B3 100%
+    );
+
+    box-shadow: 0 12px 30px rgba(47,78,120,.25);
+}
 
         .dashboard-hero .card-body {
             position: relative;
@@ -756,7 +761,7 @@
             width: 280px;
             height: 280px;
             content: '';
-            background-color: rgba(255, 255, 255, .08);
+            background: rgba(200,167,122,.12);
             border-radius: 50%;
         }
 
@@ -767,24 +772,15 @@
             width: 260px;
             height: 260px;
             content: '';
-            background-color: rgba(255, 255, 255, .05);
+            background: rgba(255,255,255,.06);
             border-radius: 50%;
         }
 
-        .hero-label {
-            position: relative;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            margin-bottom: 14px;
-            padding: 6px 12px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            background-color: rgba(255, 255, 255, .17);
-            border-radius: 20px;
-        }
+        .hero-label{
+    background: rgba(200,167,122,.20);
+    color:#fff;
+    border:1px solid rgba(200,167,122,.35);
+}
 
         .dashboard-hero h2 {
             position: relative;
@@ -804,14 +800,11 @@
             opacity: .92;
         }
 
-        .hero-actions {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
+       .hero-actions .btn-light{
+    background:#F7F3EC;
+    color:#2F4E78;
+    border:none;
+}
         .hero-actions .btn {
             min-width: 145px;
             padding: 9px 15px;
@@ -842,6 +835,8 @@
             border: 7px solid rgba(255, 255, 255, .92);
             border-radius: 50%;
         }
+
+        
 
         .section-heading {
             margin: 29px 0 15px;
