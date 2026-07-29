@@ -45,7 +45,7 @@
 @endif
 
 <div class="container">
-    <img src="{{ asset('img/formulario.png') }}" class="form-header-image"><br>
+    <img src="{{ asset('img/logo.png') }}" class="form-header-image"><br>
 
     <form action="{{ route('patient.form.store') }}" method="POST">
         @csrf

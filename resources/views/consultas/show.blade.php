@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalle de consulta')
+@section('title', 'Consultation Details')
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -11,7 +11,7 @@
             </h1>
 
             <small class="text-muted">
-                Consulta #{{ $consultation->id }}
+                Consultation #{{ $consultation->id }}
             </small>
         </div>
 
@@ -23,7 +23,7 @@
                 target="_blank"
             >
                 <i class="fas fa-file-pdf mr-1"></i>
-                Imprimir resumen
+                Print Summary
             </a>
 
             <a
@@ -31,7 +31,7 @@
                 class="btn btn-secondary"
             >
                 <i class="fas fa-arrow-left mr-1"></i>
-                Regresar
+                Back
             </a>
 
         </div>
@@ -53,16 +53,16 @@
 
     <div class="row">
 
-        {{-- COLUMNA PRINCIPAL --}}
+        {{-- MAIN COLUMN --}}
         <div class="col-lg-8">
 
-            {{-- Datos personales --}}
+            {{-- Patient information --}}
             <div class="card card-primary">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-user mr-1"></i>
-                        Datos del paciente
+                        Patient Information
                     </h3>
                 </div>
 
@@ -71,58 +71,58 @@
                     <div class="row">
 
                         <div class="col-md-6 mb-3">
-                            <strong>Nombre</strong>
+                            <strong>First Name</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->name ?: 'Sin registrar' }}
+                                {{ $consultation->name ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Apellidos</strong>
+                            <strong>Last Name</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->last_name ?: 'Sin registrar' }}
+                                {{ $consultation->last_name ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Fecha de nacimiento</strong>
+                            <strong>Date of Birth</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->date_of_birth ?: 'Sin registrar' }}
+                                {{ $consultation->date_of_birth ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Teléfono</strong>
+                            <strong>Phone Number</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->phone ?: 'Sin registrar' }}
+                                {{ $consultation->phone ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Correo electrónico</strong>
+                            <strong>Email Address</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->email ?: 'Sin registrar' }}
+                                {{ $consultation->email ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Fecha de registro</strong>
+                            <strong>Registration Date</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->registration_date ?: 'Sin registrar' }}
+                                {{ $consultation->registration_date ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-12">
-                            <strong>Dirección</strong>
+                            <strong>Address</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->address ?: 'Sin registrar' }}
+                                {{ $consultation->address ?: 'Not provided' }}
                             </p>
                         </div>
 
@@ -131,13 +131,13 @@
                 </div>
             </div>
 
-            {{-- Motivo de consulta --}}
+            {{-- Reason for consultation --}}
             <div class="card card-info">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-notes-medical mr-1"></i>
-                        Motivo de la consulta
+                        Reason for Consultation
                     </h3>
                 </div>
 
@@ -146,40 +146,40 @@
                     <div class="row">
 
                         <div class="col-md-12 mb-3">
-                            <strong>Motivo de la visita</strong>
+                            <strong>Reason for Visit</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->reason ?: 'Sin registrar' }}
+                                {{ $consultation->reason ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-12 mb-3">
-                            <strong>Síntomas</strong>
+                            <strong>Symptoms</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->symptoms ?: 'Sin registrar' }}
+                                {{ $consultation->symptoms ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Tipo de suero solicitado</strong>
+                            <strong>Requested IV Treatment</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->iv_type ?: 'Sin registrar' }}
+                                {{ $consultation->iv_type ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>¿Cómo conoció el servicio?</strong>
+                            <strong>How Did You Hear About Us?</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->referral_source ?: 'Sin registrar' }}
+                                {{ $consultation->referral_source ?: 'Not provided' }}
                             </p>
                         </div>
 
                         @if ($consultation->referral_other)
                             <div class="col-md-12">
-                                <strong>Otro medio de referencia</strong>
+                                <strong>Other Referral Source</strong>
 
                                 <p class="text-muted mb-0">
                                     {{ $consultation->referral_other }}
@@ -192,13 +192,13 @@
                 </div>
             </div>
 
-            {{-- Contacto de emergencia --}}
+            {{-- Emergency contact --}}
             <div class="card card-warning">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-phone-alt mr-1"></i>
-                        Contacto de emergencia
+                        Emergency Contact
                     </h3>
                 </div>
 
@@ -207,26 +207,26 @@
                     <div class="row">
 
                         <div class="col-md-4 mb-3">
-                            <strong>Nombre</strong>
+                            <strong>Name</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->emergency_name ?: 'Sin registrar' }}
+                                {{ $consultation->emergency_name ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <strong>Relación</strong>
+                            <strong>Relationship</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->emergency_relationship ?: 'Sin registrar' }}
+                                {{ $consultation->emergency_relationship ?: 'Not provided' }}
                             </p>
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <strong>Teléfono</strong>
+                            <strong>Phone Number</strong>
 
                             <p class="text-muted mb-0">
-                                {{ $consultation->emergency_phone ?: 'Sin registrar' }}
+                                {{ $consultation->emergency_phone ?: 'Not provided' }}
                             </p>
                         </div>
 
@@ -235,13 +235,13 @@
                 </div>
             </div>
 
-            {{-- Historia médica --}}
+            {{-- Medical history --}}
             <div class="card card-danger">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-heartbeat mr-1"></i>
-                        Historia médica
+                        Medical History
                     </h3>
                 </div>
 
@@ -250,11 +250,11 @@
                     <div class="row">
 
                         <div class="col-md-4 mb-3">
-                            <strong>¿Embarazo?</strong>
+                            <strong>Pregnant?</strong>
 
                             <p class="mb-0 mt-1">
                                 @if ($consultation->pregnant)
-                                    <span class="badge badge-warning">Sí</span>
+                                    <span class="badge badge-warning">Yes</span>
                                 @else
                                     <span class="badge badge-success">No</span>
                                 @endif
@@ -262,11 +262,11 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <strong>Intolerancia a vitaminas</strong>
+                            <strong>Vitamin Intolerance</strong>
 
                             <p class="mb-0 mt-1">
                                 @if ($consultation->vitamins_intolerance)
-                                    <span class="badge badge-warning">Sí</span>
+                                    <span class="badge badge-warning">Yes</span>
                                 @else
                                     <span class="badge badge-success">No</span>
                                 @endif
@@ -274,11 +274,11 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <strong>Intolerancia a minerales</strong>
+                            <strong>Mineral Intolerance</strong>
 
                             <p class="mb-0 mt-1">
                                 @if ($consultation->minerals_intolerance)
-                                    <span class="badge badge-warning">Sí</span>
+                                    <span class="badge badge-warning">Yes</span>
                                 @else
                                     <span class="badge badge-success">No</span>
                                 @endif
@@ -291,32 +291,32 @@
 
                     <h5 class="mb-3">
                         <i class="fas fa-allergies mr-1"></i>
-                        Alergias
+                        Allergies
                     </h5>
 
                     <div class="row">
 
                         <div class="col-md-6 mb-3">
-                            <strong>Alergia a medicamentos</strong>
+                            <strong>Medication Allergies</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->allergy_medicine ?: 'Ninguna registrada' }}
+                                {{ $consultation->allergy_medicine ?: 'None reported' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Alergia a alimentos</strong>
+                            <strong>Food Allergies</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->allergy_food ?: 'Ninguna registrada' }}
+                                {{ $consultation->allergy_food ?: 'None reported' }}
                             </p>
                         </div>
 
                         <div class="col-md-12 mb-3">
-                            <strong>Reacción</strong>
+                            <strong>Allergic Reaction</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->reaction ?: 'Sin registrar' }}
+                                {{ $consultation->reaction ?: 'Not provided' }}
                             </p>
                         </div>
 
@@ -327,18 +327,18 @@
                     <div class="row">
 
                         <div class="col-md-6 mb-3">
-                            <strong>Medicamentos actuales</strong>
+                            <strong>Current Medications</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->medications ?: 'Ninguno registrado' }}
+                                {{ $consultation->medications ?: 'None reported' }}
                             </p>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <strong>Suplementos</strong>
+                            <strong>Supplements</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->supplements ?: 'Ninguno registrado' }}
+                                {{ $consultation->supplements ?: 'None reported' }}
                             </p>
                         </div>
 
@@ -347,20 +347,20 @@
                 </div>
             </div>
 
-            {{-- Signos vitales --}}
+            {{-- Vital signs --}}
             <div class="card card-success">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-stethoscope mr-1"></i>
-                        Signos vitales
+                        Vital Signs
                     </h3>
                 </div>
 
                 <div class="card-body">
 
                     <h5 class="mb-3">
-                        Antes del procedimiento
+                        Before the Procedure
                     </h5>
 
                     <div class="row">
@@ -373,12 +373,12 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Frecuencia cardiaca
+                                        Heart Rate
                                     </span>
 
                                     <span class="info-box-number">
                                         {{ $consultation->pre_heart_rate ?: '--' }}
-                                        <small>lpm</small>
+                                        <small>bpm</small>
                                     </span>
                                 </div>
                             </div>
@@ -392,7 +392,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Saturación O₂
+                                        Oxygen Saturation
                                     </span>
 
                                     <span class="info-box-number">
@@ -411,7 +411,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Temperatura
+                                        Temperature
                                     </span>
 
                                     <span class="info-box-number">
@@ -430,7 +430,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Presión arterial
+                                        Blood Pressure
                                     </span>
 
                                     <span class="info-box-number">
@@ -445,7 +445,7 @@
                     <hr>
 
                     <h5 class="mb-3">
-                        Después del procedimiento
+                        After the Procedure
                     </h5>
 
                     <div class="row">
@@ -458,12 +458,12 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Frecuencia cardiaca
+                                        Heart Rate
                                     </span>
 
                                     <span class="info-box-number">
                                         {{ $consultation->heart_rate ?: '--' }}
-                                        <small>lpm</small>
+                                        <small>bpm</small>
                                     </span>
                                 </div>
                             </div>
@@ -477,7 +477,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Saturación O₂
+                                        Oxygen Saturation
                                     </span>
 
                                     <span class="info-box-number">
@@ -496,7 +496,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Temperatura
+                                        Temperature
                                     </span>
 
                                     <span class="info-box-number">
@@ -515,7 +515,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">
-                                        Presión arterial
+                                        Blood Pressure
                                     </span>
 
                                     <span class="info-box-number">
@@ -530,7 +530,7 @@
                 </div>
             </div>
 
-            {{-- Tratamiento --}}
+            {{-- Treatment --}}
             @if (
                 $consultation->treatment ||
                 $consultation->treatment_description ||
@@ -542,31 +542,31 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="fas fa-syringe mr-1"></i>
-                            Tratamiento
+                            Treatment
                         </h3>
                     </div>
 
                     <div class="card-body">
 
                         <h4 class="mb-3">
-                            {{ $consultation->treatment->name ?? 'Tratamiento registrado' }}
+                            {{ $consultation->treatment->name ?? 'Recorded Treatment' }}
                         </h4>
 
                         <div class="row">
 
                             <div class="col-md-6 mb-3">
-                                <strong>Descripción</strong>
+                                <strong>Description</strong>
 
                                 <p class="text-muted mb-0" style="white-space: pre-line;">
-                                    {{ $consultation->treatment_description ?: 'Sin descripción' }}
+                                    {{ $consultation->treatment_description ?: 'No description provided' }}
                                 </p>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <strong>Fórmula</strong>
+                                <strong>Formula</strong>
 
                                 <p class="text-muted mb-0" style="white-space: pre-line;">
-                                    {{ $consultation->treatment_formula ?: 'Sin fórmula registrada' }}
+                                    {{ $consultation->treatment_formula ?: 'No formula provided' }}
                                 </p>
                             </div>
 
@@ -577,32 +577,32 @@
 
             @endif
 
-            {{-- Notas --}}
+            {{-- Notes --}}
             <div class="card card-secondary">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-clipboard mr-1"></i>
-                        Notas clínicas
+                        Clinical Notes
                     </h3>
                 </div>
 
                 <div class="card-body">
 
                     <p class="mb-0" style="white-space: pre-line;">
-                        {{ $consultation->notes ?: 'No se registraron notas para esta consulta.' }}
+                        {{ $consultation->notes ?: 'No clinical notes were recorded for this consultation.' }}
                     </p>
 
                 </div>
             </div>
 
-            {{-- Consentimiento --}}
+            {{-- Informed consent --}}
             <div class="card card-dark">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-file-signature mr-1"></i>
-                        Consentimiento informado
+                        Informed Consent
                     </h3>
                 </div>
 
@@ -611,26 +611,26 @@
                     <div class="row">
 
                         <div class="col-md-4 mb-3">
-                            <strong>Consentimiento aceptado</strong>
+                            <strong>Consent Accepted</strong>
 
                             <p class="mb-0 mt-1">
                                 @if ($consultation->consent_accepted)
                                     <span class="badge badge-success">
-                                        Sí, aceptado
+                                        Yes, Accepted
                                     </span>
                                 @else
                                     <span class="badge badge-danger">
-                                        No aceptado
+                                        Not Accepted
                                     </span>
                                 @endif
                             </p>
                         </div>
 
                         <div class="col-md-8 mb-3">
-                            <strong>Procedimiento autorizado</strong>
+                            <strong>Authorized Procedure</strong>
 
                             <p class="text-muted mb-0" style="white-space: pre-line;">
-                                {{ $consultation->authorized_procedure ?: 'Sin registrar' }}
+                                {{ $consultation->authorized_procedure ?: 'Not provided' }}
                             </p>
                         </div>
 
@@ -641,16 +641,16 @@
 
         </div>
 
-        {{-- COLUMNA LATERAL --}}
+        {{-- SIDEBAR --}}
         <div class="col-lg-4">
 
-            {{-- Resumen --}}
+            {{-- Summary --}}
             <div class="card">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-clipboard-list mr-1"></i>
-                        Resumen
+                        Summary
                     </h3>
                 </div>
 
@@ -663,7 +663,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">
-                                Número de consulta
+                                Consultation Number
                             </span>
 
                             <span class="info-box-number">
@@ -679,11 +679,11 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">
-                                Fecha de registro
+                                Registration Date
                             </span>
 
                             <span class="info-box-number">
-                                {{ $consultation->registration_date ?: 'Sin registrar' }}
+                                {{ $consultation->registration_date ?: 'Not provided' }}
                             </span>
                         </div>
                     </div>
@@ -695,7 +695,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">
-                                Paciente
+                                Patient
                             </span>
 
                             <span class="info-box-number">
@@ -708,7 +708,7 @@
                 </div>
             </div>
 
-            {{-- Grupo --}}
+            {{-- Patient group --}}
             @if ($consultation->patient && $consultation->patient->group)
 
                 <div class="card card-info">
@@ -716,14 +716,14 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="fas fa-users mr-1"></i>
-                            Grupo del paciente
+                            Patient Group
                         </h3>
                     </div>
 
                     <div class="card-body">
 
                         <p class="mb-3">
-                            Este paciente pertenece al grupo:
+                            This patient belongs to the following group:
                         </p>
 
                         <h5>
@@ -735,7 +735,7 @@
                             class="btn btn-info btn-block"
                         >
                             <i class="fas fa-users mr-1"></i>
-                            Ver grupo
+                            View Group
                         </a>
 
                     </div>
@@ -743,13 +743,13 @@
 
             @endif
 
-            {{-- Acciones --}}
+            {{-- Actions --}}
             <div class="card">
 
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-tools mr-1"></i>
-                        Acciones
+                        Actions
                     </h3>
                 </div>
 
@@ -761,7 +761,7 @@
                         target="_blank"
                     >
                         <i class="fas fa-file-pdf mr-1"></i>
-                        Imprimir resumen
+                        Print Summary
                     </a>
 
                     @if (Route::has('consultas.edit'))
@@ -770,7 +770,7 @@
                             class="btn btn-warning btn-block"
                         >
                             <i class="fas fa-edit mr-1"></i>
-                            Editar consulta
+                            Edit Consultation
                         </a>
                     @endif
 
@@ -780,7 +780,7 @@
                             class="btn btn-secondary btn-block"
                         >
                             <i class="fas fa-arrow-left mr-1"></i>
-                            Regresar al grupo
+                            Return to Group
                         </a>
                     @endif
 
@@ -789,7 +789,7 @@
                         class="btn btn-secondary btn-block"
                     >
                         <i class="fas fa-list mr-1"></i>
-                        Historial de consultas
+                        Consultation History
                     </a>
 
                 </div>
