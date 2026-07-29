@@ -1,73 +1,820 @@
 @extends('adminlte::page')
 
-@section('title','Editar Tratamiento')
+@section('title', 'Edit Treatment')
+
+@section('content_header')
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+        <div>
+
+            <h1 class="mb-0">
+                Edit Treatment
+            </h1>
+
+            <small class="text-muted">
+                Update the treatment information and clinical formula
+            </small>
+
+        </div>
+
+        <div class="d-flex flex-wrap mt-2 mt-md-0">
+
+            <a href="{{ route('treatments.show', $treatment) }}"
+               class="btn btn-outline-info mr-2">
+
+                <i class="fas fa-eye mr-1"></i>
+                View Treatment
+
+            </a>
+
+            <a href="{{ route('treatments.index') }}"
+               class="btn btn-outline-secondary">
+
+                <i class="fas fa-arrow-left mr-1"></i>
+                Back to Treatments
+
+            </a>
+
+        </div>
+
+    </div>
+
+@stop
 
 @section('content')
 
-<div class="card">
+    {{-- VALIDATION ERRORS --}}
+    @if ($errors->any())
 
-<div class="card-header">
+        <div class="alert alert-danger alert-dismissible fade show">
 
-Editar Treatments
+            <div class="d-flex align-items-start">
 
-</div>
+                <i class="fas fa-exclamation-triangle mr-2 mt-1"></i>
 
-<div class="card-body">
+                <div>
 
-<form
-action="{{ route('treatments.update',$treatment) }}"
-method="POST">
+                    <strong>
+                        Please review the following information:
+                    </strong>
 
-@csrf
-@method('PUT')
+                    <ul class="mb-0 mt-2 pl-3">
 
-<div class="form-group mb-3">
+                        @foreach ($errors->all() as $error)
 
-<label>Name</label>
+                            <li>
+                                {{ $error }}
+                            </li>
 
-<input
-type="text"
-name="name"
-value="{{ $treatment->name }}"
-class="form-control">
+                        @endforeach
 
-</div>
+                    </ul>
 
-<div class="form-group mb-3">
+                </div>
 
-<label>Description</label>
+            </div>
 
-<input
-type="text"
-name="description"
-value="{{ $treatment->description }}"
-class="form-control">
+            <button type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close">
 
-</div>
+                <span aria-hidden="true">&times;</span>
 
-<div class="form-group">
+            </button>
 
-<label>Fórmula</label>
+        </div>
 
-<textarea
-name="formula"
-rows="15"
-class="form-control">{{ $treatment->formula }}</textarea>
+    @endif
 
-</div>
+    <div class="row">
 
-<br>
+        {{-- EDIT FORM --}}
+        <div class="col-lg-8">
 
-<button class="btn btn-primary">
+            <form action="{{ route('treatments.update', $treatment) }}"
+                  method="POST"
+                  id="treatment-form">
 
-Save
+                @csrf
+                @method('PUT')
 
-</button>
+                {{-- GENERAL INFORMATION --}}
+                <div class="card treatment-form-card">
 
-</form>
+                    <div class="card-header border-0">
 
-</div>
+                        <h3 class="card-title font-weight-bold">
 
-</div>
+                            <i class="fas fa-capsules text-info mr-2"></i>
+
+                            Treatment Information
+
+                        </h3>
+
+                        <div class="mt-1">
+
+                            <small class="text-muted">
+                                Update the name and description of the treatment
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        {{-- NAME --}}
+                        <div class="form-group">
+
+                            <label for="name">
+
+                                Treatment Name
+
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text">
+
+                                        <i class="fas fa-syringe"></i>
+
+                                    </span>
+
+                                </div>
+
+                                <input type="text"
+                                       name="name"
+                                       id="name"
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       value="{{ old('name', $treatment->name) }}"
+                                       placeholder="Enter treatment name"
+                                       maxlength="255"
+                                       required
+                                       autofocus>
+
+                                @error('name')
+
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+
+                                @enderror
+
+                            </div>
+
+                            <small class="form-text text-muted">
+                                Use a clear and recognizable name for the treatment.
+                            </small>
+
+                        </div>
+
+                        {{-- DESCRIPTION --}}
+                        <div class="form-group mb-0">
+
+                            <label for="description">
+                                Description
+                            </label>
+
+                            <div class="input-group">
+
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text textarea-icon">
+
+                                        <i class="fas fa-align-left"></i>
+
+                                    </span>
+
+                                </div>
+
+                                <textarea name="description"
+                                          id="description"
+                                          rows="4"
+                                          class="form-control @error('description') is-invalid @enderror"
+                                          placeholder="Describe the treatment, purpose or indications">{{ old('description', $treatment->description) }}</textarea>
+
+                                @error('description')
+
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+
+                                @enderror
+
+                            </div>
+
+                            <div class="field-counter">
+
+                                <small class="text-muted">
+                                    Optional treatment description
+                                </small>
+
+                                <small class="text-muted"
+                                       id="description-counter">
+                                    0 characters
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {{-- FORMULA --}}
+                <div class="card formula-card">
+
+                    <div class="card-header border-0">
+
+                        <h3 class="card-title font-weight-bold">
+
+                            <i class="fas fa-flask text-success mr-2"></i>
+
+                            Treatment Formula
+
+                        </h3>
+
+                        <div class="mt-1">
+
+                            <small class="text-muted">
+                                Update ingredients, quantities and administration details
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="form-group mb-0">
+
+                            <label for="formula">
+
+                                Formula
+
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            <textarea name="formula"
+                                      id="formula"
+                                      rows="12"
+                                      class="form-control formula-textarea @error('formula') is-invalid @enderror"
+                                      placeholder="Example:
+
+Vitamin C ............... 1 g
+Magnesium ............... 500 mg
+Normal saline ........... 500 ml
+
+Administration instructions..."
+                                      required>{{ old('formula', $treatment->formula) }}</textarea>
+
+                            @error('formula')
+
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+
+                            @enderror
+
+                            <div class="field-counter">
+
+                                <small class="text-muted">
+
+                                    <i class="fas fa-info-circle mr-1"></i>
+
+                                    Include ingredients, dosage and administration instructions.
+
+                                </small>
+
+                                <small class="text-muted"
+                                       id="formula-counter">
+                                    0 characters
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {{-- ACTIONS --}}
+                <div class="form-actions">
+
+                    <a href="{{ route('treatments.show', $treatment) }}"
+                       class="btn btn-outline-secondary">
+
+                        <i class="fas fa-times mr-1"></i>
+                        Cancel
+
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-primary"
+                            id="save-treatment-button">
+
+                        <span class="button-content">
+
+                            <i class="fas fa-save mr-1"></i>
+                            Save Changes
+
+                        </span>
+
+                        <span class="button-loading d-none">
+
+                            <span class="spinner-border spinner-border-sm mr-2"
+                                  role="status"
+                                  aria-hidden="true">
+                            </span>
+
+                            Saving...
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        {{-- SIDEBAR --}}
+        <div class="col-lg-4">
+
+            <div class="card treatment-summary-card">
+
+                <div class="card-header border-0">
+
+                    <h3 class="card-title font-weight-bold">
+
+                        <i class="fas fa-clipboard-check text-info mr-2"></i>
+
+                        Treatment Summary
+
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="summary-icon">
+
+                        <i class="fas fa-syringe"></i>
+
+                    </div>
+
+                    <div class="summary-field">
+
+                        <small>
+                            Treatment ID
+                        </small>
+
+                        <strong>
+                            #{{ $treatment->id }}
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-field">
+
+                        <small>
+                            Treatment Name
+                        </small>
+
+                        <strong id="summary-name">
+                            {{ $treatment->name }}
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-field">
+
+                        <small>
+                            Description
+                        </small>
+
+                        <strong id="summary-description">
+                            {{ $treatment->description ?: 'Not entered' }}
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-field">
+
+                        <small>
+                            Formula
+                        </small>
+
+                        <strong id="summary-formula">
+                            {{ $treatment->formula ?: 'Not entered' }}
+                        </strong>
+
+                    </div>
+
+                    @if ($treatment->updated_at)
+
+                        <div class="summary-field">
+
+                            <small>
+                                Last Updated
+                            </small>
+
+                            <strong>
+                                {{ $treatment->updated_at->format('M d, Y h:i A') }}
+                            </strong>
+
+                        </div>
+
+                    @endif
+
+                    <div class="update-information">
+
+                        <i class="fas fa-info-circle"></i>
+
+                        <div>
+
+                            <strong>
+                                Updating treatment
+                            </strong>
+
+                            <p>
+                                Changes will be reflected when this treatment
+                                is selected in future consultations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card help-card">
+
+                <div class="card-body">
+
+                    <div class="help-title">
+
+                        <i class="fas fa-lightbulb"></i>
+
+                        <strong>
+                            Helpful Tip
+                        </strong>
+
+                    </div>
+
+                    <p>
+                        Review the formula carefully before saving changes,
+                        especially ingredient quantities and administration
+                        instructions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+@stop
+
+@section('css')
+
+    <style>
+
+        .treatment-form-card,
+        .formula-card,
+        .treatment-summary-card,
+        .help-card {
+            overflow: hidden;
+            border: 0;
+            border-radius: 9px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, .07);
+        }
+
+        .treatment-form-card {
+            border-top: 3px solid #17a2b8;
+        }
+
+        .formula-card {
+            border-top: 3px solid #28a745;
+        }
+
+        .treatment-summary-card {
+            position: sticky;
+            top: 75px;
+            border-top: 3px solid #007bff;
+        }
+
+        .help-card {
+            border-left: 4px solid #ffc107;
+        }
+
+        .form-group label {
+            color: #343a40;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .input-group-text {
+            min-width: 47px;
+            justify-content: center;
+            color: #17a2b8;
+            background-color: #f4f6f9;
+        }
+
+        .textarea-icon {
+            align-items: flex-start;
+            padding-top: 12px;
+        }
+
+        .form-control {
+            border-color: #d7dde1;
+        }
+
+        .form-control:focus {
+            border-color: #17a2b8;
+            box-shadow: 0 0 0 .2rem rgba(23, 162, 184, .12);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+        }
+
+        .formula-textarea {
+            min-height: 280px;
+            padding: 18px;
+            font-family:
+                SFMono-Regular,
+                Menlo,
+                Monaco,
+                Consolas,
+                "Liberation Mono",
+                "Courier New",
+                monospace;
+            font-size: 13px;
+            line-height: 1.65;
+            background-color: #fbfcfd;
+        }
+
+        .field-counter {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 7px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 9px;
+            margin-bottom: 25px;
+        }
+
+        .form-actions .btn {
+            min-width: 135px;
+        }
+
+        .summary-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 78px;
+            height: 78px;
+            margin: 5px auto 24px;
+            color: #ffffff;
+            font-size: 30px;
+            background: linear-gradient(
+                135deg,
+                #17a2b8,
+                #007bff
+            );
+            border-radius: 50%;
+            box-shadow: 0 7px 17px rgba(0, 123, 255, .22);
+        }
+
+        .summary-field {
+            padding: 12px 0;
+            border-bottom: 1px solid #edf0f2;
+        }
+
+        .summary-field:last-of-type {
+            border-bottom: 0;
+        }
+
+        .summary-field small,
+        .summary-field strong {
+            display: block;
+        }
+
+        .summary-field small {
+            margin-bottom: 4px;
+            color: #868e96;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .summary-field strong {
+            display: -webkit-box;
+            overflow: hidden;
+            color: #343a40;
+            font-size: 13px;
+            line-height: 1.5;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+
+        .update-information {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 20px;
+            padding: 13px;
+            color: #0c5460;
+            background-color: #dff5f8;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+        }
+
+        .update-information > i {
+            margin-top: 3px;
+            margin-right: 10px;
+        }
+
+        .update-information strong,
+        .update-information p {
+            display: block;
+        }
+
+        .update-information strong {
+            font-size: 12px;
+        }
+
+        .update-information p {
+            margin: 3px 0 0;
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+        .help-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #856404;
+        }
+
+        .help-title i {
+            margin-right: 8px;
+        }
+
+        .help-card p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 991.98px) {
+
+            .treatment-summary-card {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 767.98px) {
+
+            .field-counter {
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+
+            .formula-textarea {
+                min-height: 240px;
+            }
+
+        }
+
+    </style>
+
+@stop
+
+@section('js')
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const treatmentForm =
+                document.getElementById('treatment-form');
+
+            const nameInput =
+                document.getElementById('name');
+
+            const descriptionInput =
+                document.getElementById('description');
+
+            const formulaInput =
+                document.getElementById('formula');
+
+            const summaryName =
+                document.getElementById('summary-name');
+
+            const summaryDescription =
+                document.getElementById('summary-description');
+
+            const summaryFormula =
+                document.getElementById('summary-formula');
+
+            const descriptionCounter =
+                document.getElementById('description-counter');
+
+            const formulaCounter =
+                document.getElementById('formula-counter');
+
+            const saveButton =
+                document.getElementById('save-treatment-button');
+
+            function updateSummary() {
+
+                summaryName.textContent =
+                    nameInput.value.trim() || 'Not entered';
+
+                summaryDescription.textContent =
+                    descriptionInput.value.trim() || 'Not entered';
+
+                summaryFormula.textContent =
+                    formulaInput.value.trim() || 'Not entered';
+
+            }
+
+            function updateCounters() {
+
+                descriptionCounter.textContent =
+                    descriptionInput.value.length + ' characters';
+
+                formulaCounter.textContent =
+                    formulaInput.value.length + ' characters';
+
+            }
+
+            [
+                nameInput,
+                descriptionInput,
+                formulaInput
+            ].forEach(function (input) {
+
+                input.addEventListener('input', function () {
+
+                    updateSummary();
+                    updateCounters();
+
+                });
+
+            });
+
+            treatmentForm.addEventListener('submit', function () {
+
+                saveButton.disabled = true;
+
+                saveButton
+                    .querySelector('.button-content')
+                    .classList
+                    .add('d-none');
+
+                saveButton
+                    .querySelector('.button-loading')
+                    .classList
+                    .remove('d-none');
+
+            });
+
+            updateSummary();
+            updateCounters();
+
+        });
+
+    </script>
 
 @stop
