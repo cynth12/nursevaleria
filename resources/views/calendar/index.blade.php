@@ -204,75 +204,70 @@
 
         <div class="card-body">
 
-            <form method="GET"
-                  id="calendar-year-form">
+           <form method="GET"
+      id="calendar-year-form">
 
-                <div class="row align-items-end">
+    <div class="row align-items-end">
 
-                    <div class="col-md-4 col-lg-3">
+        <div class="col-md-4 col-lg-3">
 
-                        <div class="form-group mb-md-0">
+            <div class="form-group mb-md-0">
 
-                            <label for="year">
+                <label for="year">
+                    Year
+                </label>
 
-                                Year
+                <div class="input-group">
 
-                            </label>
+                    <div class="input-group-prepend">
 
-                            <div class="input-group">
-
-                                <div class="input-group-prepend">
-
-                                    <span class="input-group-text">
-
-                                        <i class="far fa-calendar-alt"></i>
-
-                                    </span>
-
-                                </div>
-
-                                <select name="year"
-                                        id="year"
-                                        class="form-control"
-                                        onchange="submitCalendarYear()">
-
-                                    @for ($y = 2026; $y <= date('Y') + 10; $y++)
-
-                                        <option value="{{ $y }}"
-                                            {{ $year == $y ? 'selected' : '' }}>
-
-                                            {{ $y }}
-
-                                        </option>
-
-                                    @endfor
-
-                                </select>
-
-                            </div>
-
-                        </div>
+                        <span class="input-group-text">
+                            <i class="far fa-calendar-alt"></i>
+                        </span>
 
                     </div>
 
-                    <div class="col-md-8 col-lg-9">
+                    <select name="year"
+                            id="year"
+                            class="form-control"
+                            onchange="this.form.submit()">
 
-                        <div class="year-filter-help">
+                        @for ($y = 2026; $y <= date('Y') + 10; $y++)
 
-                            <i class="fas fa-info-circle"></i>
+                            <option value="{{ $y }}"
+                                {{ (int) $year === $y ? 'selected' : '' }}>
 
-                            <span>
-                                The calendar updates automatically when you select another year.
-                            </span>
+                                {{ $y }}
 
-                        </div>
+                            </option>
 
-                    </div>
+                        @endfor
+
+                    </select>
 
                 </div>
 
-            </form>
+            </div>
 
+        </div>
+
+        <div class="col-md-8 col-lg-9">
+
+            <div class="year-filter-help">
+
+                <i class="fas fa-info-circle"></i>
+
+                <span>
+                    The calendar updates automatically when you select another year.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
         </div>
 
     </div>
