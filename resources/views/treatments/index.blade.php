@@ -166,7 +166,7 @@
 
                         Treatment Catalog
 
-                    </h3>
+                    </h3><br>
 
                     <div class="mt-1">
 

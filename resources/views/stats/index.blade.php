@@ -195,7 +195,7 @@
 
                                 Monthly Activity
 
-                            </h3>
+                            </h3><br>
 
                             <div class="mt-1">
 
@@ -386,7 +386,7 @@
 
                 Annual Trend
 
-            </h3>
+            </h3><br>
 
             <div class="mt-1">
 
