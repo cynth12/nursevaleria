@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_shift_nurse',
+        'is_active',
     ];
 
     /**

@@ -14,6 +14,7 @@ use App\Http\Controllers\StatsController;
 use App\Http\Controllers\ImportFileController;
 use App\Http\Controllers\TreatmentController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
@@ -172,6 +173,33 @@ Route::delete('/treatments/{treatment}', [TreatmentController::class, 'destroy']
 Route::get('/consultas/{consultation}/pdf', [ConsultationController::class, 'pdf'])
     ->name('consultas.pdf');
 
+
+    //USUARIOS//
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/users', [UserController::class, 'index'])
+        ->name('users.index');
+
+    Route::get('/users/create', [UserController::class, 'create'])
+        ->name('users.create');
+
+    Route::post('/users', [UserController::class, 'store'])
+        ->name('users.store');
+
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+        ->name('users.edit');
+
+    Route::put('/users/{user}', [UserController::class, 'update'])
+        ->name('users.update');
+
+    Route::patch('/users/{user}/toggle', [UserController::class, 'toggle'])
+        ->name('users.toggle');
+
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])
+        ->name('users.destroy');
+
+});
 
 
     

@@ -312,6 +312,17 @@ return [
         'icon' => 'fas fa-fw fa-home',
         'can' => 'full-access',
     ],
+    [
+    'header' => 'ADMINISTRATION',
+    'can' => 'full-access',
+],
+
+[
+    'text' => 'Users',
+    'route' => 'users.index',
+    'icon' => 'fas fa-fw fa-users-cog',
+    'can' => 'full-access',
+],
 
     [
         'header' => 'PATIENTS',

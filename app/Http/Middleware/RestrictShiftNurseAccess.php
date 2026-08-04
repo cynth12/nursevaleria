@@ -21,6 +21,23 @@ class RestrictShiftNurseAccess
         }
 
         /*
+         * Si el enfermero está desactivado,
+         * cerramos su sesión inmediatamente.
+         */
+        if (!$user->is_active) {
+            auth()->logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()
+                ->route('login')
+                ->withErrors([
+                    'email' => 'Your account has been disabled.',
+                ]);
+        }
+
+        /*
          * Si por alguna razón no existe la fecha en sesión,
          * usamos la fecha actual.
          */

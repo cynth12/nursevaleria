@@ -39,9 +39,31 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    protected function authenticated(Request $request, $user)
+   protected function authenticated(Request $request, $user)
 {
+    /*
+     * Si Luis o cualquier enfermero está desactivado,
+     * se cierra inmediatamente su sesión.
+     */
+    if ($user->is_shift_nurse && !$user->is_active) {
+
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()
+            ->route('login')
+            ->withErrors([
+                'email' => 'Your account has been disabled.',
+            ]);
+    }
+
+    /*
+     * Enfermero activo.
+     */
     if ($user->is_shift_nurse) {
+
         $request->session()->put(
             'shift_date',
             now('America/Cancun')->toDateString()
@@ -50,6 +72,9 @@ class LoginController extends Controller
         return redirect()->route('patients.index');
     }
 
+    /*
+     * Administrador.
+     */
     $request->session()->forget('shift_date');
 
     return redirect()->intended('/home');
