@@ -288,7 +288,7 @@ class PatientController extends Controller
     {
         $patient = Patient::findOrFail($id);
         $patient->delete();
-        return redirect()->route('pacientes.index')->with('success', 'Paciente eliminado correctamente ✅');
+        return redirect()->route('patients.index')->with('success', 'Paciente eliminado correctamente ✅');
     }
 
     public function addToGroup(Request $request, $id)

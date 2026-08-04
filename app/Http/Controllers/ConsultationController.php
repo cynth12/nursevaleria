@@ -15,7 +15,18 @@ class ConsultationController extends Controller
     // Listar consultas de un paciente
     public function index(Patient $patient)
     {
-        $consultations = Consultation::where('patient_id', $patient->id)->orderBy('registration_date', 'desc')->paginate(10);
+        $query = Consultation::where('patient_id', $patient->id);
+
+        /*
+         * El enfermero solo ve consultas de la fecha del turno.
+         */
+        if (auth()->user()->is_shift_nurse) {
+            $shiftDate = session('shift_date', now('America/Cancun')->toDateString());
+
+            $query->whereDate('registration_date', $shiftDate);
+        }
+
+        $consultations = $query->orderBy('registration_date', 'desc')->paginate(10);
 
         return view('consultas.index', compact('consultations', 'patient'));
     }
@@ -195,11 +206,9 @@ class ConsultationController extends Controller
         return redirect()->route('consultas.index', $patientId)->with('success', 'Consulta eliminada correctamente ✅');
     }
     public function pdf(Consultation $consultation)
-{
-    $pdf = Pdf::loadView('consultas.pdf', compact('consultation'));
+    {
+        $pdf = Pdf::loadView('consultas.pdf', compact('consultation'));
 
-    return $pdf->stream(
-        'Treatment-'.$consultation->patient->name.'.pdf'
-    );
-}
+        return $pdf->stream('Treatment-' . $consultation->patient->name . '.pdf');
+    }
 }

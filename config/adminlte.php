@@ -310,6 +310,7 @@ return [
         'text' => 'Home',
         'route' => 'home',
         'icon' => 'fas fa-fw fa-home',
+        'can' => 'full-access',
     ],
 
     [
@@ -320,24 +321,28 @@ return [
         'text' => 'Patient Intake Form',
         'url' => 'patient/form',
         'icon' => 'fas fa-fw fa-file-medical',
+        'can' => 'full-access',
     ],
 
     [
         'text' => 'Register Patient',
         'url' => 'patient/index',
         'icon' => 'fas fa-fw fa-user-plus',
+        'can' => 'full-access',
     ],
 
     [
         'text' => 'Patients',
-        'url' => 'pacientes',
+        'url' => 'patients',
         'icon' => 'fas fa-fw fa-users',
+        'can' => 'view-patients',
     ],
 
     [
         'text' => 'Patient Imports',
         'url' => 'imported_patients',
         'icon' => 'fas fa-fw fa-file-import',
+        'can' => 'full-access',
     ],
 
     [
@@ -348,12 +353,14 @@ return [
         'text' => 'Treatments',
         'url' => 'treatments',
         'icon' => 'fas fa-fw fa-syringe',
+        'can' => 'full-access',
     ],
 
     [
         'text' => 'Consent Forms',
         'url' => 'consentimientos',
         'icon' => 'fas fa-fw fa-file-signature',
+        'can' => 'full-access',
     ],
 
     [
@@ -364,11 +371,13 @@ return [
                 'text' => 'Create Group',
                 'url' => 'grupos/create',
                 'icon' => 'fas fa-fw fa-plus-circle',
+                'can' => 'full-access',
             ],
             [
                 'text' => 'View Groups',
                 'url' => 'grupos',
                 'icon' => 'fas fa-fw fa-list',
+                'can' => 'full-access',
             ],
         ],
     ],
@@ -377,6 +386,7 @@ return [
         'text' => 'Calendar',
         'url' => 'calendar',
         'icon' => 'fas fa-fw fa-calendar-alt',
+        'can' => 'full-access',
     ],
 
     [
@@ -387,6 +397,7 @@ return [
         'text' => 'Statistics',
         'url' => 'estadisticas',
         'icon' => 'fas fa-fw fa-chart-bar',
+        'can' => 'full-access',
     ],
 ],
 

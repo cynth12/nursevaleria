@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\RestrictShiftNurseAccess;
+use App\Http\Middleware\EnsureShiftDateAccess;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,8 +13,25 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+
+        /*
+         * Se ejecuta en todo el panel.
+         */
+        $middleware->web(
+            append: [
+                RestrictShiftNurseAccess::class,
+            ]
+        );
+
+        /*
+         * Alias para validar la fecha del paciente.
+         */
+        $middleware->alias([
+            'shift.date' => EnsureShiftDateAccess::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    })
+    ->create();

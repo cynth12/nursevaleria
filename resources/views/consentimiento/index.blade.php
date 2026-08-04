@@ -400,7 +400,7 @@
                                                 View
 
                                             </a>
-
+                                             @if (!auth()->user()->is_shift_nurse)
                                             <form action="{{ route(
                                                     'consentimiento.destroy',
                                                     $consentimiento->id
@@ -434,6 +434,8 @@
                                                 </button>
 
                                             </form>
+
+                                        @endif
 
                                         </div>
 

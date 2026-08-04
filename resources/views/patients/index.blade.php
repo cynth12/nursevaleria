@@ -137,7 +137,7 @@
         <div class="card-body">
 
             <form method="GET"
-                  action="{{ route('pacientes.index') }}">
+                  action="{{ route('patients.index') }}">
 
                 <div class="row align-items-end">
 
@@ -182,7 +182,7 @@
                             </button>
 
                             @if (request('search'))
-                                <a href="{{ route('pacientes.index') }}"
+                                <a href="{{ route('patients.index') }}"
                                    class="btn btn-outline-secondary">
 
                                     <i class="fas fa-times mr-1"></i>
@@ -419,7 +419,7 @@
                                                 <i class="fas fa-eye mr-1"></i>
                                                 View
                                             </a>
-
+                                            @if (!auth()->user()->is_shift_nurse)
                                             <form action="{{ route('patient.destroy', $patient->id) }}"
                                                   method="POST"
                                                   class="d-inline patient-delete-form">
@@ -438,6 +438,7 @@
 
                                             </form>
 
+                                        @endif
                                         </div>
 
                                     </td>

@@ -466,7 +466,7 @@
                                                 </a>
 
                                             @endif
-
+                                                 @if (!auth()->user()->is_shift_nurse)
                                             <form action="{{ route('consultas.destroy', $consultation->id) }}"
                                                   method="POST"
                                                   class="d-inline">
@@ -489,6 +489,7 @@
                                                 </button>
 
                                             </form>
+                                            @endif
 
                                         </div>
 

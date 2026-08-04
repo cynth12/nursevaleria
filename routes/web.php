@@ -30,14 +30,14 @@ Route::post('/patient/form', [PatientController::class, 'store'])->name('patient
 
 Route::middleware(['auth'])->group(function () {
 // Listado de pacientes
-Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes.index');
+Route::get('/patients', [PacientesController::class, 'index'])->middleware(['auth'])->name('patients.index');
 
 // Formulario interno de tu sistema
 Route::get('/patient/index', [PatientController::class, 'createIndex'])->name('patient.index');
 Route::post('/patient/index', [PatientController::class, 'store'])->name('patient.index.store');
 
 // Mostrar detalle de un paciente
-Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patient.show');
+Route::get('/patient/{id}', [PatientController::class, 'show']) ->middleware(['auth', 'shift.date'])->name('patient.show');
 
 // Editar paciente
 Route::get('/patient/{id}/edit', [PatientController::class, 'edit'])->name('patient.edit');
@@ -52,18 +52,23 @@ Route::get('/consentimientos', [ConsentimientoController::class, 'index'])
     ->name('consentimiento.index');
 
 Route::get('/consentimientos/create/{consultationId}', [ConsentimientoController::class, 'create'])
+     ->middleware(['auth', 'shift.date'])
     ->name('consentimiento.create');
 
 Route::post('/consentimientos/{consultationId}', [ConsentimientoController::class, 'store'])
+     ->middleware(['auth', 'shift.date'])
     ->name('consentimiento.store');
 
 Route::get('/consentimientos/{id}', [ConsentimientoController::class, 'show'])
+     ->middleware(['auth', 'shift.date'])
     ->name('consentimiento.show');
 
 Route::get('/consentimientos/{id}/edit', [ConsentimientoController::class, 'edit'])
+     ->middleware(['auth', 'shift.date'])
     ->name('consentimiento.edit');
 
 Route::put('/consentimientos/{id}', [ConsentimientoController::class, 'update'])
+    ->middleware(['auth', 'shift.date'])
     ->name('consentimiento.update');
 
 Route::delete('/consentimientos/{id}', [ConsentimientoController::class, 'destroy'])
@@ -113,15 +118,19 @@ Route::delete('/imports/{id}', [ImportedPatientsController::class, 'destroyFile'
 //patients
 
 Route::get('/patients/{patient}/consultas', [ConsultationController::class, 'index'])
+     ->middleware(['auth', 'shift.date'])
     ->name('consultas.index');
 
 Route::get('/consultas/{consultation}', [ConsultationController::class, 'show'])
+    ->middleware(['auth', 'shift.date'])
     ->name('consultas.show');
 
 Route::get('/consultas/{consultation}/edit', [ConsultationController::class, 'edit'])
+    ->middleware(['auth', 'shift.date'])
     ->name('consultas.edit');
 
 Route::put('/consultas/{consultation}', [ConsultationController::class, 'update'])
+    ->middleware(['auth', 'shift.date'])
     ->name('consultas.update');
 
 Route::delete('/consultas/{consultation}', [ConsultationController::class, 'destroy'])
