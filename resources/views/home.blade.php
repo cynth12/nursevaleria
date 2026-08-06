@@ -76,7 +76,7 @@
                     <div class="hero-actions">
 
                         {{-- LISTADO DE PACIENTES --}}
-                        <a href="{{ url('/pacientes') }}" class="btn btn-light">
+                        <a href="{{ url('/patients') }}" class="btn btn-light">
 
                             <i class="fas fa-users mr-1"></i>
 
@@ -136,7 +136,7 @@
         {{-- PATIENTS --}}
         <div class="col-xl-4 col-md-6">
 
-            <a href="{{ url('/pacientes') }}" class="dashboard-module-link">
+            <a href="{{ url('/patients') }}" class="dashboard-module-link">
 
                 <div class="card dashboard-module patients-module">
 
