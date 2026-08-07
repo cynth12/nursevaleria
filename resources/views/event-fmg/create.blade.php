@@ -69,8 +69,8 @@
 
 </div>
 
-    <form action="{{ route('patient.form.store') }}" method="POST">
-        @csrf
+    <form action="{{ route('event-fmg.store') }}" method="POST">
+    @csrf
         <h1></h1><br>
         <h2 class="form-title">BASIC EVALUATION FOR IV THERAPY</h2><br>
         <!-- Datos personales -->

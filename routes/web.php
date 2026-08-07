@@ -236,6 +236,9 @@ Route::middleware(['auth'])->group(function () {
         [EventFmgPatientController::class, 'convert'])
         ->name('event-fmg.convert');
 
+    Route::post('/event/fmg', [EventFmgPatientController::class, 'store'])
+    ->name('event-fmg.store');
+
 });
     
 
