@@ -410,6 +410,21 @@ return [
         'icon' => 'fas fa-fw fa-chart-bar',
         'can' => 'full-access',
     ],
+
+    [
+    'header' => 'EVENTS',
+],
+
+[
+    'text' => 'FMG Event',
+    'icon' => 'fas fa-fw fa-gift',
+    'submenu' => [
+        [
+            'text' => 'Participants',
+            'route' => 'event-fmg.index',
+        ],
+    ],
+],
 ],
 
     /*

@@ -15,6 +15,8 @@ use App\Http\Controllers\ImportFileController;
 use App\Http\Controllers\TreatmentController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventFmgPatientController;
+
 
 
 Route::get('/', function () {
@@ -201,7 +203,40 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//====================================================
+// EVENT FMG
+//====================================================
 
+// Formulario público
+Route::get('/event/fmg', [EventFmgPatientController::class, 'create'])
+    ->name('event-fmg.create');
+
+Route::post('/event/fmg', [EventFmgPatientController::class, 'store'])
+    ->name('event-fmg.store');
+
+// Panel administrativo
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/event-fmg', [EventFmgPatientController::class, 'index'])
+        ->name('event-fmg.index');
+
+    Route::get('/event-fmg/{eventFmgPatient}', [EventFmgPatientController::class, 'show'])
+        ->name('event-fmg.show');
+
+    Route::get('/event-fmg/{eventFmgPatient}/edit', [EventFmgPatientController::class, 'edit'])
+        ->name('event-fmg.edit');
+
+    Route::put('/event-fmg/{eventFmgPatient}', [EventFmgPatientController::class, 'update'])
+        ->name('event-fmg.update');
+
+    Route::delete('/event-fmg/{eventFmgPatient}', [EventFmgPatientController::class, 'destroy'])
+        ->name('event-fmg.destroy');
+
+    Route::post('/event-fmg/{eventFmgPatient}/convert',
+        [EventFmgPatientController::class, 'convert'])
+        ->name('event-fmg.convert');
+
+});
     
 
 
