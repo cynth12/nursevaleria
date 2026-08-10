@@ -49,7 +49,7 @@
 
     <div class="text-center mb-5">
 
-    <h1 class="display-4 font-weight-bold text-primary">
+    <h1 class="display-4 font-weight-bold" style="color:#35405E;">
 
         🎉 ENTER TO WIN!
 
@@ -83,7 +83,7 @@
             <label>Last name</label>
             <input type="text" name="last_name" id="last_name" class="form-control" required>
         </div>
-        <div class="form-group">
+       <div class="form-group">
             <label>Date of birth:</label>
             <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" required>
         </div>
