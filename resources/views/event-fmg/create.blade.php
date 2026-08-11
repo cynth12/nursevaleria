@@ -57,13 +57,14 @@
 
     <h3 class="mb-4">
 
-        Win a Complimentary Sport Power IV Therapy Session!
+        Win a Complimentary Sport Power IV Therapy Session! 💪💧
+
 
     </h3>
 
     <p class="lead">
 
-        Please complete the entry form for your chance to win.
+       Complete the entry form below for your chance to win!
 
     </p>
 
