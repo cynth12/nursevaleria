@@ -473,7 +473,7 @@
                             <strong>“{{ request('search') }}”</strong>.
                         </p>
 
-                        <a href="{{ route('pacientes.index') }}"
+                        <a href="{{ route('patients.index') }}"
                            class="btn btn-outline-primary">
 
                             <i class="fas fa-times mr-1"></i>

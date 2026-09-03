@@ -18,13 +18,29 @@ class PatientController extends Controller
         return response()->view('patient.form')->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')->header('Pragma', 'no-cache');
     }
 
-    // Formulario interno
-    public function createIndex()
-    {
-        $patients = Patient::orderBy('registration_date', 'desc')->paginate(10);
+   // Formulario interno
+public function createIndex(Request $request)
+{
+    $search = $request->input('search');
 
-        return view('patient.index', compact('patients'));
+    $query = Patient::query();
+
+    if ($search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%')
+              ->orWhere('last_name', 'like', '%' . $search . '%')
+              ->orWhere('phone', 'like', '%' . $search . '%')
+              ->orWhere('email', 'like', '%' . $search . '%');
+        });
     }
+
+    $patients = $query
+        ->orderBy('registration_date', 'desc')
+        ->paginate(10)
+        ->withQueryString();
+
+    return view('patient.index', compact('patients', 'search'));
+}
 
     // Guardar paciente
     public function store(Request $request)
