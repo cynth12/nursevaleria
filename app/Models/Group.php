@@ -9,7 +9,7 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['place', 'date'];
+    protected $fillable = ['place', 'date',  'public_token',];
 
     // Relación: un grupo tiene muchos pacientes
     public function patients()

@@ -97,8 +97,10 @@ Route::get('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::
 Route::get('/groupPatients/{id}/edit', [App\Http\Controllers\GroupPatientController::class, 'edit'])->name('groupPatients.edit');
 Route::put('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::class, 'update'])->name('groupPatients.update');
 Route::delete('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::class, 'destroy'])->name('groupPatients.destroy');
-
-
+Route::get('/group/{public_token}', [GroupController::class, 'publicForm'])
+    ->name('group.public.form');
+Route::post('/group/{public_token}', [GroupController::class, 'publicStore'])
+    ->name('group.public.store');
 
 // Ruta de busqueda
 Route::get('/buscar', [SearchController::class, 'index'])->name('buscar');
