@@ -8,7 +8,6 @@ use App\Http\Controllers\ConsentimientoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ImportedPatientsController;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\GroupPatientController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\StatsController;
 use App\Http\Controllers\ImportFileController;
@@ -84,6 +83,8 @@ Route::get('/grupos/create', [App\Http\Controllers\GroupController::class, 'crea
 Route::post('/grupos', [App\Http\Controllers\GroupController::class, 'store'])->name('grupos.store');
 Route::get('/grupos/{id}', [App\Http\Controllers\GroupController::class, 'show'])->name('grupos.show');
 Route::delete('/grupos/{id}', [App\Http\Controllers\GroupController::class, 'destroy'])->name('grupos.destroy');
+Route::delete('/groups/{group}/patients/{patient}', [GroupController::class, 'removePatient'])
+    ->name('grupos.removePatient');
 Route::get('/groups/list', [App\Http\Controllers\GroupController::class, 'list'])->name('groups.list');;
 
 
@@ -91,16 +92,6 @@ Route::get('/groups/list', [App\Http\Controllers\GroupController::class, 'list']
 
 
 
-// Pacientes dentro de grupos
-Route::post('/groupPatients', [App\Http\Controllers\GroupPatientController::class, 'store'])->name('groupPatients.store');
-Route::get('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::class, 'show'])->name('groupPatients.show');
-Route::get('/groupPatients/{id}/edit', [App\Http\Controllers\GroupPatientController::class, 'edit'])->name('groupPatients.edit');
-Route::put('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::class, 'update'])->name('groupPatients.update');
-Route::delete('/groupPatients/{id}', [App\Http\Controllers\GroupPatientController::class, 'destroy'])->name('groupPatients.destroy');
-Route::get('/group/{public_token}', [GroupController::class, 'publicForm'])
-    ->name('group.public.form');
-Route::post('/group/{public_token}', [GroupController::class, 'publicStore'])
-    ->name('group.public.store');
 
 // Ruta de busqueda
 Route::get('/buscar', [SearchController::class, 'index'])->name('buscar');
@@ -116,6 +107,11 @@ Route::delete('/imported_patients/destroy-all', [ImportedPatientsController::cla
     ->name('imported_patients.destroyAll');
     });
 
+// FORMULARIO PUBLICO DE GRUPOS
+Route::get('/group/{public_token}', [GroupController::class, 'publicForm'])
+    ->name('group.public.form');
+Route::post('/group/{public_token}', [GroupController::class, 'publicStore'])
+    ->name('group.public.store');
 Route::get('/imports/download/{id}', [ImportedPatientsController::class, 'download'] )->name('imports.download');
 Route::delete('/imports/{id}', [ImportedPatientsController::class, 'destroyFile'])->name('imports.destroy');
 
@@ -238,8 +234,6 @@ Route::middleware(['auth'])->group(function () {
         [EventFmgPatientController::class, 'convert'])
         ->name('event-fmg.convert');
 
-    Route::post('/event/fmg', [EventFmgPatientController::class, 'store'])
-    ->name('event-fmg.store');
 
 });
     

@@ -234,14 +234,22 @@
                                             @endif
 
 
-                                            {{-- Delete --}}
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                onclick="confirmDeleteConsultation(this.form)">
+                                            {{-- Delete patient completely --}}
+                                            <form action="{{ route('grupos.removePatient', [$group->id, $patient->id]) }}"
+                                                method="POST" class="d-inline">
 
-                                                <i class="fas fa-trash"></i>
-                                                Delete
+                                                @csrf
+                                                @method('DELETE')
 
-                                            </button>
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="confirmDeleteConsultation(this.form)">
+
+                                                    <i class="fas fa-trash"></i>
+                                                    Delete
+
+                                                </button>
+
+                                            </form>
                                         @else
                                             <span class="text-muted">
                                                 <i class="fas fa-info-circle"></i>
